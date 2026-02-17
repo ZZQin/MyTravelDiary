@@ -152,6 +152,34 @@ function TabBar({
   );
 }
 
+/* ─── Parse date for calendar display ─── */
+function parseDateForCalendar(dateStr: string, lang: Language): { dayOfWeek: string; dayNum: string; month: string } {
+  if (lang === 'en') {
+    // Format: "May 8 (Fri)" or "Feb 27 (Thu)" or "≈ Mar 12 (Thu)"
+    const cleanStr = dateStr.replace('≈ ', '');
+    const match = cleanStr.match(/([A-Za-z]+)\s+(\d+)\s+\(([^)]+)\)/);
+    if (match) {
+      return {
+        month: match[1],
+        dayNum: match[2],
+        dayOfWeek: match[3],
+      };
+    }
+  } else {
+    // Format: "5月8日（周五）" or "2月27日（周四）" or "≈ 3月12日（周四）"
+    const cleanStr = dateStr.replace('≈ ', '');
+    const match = cleanStr.match(/(\d+)月(\d+)日[（(]([^)）]+)[)）]/);
+    if (match) {
+      return {
+        month: `${match[1]}月`,
+        dayNum: match[2],
+        dayOfWeek: match[3],
+      };
+    }
+  }
+  return { dayOfWeek: '', dayNum: '?', month: '' };
+}
+
 /* ─── Day Picker (horizontal scroll) ─── */
 function DayPicker({
   currentDay,
@@ -178,29 +206,37 @@ function DayPicker({
   }, [currentDay]);
 
   return (
-    <div className="sticky top-[152px] z-30 bg-gray-50 border-b border-gray-200 py-2 px-2">
+    <div className="sticky top-[152px] z-30 bg-gray-50 border-b border-gray-200 py-3 px-2">
       <div
         ref={scrollRef}
-        className="max-w-2xl mx-auto flex gap-1.5 overflow-x-auto scrollbar-hide py-1 px-1"
+        className="max-w-2xl mx-auto flex gap-2 overflow-x-auto scrollbar-hide py-1 px-1"
       >
         {days.map((day, idx) => {
           const colors = rc(regionColors, day.region);
           const isActive = idx === currentDay;
+          const calendar = parseDateForCalendar(day.date[lang], lang);
+          
           return (
             <button
               key={day.day}
               onClick={() => setCurrentDay(idx)}
-              className={`flex-shrink-0 flex flex-col items-center justify-center rounded-xl transition-all min-w-[52px] ${
+              className={`flex-shrink-0 flex flex-col items-center justify-center rounded-xl transition-all min-w-[64px] ${
                 isActive
                   ? `${colors.bg} text-white shadow-lg scale-105`
                   : 'bg-white text-gray-600 shadow-sm hover:shadow-md border border-gray-200'
               }`}
-              style={{ padding: '6px 4px' }}
+              style={{ padding: '8px 6px' }}
             >
-              <span className="text-xs font-medium leading-none">
-                {lang === 'en' ? 'D' : '第'}
+              {/* Day of week */}
+              <span className={`text-xs font-medium leading-none mb-1 ${isActive ? 'text-white/90' : 'text-gray-500'}`}>
+                {calendar.dayOfWeek}
               </span>
-              <span className="text-lg font-bold leading-tight">{day.day}</span>
+              {/* Day number */}
+              <span className="text-xl font-bold leading-tight">{calendar.dayNum}</span>
+              {/* Month */}
+              <span className={`text-[10px] leading-none mt-0.5 ${isActive ? 'text-white/80' : 'text-gray-400'}`}>
+                {calendar.month}
+              </span>
             </button>
           );
         })}
@@ -242,13 +278,24 @@ function DayDetail({
         <h2 className="text-xl font-bold text-gray-900 mt-2 leading-snug">{day.title[lang]}</h2>
       </div>
 
-      {/* Map */}
-      <div>
-        <MapEmbed query={day.mapQuery} />
-        <OpenInMaps query={day.mapQuery} lang={lang} />
+      {/* Activities - Now first */}
+      <div className="space-y-3">
+        <h3 className="text-lg font-bold text-gray-800">
+          {lang === 'en' ? '📋 Schedule' : '📋 今日安排'}
+        </h3>
+        <div className="space-y-2.5">
+          {day.activities[lang].map((activity, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-base leading-relaxed text-gray-800"
+            >
+              {activity}
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Accommodation */}
+      {/* Accommodation - Second */}
       {day.accommodation && (
         <div className={`${colors.light} rounded-xl p-4 border ${colors.border}`}>
           <div className="flex items-center gap-2">
@@ -265,21 +312,13 @@ function DayDetail({
         </div>
       )}
 
-      {/* Activities */}
-      <div className="space-y-3">
-        <h3 className="text-lg font-bold text-gray-800">
-          {lang === 'en' ? '📋 Schedule' : '📋 今日安排'}
+      {/* Map - Third (last) */}
+      <div className="pt-2">
+        <h3 className="text-lg font-bold text-gray-800 mb-3">
+          {lang === 'en' ? '🗺️ Location' : '🗺️ 位置'}
         </h3>
-        <div className="space-y-2.5">
-          {day.activities[lang].map((activity, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-base leading-relaxed text-gray-800"
-            >
-              {activity}
-            </div>
-          ))}
-        </div>
+        <MapEmbed query={day.mapQuery} />
+        <OpenInMaps query={day.mapQuery} lang={lang} />
       </div>
     </div>
   );

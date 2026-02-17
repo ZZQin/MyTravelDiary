@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 17px;
+  }
+}

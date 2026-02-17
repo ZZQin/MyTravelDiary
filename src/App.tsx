@@ -1,18 +1,19 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import {
-  days,
-  penangCategories,
-  travelTips,
-  tripOverview,
-  regionColors,
+  trips,
   type Language,
+  type TripId,
   type DayData,
   type Bilingual,
 } from './data/itinerary';
 
 /* ─── Region color helper ─── */
-function rc(region: string) {
-  return regionColors[region] || regionColors.krabi;
+function useRegionColors(tripId: TripId) {
+  return trips[tripId].regionColors;
+}
+
+function rc(regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>, region: string) {
+  return regionColors[region] || regionColors[Object.keys(regionColors)[0]];
 }
 
 /* ─── Google Map Embed ─── */
@@ -48,33 +49,64 @@ function OpenInMaps({ query, lang }: { query: string; lang: Language }) {
 }
 
 /* ─── Header ─── */
-function Header({ lang, setLang }: { lang: Language; setLang: (l: Language) => void }) {
+function Header({ 
+  lang, 
+  setLang, 
+  currentTrip, 
+  setCurrentTrip 
+}: { 
+  lang: Language; 
+  setLang: (l: Language) => void;
+  currentTrip: TripId;
+  setCurrentTrip: (t: TripId) => void;
+}) {
+  const tripData = trips[currentTrip];
+  
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white shadow-lg">
-      <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">🌏</span>
-          <h1 className="text-lg font-bold leading-tight">
-            {lang === 'en' ? 'Travel Itinerary' : '旅行计划'}
-          </h1>
+      <div className="max-w-2xl mx-auto px-4 py-3">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🌏</span>
+            <h1 className="text-lg font-bold leading-tight">
+              {lang === 'en' ? 'Travel Itinerary' : '旅行计划'}
+            </h1>
+          </div>
+          <div className="flex bg-white/20 rounded-full p-0.5 gap-0.5">
+            <button
+              onClick={() => setLang('en')}
+              className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                lang === 'en' ? 'bg-white text-sky-800 shadow' : 'text-white/90 hover:bg-white/10'
+              }`}
+            >
+              EN
+            </button>
+            <button
+              onClick={() => setLang('zh')}
+              className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                lang === 'zh' ? 'bg-white text-sky-800 shadow' : 'text-white/90 hover:bg-white/10'
+              }`}
+            >
+              中文
+            </button>
+          </div>
         </div>
-        <div className="flex bg-white/20 rounded-full p-0.5 gap-0.5">
-          <button
-            onClick={() => setLang('en')}
-            className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all ${
-              lang === 'en' ? 'bg-white text-sky-800 shadow' : 'text-white/90 hover:bg-white/10'
-            }`}
-          >
-            EN
-          </button>
-          <button
-            onClick={() => setLang('zh')}
-            className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all ${
-              lang === 'zh' ? 'bg-white text-sky-800 shadow' : 'text-white/90 hover:bg-white/10'
-            }`}
-          >
-            中文
-          </button>
+        
+        {/* Trip Selector */}
+        <div className="flex bg-white/10 rounded-lg p-1 gap-1">
+          {(Object.keys(trips) as TripId[]).map((tripId) => (
+            <button
+              key={tripId}
+              onClick={() => setCurrentTrip(tripId)}
+              className={`flex-1 py-2 px-2 rounded-md text-sm font-medium transition-all ${
+                currentTrip === tripId
+                  ? 'bg-white text-sky-800 shadow'
+                  : 'text-white/80 hover:bg-white/10'
+              }`}
+            >
+              {trips[tripId].name[lang]}
+            </button>
+          ))}
         </div>
       </div>
     </header>
@@ -100,7 +132,7 @@ function TabBar({
 }) {
   const tabs: TabId[] = ['itinerary', 'overview', 'tips'];
   return (
-    <div className="sticky top-[52px] z-40 bg-white border-b border-gray-200 shadow-sm">
+    <div className="sticky top-[100px] z-40 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-2xl mx-auto flex">
         {tabs.map((tab) => (
           <button
@@ -125,10 +157,14 @@ function DayPicker({
   currentDay,
   setCurrentDay,
   lang,
+  days,
+  regionColors,
 }: {
   currentDay: number;
   setCurrentDay: (d: number) => void;
   lang: Language;
+  days: DayData[];
+  regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -142,13 +178,13 @@ function DayPicker({
   }, [currentDay]);
 
   return (
-    <div className="sticky top-[104px] z-30 bg-gray-50 border-b border-gray-200 py-2 px-2">
+    <div className="sticky top-[152px] z-30 bg-gray-50 border-b border-gray-200 py-2 px-2">
       <div
         ref={scrollRef}
         className="max-w-2xl mx-auto flex gap-1.5 overflow-x-auto scrollbar-hide py-1 px-1"
       >
         {days.map((day, idx) => {
-          const colors = rc(day.region);
+          const colors = rc(regionColors, day.region);
           const isActive = idx === currentDay;
           return (
             <button
@@ -174,8 +210,16 @@ function DayPicker({
 }
 
 /* ─── Day Detail View ─── */
-function DayDetail({ day, lang }: { day: DayData; lang: Language }) {
-  const colors = rc(day.region);
+function DayDetail({ 
+  day, 
+  lang, 
+  regionColors 
+}: { 
+  day: DayData; 
+  lang: Language;
+  regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
+}) {
+  const colors = rc(regionColors, day.region);
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-4 space-y-4">
@@ -246,13 +290,15 @@ function DayNav({
   currentDay,
   setCurrentDay,
   lang,
+  totalDays,
 }: {
   currentDay: number;
   setCurrentDay: (d: number) => void;
   lang: Language;
+  totalDays: number;
 }) {
   const canPrev = currentDay > 0;
-  const canNext = currentDay < days.length - 1;
+  const canNext = currentDay < totalDays - 1;
 
   return (
     <div className="max-w-2xl mx-auto px-4 pb-6 pt-2 flex gap-3">
@@ -287,24 +333,42 @@ function ItineraryView({
   lang,
   currentDay,
   setCurrentDay,
+  tripId,
 }: {
   lang: Language;
   currentDay: number;
   setCurrentDay: (d: number) => void;
+  tripId: TripId;
 }) {
-  const day = days[currentDay];
+  const tripData = trips[tripId];
+  const day = tripData.days[currentDay];
+  const regionColors = tripData.regionColors;
+  
   return (
     <div className="bg-gray-50 min-h-[60vh]">
-      <DayPicker currentDay={currentDay} setCurrentDay={setCurrentDay} lang={lang} />
-      <DayDetail day={day} lang={lang} />
-      <DayNav currentDay={currentDay} setCurrentDay={setCurrentDay} lang={lang} />
+      <DayPicker 
+        currentDay={currentDay} 
+        setCurrentDay={setCurrentDay} 
+        lang={lang} 
+        days={tripData.days}
+        regionColors={regionColors}
+      />
+      <DayDetail day={day} lang={lang} regionColors={regionColors} />
+      <DayNav 
+        currentDay={currentDay} 
+        setCurrentDay={setCurrentDay} 
+        lang={lang} 
+        totalDays={tripData.days.length}
+      />
     </div>
   );
 }
 
 /* ─── Overview View ─── */
-function OverviewView({ lang }: { lang: Language }) {
+function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
   const [openCategory, setOpenCategory] = useState<number | null>(null);
+  const tripData = trips[tripId];
+  const regionColors = tripData.regionColors;
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-5 space-y-6 bg-gray-50 min-h-[60vh]">
@@ -313,11 +377,11 @@ function OverviewView({ lang }: { lang: Language }) {
         <h2 className="text-xl font-bold text-gray-900 mb-1">
           {lang === 'en' ? '🌏 Trip Overview' : '🌏 行程概览'}
         </h2>
-        <p className="text-base text-gray-600 mb-4">{tripOverview.duration[lang]}</p>
+        <p className="text-base text-gray-600 mb-4">{tripData.overview.duration[lang]}</p>
 
         <div className="space-y-3">
-          {tripOverview.stays.map((stay, idx) => {
-            const colors = rc(stay.region);
+          {tripData.overview.stays.map((stay, idx) => {
+            const colors = rc(regionColors, stay.region);
             return (
               <div key={idx} className={`${colors.light} rounded-xl p-4 border ${colors.border}`}>
                 <div className="flex items-center gap-2 mb-1">
@@ -334,45 +398,59 @@ function OverviewView({ lang }: { lang: Language }) {
         </div>
       </div>
 
-      {/* Penang Activities Guide */}
+      {/* Activities Guide */}
       <div>
         <h2 className="text-xl font-bold text-gray-900 mb-3">
-          {lang === 'en' ? '🏝️ Penang Activities Guide' : '🏝️ 槟城活动指南'}
+          {tripId === 'thailand' 
+            ? (lang === 'en' ? '🏝️ Penang Activities Guide' : '🏝️ 槟城活动指南')
+            : (lang === 'en' ? '🏛️ Highlights & Activities' : '🏛️ 精华活动指南')
+          }
         </h2>
         <p className="text-base text-gray-600 mb-4">
-          {lang === 'en'
-            ? 'A flexible menu of things to do during your 1–2 week stay in Penang.'
-            : '在槟城停留1–2周期间可以自由组合的活动清单。'}
+          {tripId === 'thailand'
+            ? (lang === 'en'
+              ? 'A flexible menu of things to do during your 1–2 week stay in Penang.'
+              : '在槟城停留1–2周期间可以自由组合的活动清单。')
+            : (lang === 'en'
+              ? 'Key highlights and activities for your Croatia & Italy adventure.'
+              : '克罗地亚和意大利之旅的精彩亮点和活动。')
+          }
         </p>
 
         <div className="space-y-2">
-          {penangCategories.map((cat, idx) => (
-            <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-              <button
-                onClick={() => setOpenCategory(openCategory === idx ? null : idx)}
-                className="w-full px-4 py-4 flex items-center justify-between text-left active:bg-gray-50"
-              >
-                <span className="text-base font-bold text-gray-800">{cat.title[lang]}</span>
-                <span className="text-xl text-gray-400 transition-transform" style={{
-                  transform: openCategory === idx ? 'rotate(180deg)' : 'rotate(0deg)',
-                }}>
-                  ▼
-                </span>
-              </button>
-              {openCategory === idx && (
-                <div className="px-4 pb-4 space-y-2">
-                  {cat.items.map((item, iIdx) => (
-                    <div
-                      key={iIdx}
-                      className="bg-rose-50 rounded-lg p-3 text-base text-gray-700 border border-rose-100"
-                    >
-                      • {item[lang]}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+          {tripData.categories.map((cat, idx) => {
+            const categoryColors = tripId === 'thailand' 
+              ? 'bg-rose-50 border-rose-100'
+              : 'bg-emerald-50 border-emerald-100';
+            
+            return (
+              <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <button
+                  onClick={() => setOpenCategory(openCategory === idx ? null : idx)}
+                  className="w-full px-4 py-4 flex items-center justify-between text-left active:bg-gray-50"
+                >
+                  <span className="text-base font-bold text-gray-800">{cat.title[lang]}</span>
+                  <span className="text-xl text-gray-400 transition-transform" style={{
+                    transform: openCategory === idx ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}>
+                    ▼
+                  </span>
+                </button>
+                {openCategory === idx && (
+                  <div className="px-4 pb-4 space-y-2">
+                    {cat.items.map((item, iIdx) => (
+                      <div
+                        key={iIdx}
+                        className={`rounded-lg p-3 text-base text-gray-700 border ${categoryColors}`}
+                      >
+                        • {item[lang]}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -380,8 +458,9 @@ function OverviewView({ lang }: { lang: Language }) {
 }
 
 /* ─── Tips View ─── */
-function TipsView({ lang }: { lang: Language }) {
+function TipsView({ lang, tripId }: { lang: Language; tripId: TripId }) {
   const [openSection, setOpenSection] = useState<number | null>(0);
+  const tripData = trips[tripId];
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-5 space-y-3 bg-gray-50 min-h-[60vh]">
@@ -389,7 +468,7 @@ function TipsView({ lang }: { lang: Language }) {
         {lang === 'en' ? '💡 Travel Tips' : '💡 旅行贴士'}
       </h2>
 
-      {travelTips.map((section, idx) => (
+      {tripData.tips.map((section, idx) => (
         <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <button
             onClick={() => setOpenSection(openSection === idx ? null : idx)}
@@ -423,30 +502,48 @@ function TipsView({ lang }: { lang: Language }) {
 /* ─── Main App ─── */
 export function App() {
   const [lang, setLang] = useState<Language>('zh');
+  const [currentTrip, setCurrentTrip] = useState<TripId>('croatia');
   const [currentDay, setCurrentDay] = useState(0);
   const [activeTab, setActiveTab] = useState<TabId>('itinerary');
+
+  // Reset day when switching trips
+  const handleSetTrip = useCallback((trip: TripId) => {
+    setCurrentTrip(trip);
+    setCurrentDay(0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleSetDay = useCallback((d: number) => {
     setCurrentDay(d);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  const tripData = trips[currentTrip];
+
   return (
     <div className="min-h-screen bg-gray-50 pb-8">
-      <Header lang={lang} setLang={setLang} />
+      <Header 
+        lang={lang} 
+        setLang={setLang} 
+        currentTrip={currentTrip}
+        setCurrentTrip={handleSetTrip}
+      />
       <TabBar activeTab={activeTab} setActiveTab={setActiveTab} lang={lang} />
 
       {activeTab === 'itinerary' && (
-        <ItineraryView lang={lang} currentDay={currentDay} setCurrentDay={handleSetDay} />
+        <ItineraryView 
+          lang={lang} 
+          currentDay={currentDay} 
+          setCurrentDay={handleSetDay}
+          tripId={currentTrip}
+        />
       )}
-      {activeTab === 'overview' && <OverviewView lang={lang} />}
-      {activeTab === 'tips' && <TipsView lang={lang} />}
+      {activeTab === 'overview' && <OverviewView lang={lang} tripId={currentTrip} />}
+      {activeTab === 'tips' && <TipsView lang={lang} tripId={currentTrip} />}
 
       {/* Footer */}
       <footer className="text-center py-6 text-sm text-gray-400">
-        {lang === 'en'
-          ? '🌴 Thailand & Malaysia 2026 · Have a wonderful trip!'
-          : '🌴 泰国和马来西亚 2026 · 祝旅途愉快！'}
+        {tripData.footer[lang]}
       </footer>
     </div>
   );

@@ -1,4 +1,5 @@
 export type Language = 'en' | 'zh';
+export type TripId = 'thailand' | 'croatia';
 
 export interface Bilingual {
   en: string;
@@ -9,14 +10,14 @@ export interface DayData {
   day: number;
   date: Bilingual;
   title: Bilingual;
-  region: 'krabi' | 'lanta' | 'lipe' | 'travel' | 'penang';
+  region: string;
   regionLabel: Bilingual;
   mapQuery: string;
   accommodation: Bilingual | null;
   activities: { en: string[]; zh: string[] };
 }
 
-export interface PenangCategory {
+export interface ActivityCategory {
   title: Bilingual;
   icon: string;
   items: Bilingual[];
@@ -28,7 +29,29 @@ export interface TipSection {
   items: Bilingual[];
 }
 
-export const regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
+export interface TripOverview {
+  duration: Bilingual;
+  stays: {
+    location: Bilingual;
+    dates: Bilingual;
+    hotel: Bilingual;
+    region: string;
+  }[];
+}
+
+export interface TripData {
+  id: TripId;
+  name: Bilingual;
+  footer: Bilingual;
+  regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
+  days: DayData[];
+  categories: ActivityCategory[];
+  tips: TipSection[];
+  overview: TripOverview;
+}
+
+// ===== THAILAND & PENANG REGION COLORS =====
+const thailandRegionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
   krabi:  { bg: 'bg-blue-600',    text: 'text-blue-700',    light: 'bg-blue-50',    border: 'border-blue-400',   dot: 'bg-blue-500' },
   lanta:  { bg: 'bg-emerald-600', text: 'text-emerald-700', light: 'bg-emerald-50', border: 'border-emerald-400', dot: 'bg-emerald-500' },
   lipe:   { bg: 'bg-cyan-600',    text: 'text-cyan-700',    light: 'bg-cyan-50',    border: 'border-cyan-400',   dot: 'bg-cyan-500' },
@@ -36,7 +59,18 @@ export const regionColors: Record<string, { bg: string; text: string; light: str
   penang: { bg: 'bg-rose-600',    text: 'text-rose-700',    light: 'bg-rose-50',    border: 'border-rose-400',   dot: 'bg-rose-500' },
 };
 
-export const days: DayData[] = [
+// ===== CROATIA & ITALY REGION COLORS =====
+const croatiaRegionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
+  dubrovnik: { bg: 'bg-orange-600',  text: 'text-orange-700',  light: 'bg-orange-50',  border: 'border-orange-400',  dot: 'bg-orange-500' },
+  split:     { bg: 'bg-blue-600',    text: 'text-blue-700',    light: 'bg-blue-50',    border: 'border-blue-400',    dot: 'bg-blue-500' },
+  zadar:     { bg: 'bg-teal-600',    text: 'text-teal-700',    light: 'bg-teal-50',    border: 'border-teal-400',    dot: 'bg-teal-500' },
+  travel:    { bg: 'bg-amber-600',   text: 'text-amber-700',   light: 'bg-amber-50',   border: 'border-amber-400',   dot: 'bg-amber-500' },
+  italy:     { bg: 'bg-emerald-600', text: 'text-emerald-700', light: 'bg-emerald-50', border: 'border-emerald-400', dot: 'bg-emerald-500' },
+  rome:      { bg: 'bg-red-600',     text: 'text-red-700',     light: 'bg-red-50',     border: 'border-red-400',     dot: 'bg-red-500' },
+};
+
+// ===== THAILAND & PENANG DAYS =====
+const thailandDays: DayData[] = [
   // ===== AO NANG & KRABI (Days 1-2) =====
   {
     day: 1,
@@ -415,7 +449,7 @@ export const days: DayData[] = [
       zh: [
         '🚡 乘坐缆车上升旗山，看全岛景色',
         '🌿 在 The Habitat 雨林步道和树冠走道散步',
-        '🛕 参观极乐寺：万佛塔、观音像和灯笼长廊',
+        '🛕 参观极乐寺：万佛塔、观音像、灯笼长廊',
         '📸 拍摄山顶美景',
         '🍜 晚上在乔治市吃晚餐',
       ],
@@ -700,7 +734,688 @@ export const days: DayData[] = [
   },
 ];
 
-export const penangCategories: PenangCategory[] = [
+// ===== CROATIA & ITALY DAYS =====
+const croatiaDays: DayData[] = [
+  // ===== DUBROVNIK (Days 1-5) =====
+  {
+    day: 1,
+    date: { en: 'May 8 (Fri)', zh: '5月8日（周五）' },
+    title: { en: 'Mostar → Dubrovnik', zh: '莫斯塔尔 → 杜布罗夫尼克' },
+    region: 'dubrovnik',
+    regionLabel: { en: 'Dubrovnik, Croatia', zh: '克罗地亚·杜布罗夫尼克' },
+    mapQuery: 'Dubrovnik Old Town, Croatia',
+    accommodation: { en: 'Dubrovnik Hotel', zh: '杜布罗夫尼克酒店' },
+    activities: {
+      en: [
+        '🚌 Midday bus from Mostar to Dubrovnik (about 3.5 hours)',
+        '🏨 Check in to hotel and rest',
+        '🚶 Old Town and harbor walk',
+        '🍽️ Early dinner to adjust to local time',
+      ],
+      zh: [
+        '🚌 中午从莫斯塔尔坐大巴到杜布罗夫尼克（约3.5小时）',
+        '🏨 入住酒店，稍作休息',
+        '🚶 在老城和港口轻松散步',
+        '🍽️ 早点吃晚餐，适应当地时间',
+      ],
+    },
+  },
+  {
+    day: 2,
+    date: { en: 'May 9 (Sat)', zh: '5月9日（周六）' },
+    title: { en: 'Dubrovnik: Cable Car & Old Town', zh: '杜城：缆车与老城' },
+    region: 'dubrovnik',
+    regionLabel: { en: 'Dubrovnik, Croatia', zh: '克罗地亚·杜布罗夫尼克' },
+    mapQuery: 'Mount Srd, Dubrovnik, Croatia',
+    accommodation: { en: 'Dubrovnik Hotel', zh: '杜布罗夫尼克酒店' },
+    activities: {
+      en: [
+        '🚡 Cable car up Mt. Srđ for panoramic views + coffee',
+        '📸 Short Old Town walk in afternoon',
+        '☕ Plenty of rest breaks at cafés',
+        '🍽️ Dinner at a local restaurant',
+      ],
+      zh: [
+        '🚡 乘缆车上 Srđ 山看全景、喝咖啡',
+        '📸 下午在老城内短距离散步',
+        '☕ 多安排休息，在咖啡馆休息',
+        '🍽️ 在当地餐厅用晚餐',
+      ],
+    },
+  },
+  {
+    day: 3,
+    date: { en: 'May 10 (Sun)', zh: '5月10日（周日）' },
+    title: { en: 'Lokrum or Elafiti Islands', zh: '洛克鲁姆岛或埃拉菲蒂群岛' },
+    region: 'dubrovnik',
+    regionLabel: { en: 'Dubrovnik, Croatia', zh: '克罗地亚·杜布罗夫尼克' },
+    mapQuery: 'Lokrum Island, Croatia',
+    accommodation: { en: 'Dubrovnik Hotel', zh: '杜布罗夫尼克酒店' },
+    activities: {
+      en: [
+        '⛴️ Boat to Lokrum (10–15 min) OR relaxed Elafiti boat tour with lunch',
+        '🌿 Explore botanical gardens and peacocks on Lokrum',
+        '🏖️ Minimal walking, easy boardwalks',
+        '🍽️ Return to Dubrovnik for dinner',
+      ],
+      zh: [
+        '⛴️ 乘船前往洛克鲁姆岛（10–15分钟）或参加轻松的埃拉菲蒂群岛船游（含午餐）',
+        '🌿 探索植物园，观赏孔雀',
+        '🏖️ 步行不多，以平路木栈道为主',
+        '🍽️ 返回杜布罗夫尼克用晚餐',
+      ],
+    },
+  },
+  {
+    day: 4,
+    date: { en: 'May 11 (Mon)', zh: '5月11日（周一）' },
+    title: { en: 'Dubrovnik Free Day', zh: '杜城自由日' },
+    region: 'dubrovnik',
+    regionLabel: { en: 'Dubrovnik, Croatia', zh: '克罗地亚·杜布罗夫尼克' },
+    mapQuery: 'Dubrovnik City Walls, Croatia',
+    accommodation: { en: 'Dubrovnik Hotel', zh: '杜布罗夫尼克酒店' },
+    activities: {
+      en: [
+        '😴 Sleep in and relax',
+        '🏛️ Optional: Short section of City Walls (if feeling up to it)',
+        '☕ Seaside café rest and people watching',
+        '🍽️ Slow pace dinner at a waterfront restaurant',
+      ],
+      zh: [
+        '😴 睡个懒觉，放松身心',
+        '🏛️ 可选：只走一小段城墙（视体力而定）',
+        '☕ 在海边咖啡馆休息，看风景',
+        '🍽️ 在海滨餐厅慢慢享用晚餐',
+      ],
+    },
+  },
+  {
+    day: 5,
+    date: { en: 'May 12 (Tue)', zh: '5月12日（周二）' },
+    title: { en: 'Dubrovnik → Makarska Coast', zh: '杜城 → 马卡尔斯卡海岸' },
+    region: 'travel',
+    regionLabel: { en: 'Travel Day', zh: '旅行日' },
+    mapQuery: 'Makarska, Croatia',
+    accommodation: { en: 'Makarska Hotel', zh: '马卡尔斯卡酒店' },
+    activities: {
+      en: [
+        '🚌 Bus or private transfer north along the coast',
+        '🏨 Check in at mid-point town (e.g., Makarska)',
+        '🚶 Easy seaside walk',
+        '🍽️ Dinner with coastal views',
+      ],
+      zh: [
+        '🚌 乘大巴或包车沿海岸向北',
+        '🏨 入住中途海滨小镇（如马卡尔斯卡）',
+        '🚶 海边轻松散步',
+        '🍽️ 在海边餐厅享用晚餐',
+      ],
+    },
+  },
+
+  // ===== SPLIT (Days 6-9) =====
+  {
+    day: 6,
+    date: { en: 'May 13 (Wed)', zh: '5月13日（周三）' },
+    title: { en: 'Coast → Split', zh: '海岸 → 斯普利特' },
+    region: 'split',
+    regionLabel: { en: 'Split, Croatia', zh: '克罗地亚·斯普利特' },
+    mapQuery: 'Split Riva, Croatia',
+    accommodation: { en: 'Split Hotel (near Riva/Diocletian Palace)', zh: '斯普利特酒店（靠近海滨长廊）' },
+    activities: {
+      en: [
+        '🚌 Bus/car to Split (1.5–2 hours)',
+        '🏨 Check in near Riva/Diocletian\'s Palace',
+        '🚶 Light evening stroll on the promenade',
+        '🍽️ Dinner at a local konoba',
+      ],
+      zh: [
+        '🚌 乘巴士/自驾1.5–2小时到斯普利特',
+        '🏨 入住靠近海滨长廊/戴克里先宫的住宿',
+        '🚶 傍晚在海滨长廊轻松散步',
+        '🍽️ 在当地小馆（konoba）用晚餐',
+      ],
+    },
+  },
+  {
+    day: 7,
+    date: { en: 'May 14 (Thu)', zh: '5月14日（周四）' },
+    title: { en: 'Split: Seb Arrives & Easy Day', zh: '斯普利特：Seb抵达，轻松日' },
+    region: 'split',
+    regionLabel: { en: 'Split, Croatia', zh: '克罗地亚·斯普利特' },
+    mapQuery: 'Diocletian\'s Palace, Split, Croatia',
+    accommodation: { en: 'Split Hotel', zh: '斯普利特酒店' },
+    activities: {
+      en: [
+        '✈️ Seb arrives at SPU airport at 08:00',
+        '🏛️ Easy day in Split: flat parts of Diocletian\'s Palace',
+        '🚶 Riva promenade walk',
+        '🍽️ Early dinner, early night to rest',
+      ],
+      zh: [
+        '✈️ Seb 早上8:00抵达斯普利特机场',
+        '🏛️ 轻松游览戴克里先宫（平地部分）',
+        '🚶 海滨长廊散步',
+        '🍽️ 早点吃晚餐，早点休息',
+      ],
+    },
+  },
+  {
+    day: 8,
+    date: { en: 'May 15 (Fri)', zh: '5月15日（周五）' },
+    title: { en: 'Krka National Park Day Trip', zh: '克尔卡国家公园一日游' },
+    region: 'split',
+    regionLabel: { en: 'Split, Croatia', zh: '克罗地亚·斯普利特' },
+    mapQuery: 'Krka National Park, Croatia',
+    accommodation: { en: 'Split Hotel', zh: '斯普利特酒店' },
+    activities: {
+      en: [
+        '🚗 Day trip by car/tour to Krka NP (~1 hour each way)',
+        '🛥️ Use boats and shuttle buses within the park',
+        '🌿 Stick to easy boardwalk routes',
+        '🍽️ Return to Split for dinner',
+      ],
+      zh: [
+        '🚗 乘车/报团前往克尔卡国家公园（单程约1小时）',
+        '🛥️ 多用船和接驳车游览',
+        '🌿 只走平缓木栈道路线',
+        '🍽️ 返回斯普利特用晚餐',
+      ],
+    },
+  },
+  {
+    day: 9,
+    date: { en: 'May 16 (Sat)', zh: '5月16日（周六）' },
+    title: { en: 'Hvar Island Day Trip', zh: '赫瓦尔岛一日游' },
+    region: 'split',
+    regionLabel: { en: 'Split, Croatia', zh: '克罗地亚·斯普利特' },
+    mapQuery: 'Hvar Town, Croatia',
+    accommodation: { en: 'Split Hotel', zh: '斯普利特酒店' },
+    activities: {
+      en: [
+        '⛴️ Fast ferry Split–Hvar (50–70 min each way)',
+        '🚶 Harbor and lower Old Town stroll',
+        '🍽️ Lunch at a waterfront restaurant',
+        '🌅 Return to Split late afternoon',
+      ],
+      zh: [
+        '⛴️ 乘快速渡轮往返赫瓦尔（单程50–70分钟）',
+        '🚶 在港口和下城轻松散步',
+        '🍽️ 在海滨餐厅享用午餐',
+        '🌅 下午晚些返回斯普利特',
+      ],
+    },
+  },
+
+  // ===== ZADAR & SENJ (Days 10-12) =====
+  {
+    day: 10,
+    date: { en: 'May 17 (Sun)', zh: '5月17日（周日）' },
+    title: { en: 'Split → Trogir → Zadar', zh: '斯普利特 → 特罗吉尔 → 扎达尔' },
+    region: 'zadar',
+    regionLabel: { en: 'Zadar, Croatia', zh: '克罗地亚·扎达尔' },
+    mapQuery: 'Zadar Old Town, Croatia',
+    accommodation: { en: 'Zadar Hotel', zh: '扎达尔酒店' },
+    activities: {
+      en: [
+        '🚌 Morning bus to Trogir (30–40 min), short Old Town walk',
+        '✈️ ~13:30 to SPU, Seb departs at 15:20',
+        '🚌 Afternoon bus/car to Zadar (2–3 hours)',
+        '🍽️ Dinner in Zadar Old Town',
+      ],
+      zh: [
+        '🚌 早上乘巴士30–40分钟到特罗吉尔，老城散步',
+        '✈️ 约13:30去斯普利特机场，Seb 15:20起飞',
+        '🚌 下午乘大巴/自驾2–3小时到扎达尔',
+        '🍽️ 在扎达尔老城用晚餐',
+      ],
+    },
+  },
+  {
+    day: 11,
+    date: { en: 'May 18 (Mon)', zh: '5月18日（周一）' },
+    title: { en: 'Zadar Old Town', zh: '扎达尔老城' },
+    region: 'zadar',
+    regionLabel: { en: 'Zadar, Croatia', zh: '克罗地亚·扎达尔' },
+    mapQuery: 'Sea Organ Zadar, Croatia',
+    accommodation: { en: 'Zadar Hotel', zh: '扎达尔酒店' },
+    activities: {
+      en: [
+        '🏛️ Easy Old Town day: Roman forum, churches, waterfront',
+        '☕ Coffee breaks at historic cafés',
+        '🌅 Sunset at Sea Organ & Greeting to the Sun',
+        '🍽️ Seafood dinner near the water',
+      ],
+      zh: [
+        '🏛️ 老城轻松游览：古罗马广场、教堂、海边',
+        '☕ 在历史悠久的咖啡馆休息',
+        '🌅 傍晚去海风琴和"向太阳致敬"看日落',
+        '🍽️ 海边海鲜晚餐',
+      ],
+    },
+  },
+  {
+    day: 12,
+    date: { en: 'May 19 (Tue)', zh: '5月19日（周二）' },
+    title: { en: 'Plitvice Lakes Day Trip', zh: '普利特维采湖一日游' },
+    region: 'zadar',
+    regionLabel: { en: 'Zadar, Croatia', zh: '克罗地亚·扎达尔' },
+    mapQuery: 'Plitvice Lakes National Park, Croatia',
+    accommodation: { en: 'Zadar Hotel', zh: '扎达尔酒店' },
+    activities: {
+      en: [
+        '🚌 Day trip to Plitvice (1.5–2 hours each way)',
+        '🛥️ Use boat and shuttle train within the park',
+        '🌿 Take short lower-lakes route only',
+        '🍽️ Return to Zadar for dinner',
+      ],
+      zh: [
+        '🚌 乘大巴/自驾1.5–2小时到普利特维采',
+        '🛥️ 搭乘游船和小火车游览',
+        '🌿 选择下湖区短路线',
+        '🍽️ 返回扎达尔用晚餐',
+      ],
+    },
+  },
+  {
+    day: 13,
+    date: { en: 'May 20 (Wed)', zh: '5月20日（周三）' },
+    title: { en: 'Zadar → Senj', zh: '扎达尔 → 塞尼' },
+    region: 'zadar',
+    regionLabel: { en: 'Senj, Croatia', zh: '克罗地亚·塞尼' },
+    mapQuery: 'Senj, Croatia',
+    accommodation: { en: 'Senj Hotel', zh: '塞尼酒店' },
+    activities: {
+      en: [
+        '🚌 Drive or bus along coastal D8 route to Senj (2–2.5 hours)',
+        '🏨 Check in and meet friend',
+        '🏖️ Easy beach or Nehaj Fortress visit',
+        '🍽️ Dinner with friend',
+      ],
+      zh: [
+        '🚌 从扎达尔沿海岸D8路线到塞尼（约2–2.5小时）',
+        '🏨 入住，与朋友会面',
+        '🏖️ 轻松海滩或参观 Nehaj 堡垒',
+        '🍽️ 与朋友共进晚餐',
+      ],
+    },
+  },
+  {
+    day: 14,
+    date: { en: 'May 21 (Thu)', zh: '5月21日（周四）' },
+    title: { en: 'Relaxed Day in Senj', zh: '塞尼放松日' },
+    region: 'zadar',
+    regionLabel: { en: 'Senj, Croatia', zh: '克罗地亚·塞尼' },
+    mapQuery: 'Prva Draga Beach, Senj, Croatia',
+    accommodation: { en: 'Senj Hotel', zh: '塞尼酒店' },
+    activities: {
+      en: [
+        '🏖️ Beach time at Prva Draga or nearby',
+        '🦐 Seafood lunch with friend',
+        '🚶 Coastal walks at easy pace',
+        '🌅 Sunset watching',
+      ],
+      zh: [
+        '🏖️ 海滩时光（Prva Draga 或附近）',
+        '🦐 与朋友吃海鲜午餐',
+        '🚶 海岸散步，节奏轻松',
+        '🌅 观赏日落',
+      ],
+    },
+  },
+
+  // ===== ITALY: VENICE & TUSCANY (Days 15-24) =====
+  {
+    day: 15,
+    date: { en: 'May 22 (Fri)', zh: '5月22日（周五）' },
+    title: { en: 'Senj → Rijeka → Venice', zh: '塞尼 → 里耶卡 → 威尼斯' },
+    region: 'italy',
+    regionLabel: { en: 'Venice, Italy', zh: '意大利·威尼斯' },
+    mapQuery: 'Venice Santa Lucia Station, Italy',
+    accommodation: { en: 'Venice Hotel', zh: '威尼斯酒店' },
+    activities: {
+      en: [
+        '🚌 Morning bus Senj → Rijeka (1h 15–20 min)',
+        '🚌 Late morning bus Rijeka → Venice (~4–4.5 hours)',
+        '🚂 Local transfer to Venezia S. Lucia',
+        '🤝 Meet Seb at 19:12 arrival',
+      ],
+      zh: [
+        '🚌 早上从塞尼坐大巴到里耶卡（约1小时15–20分钟）',
+        '🚌 随后从里耶卡搭乘长途巴士前往威尼斯（约4–4.5小时）',
+        '🚂 换乘当地火车到圣卢西亚车站',
+        '🤝 19:12与抵达的Seb会合',
+      ],
+    },
+  },
+  {
+    day: 16,
+    date: { en: 'May 23 (Sat)', zh: '5月23日（周六）' },
+    title: { en: 'Venice Full Day with Seb', zh: '与Seb共度威尼斯整天' },
+    region: 'italy',
+    regionLabel: { en: 'Venice, Italy', zh: '意大利·威尼斯' },
+    mapQuery: 'St. Mark\'s Square, Venice, Italy',
+    accommodation: { en: 'Venice Hotel', zh: '威尼斯酒店' },
+    activities: {
+      en: [
+        '🏛️ St. Mark\'s Square & Basilica (pre-book if possible)',
+        '🌉 Rialto Bridge',
+        '🛥️ Vaporetto ride along Grand Canal',
+        '☕ Frequent café/gelato breaks',
+      ],
+      zh: [
+        '🏛️ 圣马可广场和大教堂（建议预约）',
+        '🌉 里亚托桥',
+        '🛥️ 大运河水上巴士',
+        '☕ 多安排咖啡和冰淇淋休息',
+      ],
+    },
+  },
+  {
+    day: 17,
+    date: { en: 'May 24 (Sun)', zh: '5月24日（周日）' },
+    title: { en: 'Venice → Milan', zh: '威尼斯 → 米兰' },
+    region: 'italy',
+    regionLabel: { en: 'Milan, Italy', zh: '意大利·米兰' },
+    mapQuery: 'Milano Centrale, Italy',
+    accommodation: { en: 'Milan Hotel', zh: '米兰酒店' },
+    activities: {
+      en: [
+        '☕ Easy morning in Venice',
+        '🚄 Late morning high-speed train to Milano Centrale (~2–2.5 hours)',
+        '⛪ Duomo exterior and Galleria Vittorio Emanuele II',
+        '🍽️ Early dinner, early rest',
+      ],
+      zh: [
+        '☕ 早上在威尼斯悠闲吃早餐、散步',
+        '🚄 中午左右乘高速火车到米兰中央车站（约2–2.5小时）',
+        '⛪ 参观米兰大教堂外观和埃马努埃莱二世长廊',
+        '🍽️ 早点吃晚餐，早点休息',
+      ],
+    },
+  },
+  {
+    day: 18,
+    date: { en: 'May 25 (Mon)', zh: '5月25日（周一）' },
+    title: { en: 'Milan → Siena → Tuscany Base', zh: '米兰 → 锡耶纳 → 托斯卡纳基地' },
+    region: 'italy',
+    regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
+    mapQuery: 'Castelnuovo Berardenga, Tuscany, Italy',
+    accommodation: { en: 'Agriturismo in Castelnuovo Berardenga', zh: 'Castelnuovo Berardenga 乡村酒店' },
+    activities: {
+      en: [
+        '🚄 Morning train Milan → Siena (via Florence, ~3–3.5 hours)',
+        '🚗 Pick up rental car near Siena',
+        '🏛️ Short Siena walk: Piazza del Campo, Duomo exterior',
+        '🏨 20–30 min drive to Castelnuovo Berardenga',
+      ],
+      zh: [
+        '🚄 早上从米兰乘火车经佛罗伦萨到锡耶纳（约3–3.5小时）',
+        '🚗 在锡耶纳附近取租车',
+        '🏛️ 简单逛逛坎波广场和大教堂外观',
+        '🏨 开车约20–30分钟抵达Castelnuovo Berardenga',
+      ],
+    },
+  },
+  {
+    day: 19,
+    date: { en: 'May 26 (Tue)', zh: '5月26日（周二）' },
+    title: { en: 'Chianti Wineries & Festivals', zh: '基安蒂酒庄与节庆' },
+    region: 'italy',
+    regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
+    mapQuery: 'Fèlsina Winery, Castelnuovo Berardenga, Italy',
+    accommodation: { en: 'Agriturismo in Castelnuovo Berardenga', zh: 'Castelnuovo Berardenga 乡村酒店' },
+    activities: {
+      en: [
+        '🍷 Morning: Visit Fèlsina or Agricola San Felice winery (10–15 min drive)',
+        '🧀 Wine tasting with local salumi and pecorino',
+        '🎭 Afternoon: Optional medieval festival in Arezzo area or visit Radda/Gaiole',
+        '🍽️ Evening: Return to village for dinner',
+      ],
+      zh: [
+        '🍷 上午：前往附近酒庄 Fèlsina 或 Agricola San Felice 品酒（10–15分钟车程）',
+        '🧀 品尝经典基安蒂和桑娇维塞，配当地冷盘和羊奶酪',
+        '🎭 下午：参加阿雷佐一带中世纪节庆，或去 Radda/Gaiole 小镇',
+        '🍽️ 晚上回村庄吃晚餐',
+      ],
+    },
+  },
+  {
+    day: 20,
+    date: { en: 'May 27 (Wed)', zh: '5月27日（周三）' },
+    title: { en: 'Val d\'Orcia: Pienza & Montalcino', zh: '瓦尔道尔恰：皮恩扎与蒙塔尔奇诺' },
+    region: 'italy',
+    regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
+    mapQuery: 'Pienza, Tuscany, Italy',
+    accommodation: { en: 'Agriturismo in Castelnuovo Berardenga', zh: 'Castelnuovo Berardenga 乡村酒店' },
+    activities: {
+      en: [
+        '🚗 Drive ~50 km to Pienza (~50 min)',
+        '🧀 Stroll Via dell\'Amore, town walls, taste Pecorino di Pienza',
+        '🍷 Drive to Montalcino for fortress views and Brunello wine',
+        '🍽️ Dinner back at the agriturismo',
+      ],
+      zh: [
+        '🚗 开车约50公里（50分钟）到皮恩扎',
+        '🧀 漫步"爱之路"、城墙，品尝 Pienza 羊奶芝士',
+        '🍷 再开车约20分钟到蒙塔尔奇诺，参观堡垒，品尝布鲁奈罗红酒',
+        '🍽️ 傍晚返回乡村酒店用晚餐',
+      ],
+    },
+  },
+  {
+    day: 21,
+    date: { en: 'May 28 (Thu)', zh: '5月28日（周四）' },
+    title: { en: 'Montepulciano, Hot Springs & Festival', zh: '蒙特普尔恰诺、温泉与节庆' },
+    region: 'italy',
+    regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
+    mapQuery: 'Montepulciano, Tuscany, Italy',
+    accommodation: { en: 'Agriturismo in Castelnuovo Berardenga', zh: 'Castelnuovo Berardenga 乡村酒店' },
+    activities: {
+      en: [
+        '🚗 Drive ~45–50 min to Montepulciano (~48 km)',
+        '🏛️ Explore steep lanes, main piazza, historic wine cellars',
+        '♨️ Option: Visit Bagno Vignoni thermal area (~30 min away)',
+        '🎭 Or: Medieval festival events in Malmantile area',
+      ],
+      zh: [
+        '🚗 开车约45–50分钟到蒙特普尔恰诺（约48公里）',
+        '🏛️ 游览斜坡街道、主广场和古老酒窖',
+        '♨️ 可选：前往约30分钟车程的 Bagno Vignoni 温泉小镇',
+        '🎭 或：参加 Malmantile 一带中世纪节庆',
+      ],
+    },
+  },
+  {
+    day: 22,
+    date: { en: 'May 29 (Fri)', zh: '5月29日（周五）' },
+    title: { en: 'Siena Deep Dive', zh: '锡耶纳深度游' },
+    region: 'italy',
+    regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
+    mapQuery: 'Piazza del Campo, Siena, Italy',
+    accommodation: { en: 'Agriturismo in Castelnuovo Berardenga', zh: 'Castelnuovo Berardenga 乡村酒店' },
+    activities: {
+      en: [
+        '🚗 Drive ~20–30 min to Siena (~20–23 km)',
+        '🏛️ Full day: Piazza del Campo, Torre del Mangia, Duomo complex',
+        '🍽️ Lunch in a quiet side street',
+        '🚶 Wander contrade neighborhoods and artisan shops',
+      ],
+      zh: [
+        '🚗 开车约20–30分钟到锡耶纳（约20–23公里）',
+        '🏛️ 全天深入游览：坎波广场、曼贾塔、大教堂综合区',
+        '🍽️ 午餐可选稍安静的小街餐馆',
+        '🚶 在各个城区和手工艺小店慢慢逛',
+      ],
+    },
+  },
+  {
+    day: 23,
+    date: { en: 'May 30 (Sat)', zh: '5月30日（周六）' },
+    title: { en: 'Cortona & Arezzo', zh: '科尔托纳与阿雷佐' },
+    region: 'italy',
+    regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
+    mapQuery: 'Cortona, Tuscany, Italy',
+    accommodation: { en: 'Agriturismo in Castelnuovo Berardenga', zh: 'Castelnuovo Berardenga 乡村酒店' },
+    activities: {
+      en: [
+        '🚗 Drive ~45–50 min to Cortona (~45 km)',
+        '🏛️ Enjoy panoramic views, Etruscan history, relaxed lanes',
+        '☕ Coffee or aperitivo with a view',
+        '🎭 Option: Continue to Arezzo for medieval festival events',
+      ],
+      zh: [
+        '🚗 开车约45–50分钟（约45公里）到科尔托纳',
+        '🏛️ 欣赏全景、了解伊特鲁里亚历史，在悠闲小巷漫步',
+        '☕ 在观景处喝咖啡或开胃酒',
+        '🎭 可选：继续前往阿雷佐参加中世纪节庆活动',
+      ],
+    },
+  },
+  {
+    day: 24,
+    date: { en: 'May 31 (Sun)', zh: '5月31日（周日）' },
+    title: { en: 'Maggiolata Festival & Transfer to Rome', zh: '花卉节与前往罗马' },
+    region: 'italy',
+    regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
+    mapQuery: 'Lucignano, Tuscany, Italy',
+    accommodation: { en: 'Rome Hotel', zh: '罗马酒店' },
+    activities: {
+      en: [
+        '🚗 Drive ~35–40 min to Lucignano for Maggiolata Lucignanese flower festival',
+        '🌸 Enjoy floral floats, parades, music, and local food',
+        '🍽️ Lunch at the festival',
+        '🚄 Afternoon: Depart towards Rome by car or train (~3–3.5 hours)',
+      ],
+      zh: [
+        '🚗 开车约35–40分钟到 Lucignano 参加 Maggiolata Lucignanese 花卉节',
+        '🌸 欣赏花车游行、乐队表演，品尝当地美食',
+        '🍽️ 中午在节庆现场用餐',
+        '🚄 下午前往罗马（约3–3.5小时）',
+      ],
+    },
+  },
+
+  // ===== ROME (Days 25-29) =====
+  {
+    day: 25,
+    date: { en: 'Jun 1 (Mon)', zh: '6月1日（周一）' },
+    title: { en: 'Ancient Rome Easy Day', zh: '古罗马轻松日' },
+    region: 'rome',
+    regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
+    mapQuery: 'Colosseum, Rome, Italy',
+    accommodation: { en: 'Rome Hotel', zh: '罗马酒店' },
+    activities: {
+      en: [
+        '🏛️ Colosseum (easy-access route)',
+        '📸 Viewpoints over the Roman Forum',
+        '🚕 Taxi transfers and plenty of rests',
+        '🍽️ Dinner near hotel',
+      ],
+      zh: [
+        '🏛️ 参观斗兽场（选择相对轻松路线）',
+        '📸 在观景点远眺古罗马广场',
+        '🚕 建议打车往返并多安排休息',
+        '🍽️ 酒店附近用晚餐',
+      ],
+    },
+  },
+  {
+    day: 26,
+    date: { en: 'Jun 2 (Tue)', zh: '6月2日（周二）' },
+    title: { en: 'Vatican Area', zh: '梵蒂冈区域' },
+    region: 'rome',
+    regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
+    mapQuery: 'Vatican City',
+    accommodation: { en: 'Rome Hotel', zh: '罗马酒店' },
+    activities: {
+      en: [
+        '⛪ Choose ONE: St. Peter\'s Basilica OR Vatican Museums',
+        '☕ Slow pace with café breaks',
+        '🚕 Taxi or bus for transfers',
+        '🍽️ Dinner in Trastevere or near hotel',
+      ],
+      zh: [
+        '⛪ 当天只安排圣彼得大教堂或梵蒂冈博物馆其中之一',
+        '☕ 节奏放慢，多休息',
+        '🚕 搭乘公交或出租车往返',
+        '🍽️ 在特拉斯提弗列或酒店附近用晚餐',
+      ],
+    },
+  },
+  {
+    day: 27,
+    date: { en: 'Jun 3 (Wed)', zh: '6月3日（周三）' },
+    title: { en: 'Classic Rome Walk', zh: '经典罗马步行' },
+    region: 'rome',
+    regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
+    mapQuery: 'Trevi Fountain, Rome, Italy',
+    accommodation: { en: 'Rome Hotel', zh: '罗马酒店' },
+    activities: {
+      en: [
+        '💧 Trevi Fountain → Spanish Steps → Pantheon → Piazza Navona',
+        '☕ Keep walking segments short with frequent breaks',
+        '🚕 Use taxis between sections if needed',
+        '🍨 Gelato stops along the way',
+      ],
+      zh: [
+        '💧 特雷维喷泉 → 西班牙台阶 → 万神殿 → 纳沃纳广场',
+        '☕ 将步行路段分成多段，中间多休息',
+        '🚕 必要时乘坐出租车连接景点',
+        '🍨 沿途吃冰淇淋',
+      ],
+    },
+  },
+  {
+    day: 28,
+    date: { en: 'Jun 4 (Thu)', zh: '6月4日（周四）' },
+    title: { en: 'Extra Rome / Packing', zh: '额外的罗马时光/整理行李' },
+    region: 'rome',
+    regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
+    mapQuery: 'Trastevere, Rome, Italy',
+    accommodation: { en: 'Rome Hotel', zh: '罗马酒店' },
+    activities: {
+      en: [
+        '🌅 Morning for a favorite spot or Trastevere stroll',
+        '🛍️ Small shopping for souvenirs',
+        '📦 Afternoon for packing and rest',
+        '🍽️ Farewell dinner at a special restaurant',
+      ],
+      zh: [
+        '🌅 上午重游喜欢的地方或在特拉斯提弗列散步',
+        '🛍️ 简单购物，买纪念品',
+        '📦 下午整理行李和休息',
+        '🍽️ 在特色餐厅吃告别晚餐',
+      ],
+    },
+  },
+  {
+    day: 29,
+    date: { en: 'Jun 5 (Fri)', zh: '6月5日（周五）' },
+    title: { en: 'Rome → Home', zh: '罗马 → 返程' },
+    region: 'travel',
+    regionLabel: { en: 'Travel Day', zh: '旅行日' },
+    mapQuery: 'Rome Fiumicino Airport, Italy',
+    accommodation: null,
+    activities: {
+      en: [
+        '😴 Easy morning near hotel',
+        '🚕 Transfer to airport',
+        '✈️ Flight home',
+        '🏠 End of wonderful journey',
+      ],
+      zh: [
+        '😴 早上在酒店附近轻松活动',
+        '🚕 前往机场',
+        '✈️ 搭乘返程航班',
+        '🏠 美好旅程结束',
+      ],
+    },
+  },
+];
+
+// ===== THAILAND & PENANG CATEGORIES =====
+const thailandCategories: ActivityCategory[] = [
   {
     title: { en: '🏛️ George Town City & Culture', zh: '🏛️ 乔治市城市与文化' },
     icon: '🏛️',
@@ -755,7 +1470,72 @@ export const penangCategories: PenangCategory[] = [
   },
 ];
 
-export const travelTips: TipSection[] = [
+// ===== CROATIA & ITALY CATEGORIES =====
+const croatiaCategories: ActivityCategory[] = [
+  {
+    title: { en: '🏛️ Croatia Highlights', zh: '🏛️ 克罗地亚精华' },
+    icon: '🏛️',
+    items: [
+      { en: 'Dubrovnik Old Town: UNESCO walled city, cable car to Mt. Srđ', zh: '杜布罗夫尼克老城：联合国世界文化遗产，缆车上 Srđ 山' },
+      { en: 'Lokrum Island: Botanical gardens, peacocks, easy boardwalks', zh: '洛克鲁姆岛：植物园、孔雀、平缓木栈道' },
+      { en: 'Split: Diocletian\'s Palace, Riva promenade', zh: '斯普利特：戴克里先宫、海滨长廊' },
+      { en: 'Krka National Park: Waterfalls, boat rides, easy walks', zh: '克尔卡国家公园：瀑布、游船、轻松步行' },
+      { en: 'Hvar Island: Harbor town, beaches, lavender fields', zh: '赫瓦尔岛：港口小镇、海滩、薰衣草田' },
+      { en: 'Zadar: Sea Organ, Greeting to the Sun, Roman forum', zh: '扎达尔：海风琴、向太阳致敬、古罗马广场' },
+      { en: 'Plitvice Lakes: UNESCO national park with lakes and waterfalls', zh: '普利特维采湖：联合国世界自然遗产，湖泊瀑布' },
+    ],
+  },
+  {
+    title: { en: '🏛️ Venice & Northern Italy', zh: '🏛️ 威尼斯与北意大利' },
+    icon: '🏛️',
+    items: [
+      { en: 'St. Mark\'s Square & Basilica: Heart of Venice', zh: '圣马可广场和大教堂：威尼斯的心脏' },
+      { en: 'Rialto Bridge: Iconic crossing over Grand Canal', zh: '里亚托桥：大运河上的标志性建筑' },
+      { en: 'Grand Canal Vaporetto: Scenic water bus ride', zh: '大运河水上巴士：风景优美的水上交通' },
+      { en: 'Milan Duomo: Gothic cathedral and Galleria Vittorio Emanuele II', zh: '米兰大教堂：哥特式教堂和埃马努埃莱二世长廊' },
+    ],
+  },
+  {
+    title: { en: '🍷 Tuscany Wine & Culture', zh: '🍷 托斯卡纳酒乡文化' },
+    icon: '🍷',
+    items: [
+      { en: 'Chianti Classico Wineries: Fèlsina, Agricola San Felice', zh: '经典基安蒂酒庄：Fèlsina、Agricola San Felice' },
+      { en: 'Pienza: Renaissance "ideal city", pecorino cheese capital', zh: '皮恩扎：文艺复兴"理想城市"，羊奶酪之都' },
+      { en: 'Montalcino: Brunello wine and fortress views', zh: '蒙塔尔奇诺：布鲁奈罗红酒和堡垒景观' },
+      { en: 'Montepulciano: Vino Nobile wine and Renaissance architecture', zh: '蒙特普尔恰诺：贵族红酒和文艺复兴建筑' },
+      { en: 'Siena: Piazza del Campo, Duomo, medieval neighborhoods', zh: '锡耶纳：坎波广场、大教堂、中世纪街区' },
+      { en: 'Cortona: Etruscan hill town with panoramic views', zh: '科尔托纳：伊特鲁里亚山城，全景视野' },
+      { en: 'Medieval Festivals: Festa Medievale Bianco Azzurra, Maggiolata', zh: '中世纪节庆：Bianco Azzurra 节、Maggiolata 花卉节' },
+    ],
+  },
+  {
+    title: { en: '🏛️ Rome Classics', zh: '🏛️ 罗马经典' },
+    icon: '🏛️',
+    items: [
+      { en: 'Colosseum: Ancient amphitheater, easy-access routes available', zh: '斗兽场：古罗马圆形剧场，有轻松路线' },
+      { en: 'Roman Forum: Ancient ruins with viewpoints', zh: '古罗马广场：古代遗址，有观景处' },
+      { en: 'Vatican: St. Peter\'s Basilica or Vatican Museums', zh: '梵蒂冈：圣彼得大教堂或梵蒂冈博物馆' },
+      { en: 'Trevi Fountain: Baroque masterpiece', zh: '特雷维喷泉：巴洛克杰作' },
+      { en: 'Spanish Steps: Iconic stairway', zh: '西班牙台阶：标志性阶梯' },
+      { en: 'Pantheon: Ancient Roman temple', zh: '万神殿：古罗马神庙' },
+      { en: 'Piazza Navona: Baroque square with fountains', zh: '纳沃纳广场：带喷泉的巴洛克广场' },
+      { en: 'Trastevere: Charming neighborhood for evening strolls', zh: '特拉斯提弗列：适合傍晚散步的魅力街区' },
+    ],
+  },
+  {
+    title: { en: '🍝 Food & Dining', zh: '🍝 美食与餐饮' },
+    icon: '🍝',
+    items: [
+      { en: 'Croatia: Fresh seafood, peka (slow-cooked meat), local wine', zh: '克罗地亚：新鲜海鲜、peka（慢炖肉）、当地葡萄酒' },
+      { en: 'Italy: Regional pasta, pizza al taglio, gelato, aperitivo', zh: '意大利：地方特色意面、切块披萨、冰淇淋、开胃酒' },
+      { en: 'Tuscany: Chianti wine, pecorino cheese, cured meats', zh: '托斯卡纳：基安蒂红酒、羊奶酪、腌制肉类' },
+      { en: 'Rome: Carbonara, cacio e pepe, supplì, Roman-style pizza', zh: '罗马：卡邦尼意面、黑胡椒奶酪意面、炸饭团、罗马式披萨' },
+    ],
+  },
+];
+
+// ===== THAILAND & PENANG TIPS =====
+const thailandTips: TipSection[] = [
   {
     title: { en: '🚗 Transportation', zh: '🚗 交通' },
     icon: '🚗',
@@ -800,32 +1580,172 @@ export const travelTips: TipSection[] = [
   },
 ];
 
-export const tripOverview = {
+// ===== CROATIA & ITALY TIPS =====
+const croatiaTips: TipSection[] = [
+  {
+    title: { en: '✈️ Transportation', zh: '✈️ 交通' },
+    icon: '✈️',
+    items: [
+      { en: 'Mostar → Dubrovnik: Bus (~3.5 hours)', zh: '莫斯塔尔 → 杜布罗夫尼克：大巴（约3.5小时）' },
+      { en: 'Dubrovnik → Split: Coastal bus or private transfer (~3–4 hours)', zh: '杜布罗夫尼克 → 斯普利特：海岸大巴或包车（约3–4小时）' },
+      { en: 'Split → Hvar: Fast ferry (50–70 min each way)', zh: '斯普利特 → 赫瓦尔：快速渡轮（单程50–70分钟）' },
+      { en: 'Split → Zadar: Bus (~2–3 hours)', zh: '斯普利特 → 扎达尔：大巴（约2–3小时）' },
+      { en: 'Senj → Venice: Bus via Rijeka (~5.5–6 hours total)', zh: '塞尼 → 威尼斯：经里耶卡乘大巴（总计约5.5–6小时）' },
+      { en: 'Venice → Milan: High-speed train (~2–2.5 hours)', zh: '威尼斯 → 米兰：高速火车（约2–2.5小时）' },
+      { en: 'Milan → Siena: Train via Florence (~3–3.5 hours)', zh: '米兰 → 锡耶纳：经佛罗伦萨乘火车（约3–3.5小时）' },
+      { en: 'Tuscany: Rental car recommended for flexibility', zh: '托斯卡纳：建议租车以便灵活出行' },
+    ],
+  },
+  {
+    title: { en: '🎒 Packing Essentials', zh: '🎒 打包必备' },
+    icon: '🎒',
+    items: [
+      { en: 'Comfortable walking shoes (cobblestone streets!)', zh: '舒适的步行鞋（鹅卵石街道！）' },
+      { en: 'Light layers for variable weather (May/June)', zh: '轻便分层衣物（应对5月/6月多变天气）' },
+      { en: 'Sunscreen, hat, sunglasses', zh: '防晒霜、帽子、太阳镜' },
+      { en: 'Small daypack for daily outings', zh: '小型日间背包' },
+      { en: 'Power adapters: Croatia (Type C/F), Italy (Type C/F/L)', zh: '电源转换器：克罗地亚（C/F型），意大利（C/F/L型）' },
+      { en: 'Euros for Italy, Kuna alternative or Euros in Croatia', zh: '欧元（意大利），克罗地亚可用欧元或库纳替代' },
+      { en: 'Travel insurance documents', zh: '旅行保险文件' },
+      { en: 'Medications and prescriptions', zh: '药物和处方' },
+    ],
+  },
+  {
+    title: { en: '♿ Senior-Friendly Tips', zh: '♿ 长者友好提示' },
+    icon: '♿',
+    items: [
+      { en: 'Book accommodations with elevators when possible', zh: '尽量预订带电梯的住宿' },
+      { en: 'Take taxis between major sights to conserve energy', zh: '主要景点之间乘出租车，节省体力' },
+      { en: 'Plan frequent rest breaks at cafés', zh: '计划在咖啡馆频繁休息' },
+      { en: 'Choose easy-access routes at attractions', zh: '在景点选择轻松路线' },
+      { en: 'Avoid midday heat – schedule indoor activities', zh: '避免正午高温，安排室内活动' },
+      { en: 'Carry water bottles and stay hydrated', zh: '随身携带水瓶，保持水分' },
+      { en: 'Travel insurance with medical coverage essential', zh: '必须购买含医疗保障的旅行保险' },
+    ],
+  },
+  {
+    title: { en: '🌤️ Weather & Best Time', zh: '🌤️ 天气与最佳时间' },
+    icon: '🌤️',
+    items: [
+      { en: 'May–June: Pleasant temperatures, fewer crowds than summer', zh: '5月–6月：气温宜人，比夏季人少' },
+      { en: 'Croatia: Warm days, cool evenings, occasional rain', zh: '克罗地亚：白天温暖，晚上凉爽，偶有降雨' },
+      { en: 'Italy: Mild to warm, perfect for outdoor dining', zh: '意大利：温和到温暖，适合户外用餐' },
+      { en: 'Pack a light jacket for evenings', zh: '带一件轻便外套应对晚上' },
+    ],
+  },
+  {
+    title: { en: '💰 Currency & Budget', zh: '💰 货币与预算' },
+    icon: '💰',
+    items: [
+      { en: 'Croatia: Euro (€) widely accepted', zh: '克罗地亚：欧元广泛接受' },
+      { en: 'Italy: Euro (€)', zh: '意大利：欧元' },
+      { en: 'Restaurants: €15–30 per person for dinner', zh: '餐厅：晚餐每人€15–30' },
+      { en: 'Wine tastings: €15–40 per person', zh: '品酒：每人€15–40' },
+      { en: 'Attraction tickets: €10–25 per person', zh: '景点门票：每人€10–25' },
+    ],
+  },
+];
+
+// ===== TRIP OVERVIEWS =====
+const thailandOverview: TripOverview = {
   duration: { en: 'February 27 – End of March 2026', zh: '2026年2月27日 – 3月底' },
   stays: [
     {
       location: { en: 'Ao Nang, Krabi', zh: '安南（Ao Nang）' },
       dates: { en: 'Feb 27 – Mar 1', zh: '2月27日 – 3月1日' },
       hotel: { en: 'Ao Nang Townhouse', zh: 'Ao Nang Townhouse' },
-      region: 'krabi' as const,
+      region: 'krabi',
     },
     {
       location: { en: 'Koh Lanta (Sala Dan)', zh: '兰塔岛 Sala Dan' },
       dates: { en: 'Mar 1 – Mar 6', zh: '3月1日 – 3月6日' },
       hotel: { en: 'Sala Dan House', zh: 'Sala Dan House' },
-      region: 'lanta' as const,
+      region: 'lanta',
     },
     {
       location: { en: 'Koh Lipe', zh: '丽贝岛' },
       dates: { en: 'Mar 6 – Mar 10', zh: '3月6日 – 3月10日' },
       hotel: { en: 'Varin Beach Resort', zh: 'Varin Beach Resort' },
-      region: 'lipe' as const,
+      region: 'lipe',
     },
     {
       location: { en: 'Penang', zh: '槟城' },
       dates: { en: 'From ~Mar 11 for 1–2 weeks', zh: '约3月11日起停留1–2周' },
       hotel: { en: 'TBD', zh: '待定' },
-      region: 'penang' as const,
+      region: 'penang',
     },
   ],
 };
+
+const croatiaOverview: TripOverview = {
+  duration: { en: 'May 8 – June 5, 2026', zh: '2026年5月8日 – 6月5日' },
+  stays: [
+    {
+      location: { en: 'Dubrovnik, Croatia', zh: '杜布罗夫尼克，克罗地亚' },
+      dates: { en: 'May 8–12', zh: '5月8日–12日' },
+      hotel: { en: 'TBD', zh: '待定' },
+      region: 'dubrovnik',
+    },
+    {
+      location: { en: 'Split, Croatia', zh: '斯普利特，克罗地亚' },
+      dates: { en: 'May 13–16', zh: '5月13日–16日' },
+      hotel: { en: 'TBD', zh: '待定' },
+      region: 'split',
+    },
+    {
+      location: { en: 'Zadar & Senj, Croatia', zh: '扎达尔与塞尼，克罗地亚' },
+      dates: { en: 'May 17–21', zh: '5月17日–21日' },
+      hotel: { en: 'TBD', zh: '待定' },
+      region: 'zadar',
+    },
+    {
+      location: { en: 'Venice & Milan, Italy', zh: '威尼斯与米兰，意大利' },
+      dates: { en: 'May 22–24', zh: '5月22日–24日' },
+      hotel: { en: 'TBD', zh: '待定' },
+      region: 'italy',
+    },
+    {
+      location: { en: 'Tuscany (Castelnuovo Berardenga)', zh: '托斯卡纳（Castelnuovo Berardenga）' },
+      dates: { en: 'May 25–31', zh: '5月25日–31日' },
+      hotel: { en: 'Agriturismo', zh: '乡村酒店' },
+      region: 'italy',
+    },
+    {
+      location: { en: 'Rome, Italy', zh: '罗马，意大利' },
+      dates: { en: 'Jun 1–5', zh: '6月1日–5日' },
+      hotel: { en: 'TBD', zh: '待定' },
+      region: 'rome',
+    },
+  ],
+};
+
+// ===== EXPORT TRIPS =====
+export const trips: Record<TripId, TripData> = {
+  thailand: {
+    id: 'thailand',
+    name: { en: 'Thailand & Malaysia', zh: '泰国和马来西亚' },
+    footer: { en: '🌴 Thailand & Malaysia 2026 · Have a wonderful trip!', zh: '🌴 泰国和马来西亚 2026 · 祝旅途愉快！' },
+    regionColors: thailandRegionColors,
+    days: thailandDays,
+    categories: thailandCategories,
+    tips: thailandTips,
+    overview: thailandOverview,
+  },
+  croatia: {
+    id: 'croatia',
+    name: { en: 'Croatia & Italy', zh: '克罗地亚和意大利' },
+    footer: { en: '🇭🇷🇮🇹 Croatia & Italy 2026 · Have a wonderful trip!', zh: '🇭🇷🇮🇹 克罗地亚和意大利 2026 · 祝旅途愉快！' },
+    regionColors: croatiaRegionColors,
+    days: croatiaDays,
+    categories: croatiaCategories,
+    tips: croatiaTips,
+    overview: croatiaOverview,
+  },
+};
+
+// Legacy exports for backward compatibility
+export const days = thailandDays;
+export const penangCategories = thailandCategories;
+export const travelTips = thailandTips;
+export const tripOverview = thailandOverview;
+export const regionColors = thailandRegionColors;

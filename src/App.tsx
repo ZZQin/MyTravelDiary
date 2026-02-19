@@ -448,8 +448,8 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
         <p className="text-base text-gray-600 mb-4">
           {tripId === 'thailand'
             ? (lang === 'en'
-              ? 'A flexible menu of things to do during your 1–2 week stay in Penang.'
-              : '在槟城停留1–2周期间可以自由组合的活动清单。')
+              ? 'A flexible menu of things to do during your 1 week stay in Penang (Mar 11–17).'
+              : '在槟城停留1周期间（3月11–17日）可以自由组合的活动清单。')
             : (lang === 'en'
               ? 'Key highlights and activities for your Croatia & Italy adventure.'
               : '克罗地亚和意大利之旅的精彩亮点和活动。')

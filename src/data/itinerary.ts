@@ -127,24 +127,27 @@ const thailandDays: DayData[] = [
   {
     day: 3,
     date: { en: 'Mar 1 (Sun)', zh: '3月1日（周日）' },
-    title: { en: 'Transfer to Koh Lanta', zh: '前往兰塔岛' },
+    title: { en: 'Transfer to Koh Lanta & Check-in Fresh House', zh: '前往兰塔岛，入住 Fresh House' },
     region: 'lanta',
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
-    mapQuery: 'Sala Dan, Koh Lanta, Thailand',
-    accommodation: { en: 'Sala Dan House', zh: 'Sala Dan House' },
+    mapQuery: 'Fresh House, Sriraya, Lanta Old Town, Koh Lanta, Thailand',
+    accommodation: { 
+      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630068471 | Status: Confirmed\n🛏️ Standard Fan Double Bed (Beach view, 27m², 1 king bed)\n💰 THB 1,701.02 (pay at property)', 
+      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）\n🏨 预订号：630068471 | 状态：已确认\n🛏️ 标准风扇双人房（海景，27平方米，1张大床）\n💰 1,701.02泰铢（到店支付）' 
+    },
     activities: {
       en: [
         '📦 Morning: Check out from Ao Nang Townhouse',
-        '🚐 Travel from Ao Nang/Krabi to Koh Lanta (Sala Dan) by van + ferry (2.5–4 hours)',
-        '🏨 Arrive in the afternoon, check in to Sala Dan House (after 14:00)',
-        '🌅 Late afternoon: Walk to Long Beach area or explore Sala Dan village, enjoy sunset',
+        '🚐 Travel from Ao Nang/Krabi to Koh Lanta (Lanta Old Town) by van + ferry (2.5–4 hours)',
+        '🏨 Arrive in the afternoon, check in to Fresh House (check-in from 13:00)',
+        '🌅 Late afternoon: Walk to the beach or explore Lanta Old Town, enjoy sunset',
         '🍜 Evening: Dinner at a beachfront restaurant; ask tour agents about 4-island tours and Phi Phi day trips',
       ],
       zh: [
         '📦 早上：从 Ao Nang Townhouse 退房，准备前往兰塔岛',
-        '🚐 从安南/甲米一带乘面包车+渡船前往兰塔岛 Sala Dan，车船合计约2.5–4小时',
-        '🏨 下午抵达后，入住 Sala Dan House（14:00后可办理入住）',
-        '🌅 傍晚：步行前往 Long Beach 一带或在 Sala Dan 小镇逛逛，看日落',
+        '🚐 从安南/甲米一带乘面包车+渡船前往兰塔岛老城，车船合计约2.5–4小时',
+        '🏨 下午抵达后，入住 Fresh House（13:00后可办理入住）',
+        '🌅 傍晚：在海滩散步或逛兰塔老城，看日落',
         '🍜 晚上：在海边餐厅吃饭，并在旅行社咨询四岛游和皮皮岛一日游',
       ],
     },
@@ -152,39 +155,103 @@ const thailandDays: DayData[] = [
   {
     day: 4,
     date: { en: 'Mar 2 (Mon)', zh: '3月2日（周一）' },
-    title: { en: 'Island Exploration', zh: '兰塔环岛探索' },
+    title: { en: 'Island Exploration from Fresh House', zh: '兰塔环岛探索' },
     region: 'lanta',
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'Koh Lanta Old Town, Thailand',
-    accommodation: { en: 'Sala Dan House', zh: 'Sala Dan House' },
+    accommodation: { 
+      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630068471 | Check-out: Mar 3 by 12:00', 
+      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）\n🏨 预订号：630068471 | 退房：3月3日12:00前' 
+    },
     activities: {
       en: [
         '🛵 Spend the day exploring Koh Lanta by scooter or tuk-tuk',
         '🏖️ Visit quiet southern beaches, viewpoints, and cafés',
-        '🏘️ Explore Lanta Old Town',
+        '🏘️ Explore Lanta Old Town (walking distance from Fresh House)',
         '🏞️ If energy and weather allow, visit the national park & lighthouse area for cliff and sea views',
-        '🌙 Evening: Dine near Sala Dan House and sleep early',
+        '🌙 Evening: Dine near Fresh House in Old Town',
       ],
       zh: [
         '🛵 白天租摩托车或坐嘟嘟车环岛',
         '🏖️ 去南部僻静海滩、各个观景点和咖啡馆',
-        '🏘️ 顺路逛 Lanta Old Town',
+        '🏘️ 逛 Lanta Old Town（从 Fresh House 步行可达）',
         '🏞️ 视体力和天气，可以去国家公园灯塔附近看悬崖和海景',
-        '🌙 晚上回到 Sala Dan 一带吃饭，早睡，为第二天出海做准备',
+        '🌙 晚上在 Fresh House 附近的 Old Town 用餐',
       ],
     },
   },
   {
     day: 5,
     date: { en: 'Mar 3 (Tue)', zh: '3月3日（周二）' },
-    title: { en: 'Four Islands Tour', zh: '四岛游' },
+    title: { en: 'Phi Phi Islands Overnight', zh: '皮皮岛过夜游' },
+    region: 'lanta',
+    regionLabel: { en: 'Koh Phi Phi', zh: '皮皮岛' },
+    mapQuery: 'Phi Phi Twin Palms Bungalow, Ko Phi Phi, Thailand',
+    accommodation: { 
+      en: 'Phi Phi Twin Palms Bungalow (108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000)\n🏨 Booking ID: 630065883 | Status: Confirmed\n🛏️ Standard Twin Room with Balcony (Courtyard view, 24m², 2 single beds)\n💰 THB 1,117.62 (charged Mar 1, 2026)', 
+      zh: 'Phi Phi Twin Palms Bungalow（108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000）\n🏨 预订号：630065883 | 状态：已确认\n🛏️ 标准双床阳台房（庭院景观，24平方米，2张单人床）\n💰 1,117.62泰铢（已于3月1日扣款）' 
+    },
+    activities: {
+      en: [
+        '📦 Morning: Check out from Fresh House (by 12:00)',
+        '🛥️ Take a speedboat or ferry from Koh Lanta to Phi Phi Islands (check-in from 14:00)',
+        '📸 Visit Maya Bay, Pileh Lagoon, and Monkey Bay with snorkeling',
+        '🍱 Lunch on the boat or on Phi Phi Don',
+        '🏨 Check in to Phi Phi Twin Palms Bungalow (check-in from 14:00)',
+        '🌙 Evening: Explore Tonsai area, dinner and drinks on Phi Phi Don',
+      ],
+      zh: [
+        '📦 早上：从 Fresh House 退房（12:00前）',
+        '🛥️ 从兰塔乘快艇或渡船前往皮皮岛（14:00后可入住）',
+        '📸 游览 Maya Bay、Pileh Lagoon、Monkey Bay 并浮潜',
+        '🍱 午餐在皮皮 Don 岛或船上吃',
+        '🏨 入住 Phi Phi Twin Palms Bungalow（14:00后可办理入住）',
+        '🌙 晚上：探索 Tonsai 区域，在皮皮 Don 岛晚餐',
+      ],
+    },
+  },
+  {
+    day: 6,
+    date: { en: 'Mar 4 (Wed)', zh: '3月4日（周三）' },
+    title: { en: 'Return to Koh Lanta & Check-in BOHO Hostel', zh: '返回兰塔岛，入住 BOHO Hostel' },
+    region: 'lanta',
+    regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
+    mapQuery: 'BOHO Hostel, Saladan, Koh Lanta, Thailand',
+    accommodation: { 
+      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630072187 | Status: Paid and Confirmed\n🛏️ Standard Double Room (15m², 1 double bed)\n💰 USD 57.72 (already paid)', 
+      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）\n🏨 预订号：630072187 | 状态：已付款并确认\n🛏️ 标准双人房（15平方米，1张双人床）\n💰 57.72美元（已付款）' 
+    },
+    activities: {
+      en: [
+        '📦 Morning: Check out from Phi Phi Twin Palms Bungalow (by 11:00)',
+        '🛥️ Take ferry/speedboat back to Koh Lanta (Saladan)',
+        '🏨 Check in to BOHO Hostel (check-in from 14:00)',
+        '🌅 Afternoon: Walk to Long Beach area or explore Sala Dan village',
+        '🍜 Evening: Dinner at a beachfront restaurant near Saladan',
+      ],
+      zh: [
+        '📦 早上：从 Phi Phi Twin Palms Bungalow 退房（11:00前）',
+        '🛥️ 乘渡船/快艇返回兰塔岛（Sala Dan）',
+        '🏨 入住 BOHO Hostel（14:00后可办理入住）',
+        '🌅 下午：步行前往 Long Beach 一带或在 Sala Dan 小镇逛逛',
+        '🍜 晚上：在 Saladan 附近的海边餐厅吃饭',
+      ],
+    },
+  },
+  {
+    day: 7,
+    date: { en: 'Mar 5 (Thu)', zh: '3月5日（周四）' },
+    title: { en: 'Four Islands Tour & Last Night at BOHO Hostel', zh: '四岛游，BOHO Hostel 最后一晚' },
     region: 'lanta',
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'Koh Lanta Four Islands, Thailand',
-    accommodation: { en: 'Sala Dan House', zh: 'Sala Dan House' },
+    accommodation: { 
+      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630072187 | Check-out: Mar 6 by 10:00', 
+      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）\n🏨 预订号：630072187 | 退房：3月6日10:00前' 
+    },
     activities: {
       en: [
-        '🛥️ Join a 4-island tour from Koh Lanta (pickup from Sala Dan area)',
+        '🛥️ Join a 4-island tour from Koh Lanta (pickup from Saladan area)',
         '🤿 Snorkeling, beach stops on small islands, and visit to Emerald Cave',
         '🍱 Simple lunch on board or on a beach',
         '🏖️ Spend the day in clear water between islands',
@@ -199,76 +266,29 @@ const thailandDays: DayData[] = [
       ],
     },
   },
-  {
-    day: 6,
-    date: { en: 'Mar 4 (Wed)', zh: '3月4日（周三）' },
-    title: { en: 'Phi Phi Islands Day Trip', zh: '皮皮岛一日游' },
-    region: 'lanta',
-    regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
-    mapQuery: 'Phi Phi Islands, Thailand',
-    accommodation: { en: 'Sala Dan House', zh: 'Sala Dan House' },
-    activities: {
-      en: [
-        '🛥️ Morning: Take a speedboat or ferry from Koh Lanta to the Phi Phi Islands',
-        '📸 Visit Maya Bay, Pileh Lagoon, and Monkey Bay with snorkeling included',
-        '🍱 Lunch on the boat or on Phi Phi Don; free time to walk around Tonsai area',
-        '🏖️ Return to Koh Lanta in the afternoon',
-        '🍹 Relax at Sala Dan House, casual dinner and drinks in the evening',
-      ],
-      zh: [
-        '🛥️ 早上从兰塔乘快艇或渡船前往皮皮群岛',
-        '📸 行程包括 Maya Bay、Pileh Lagoon、Monkey Bay，并安排浮潜时间',
-        '🍱 中午在皮皮 Don 岛或船上吃午餐，有自由时间在 Tonsai 一带走走',
-        '🏖️ 下午返回兰塔岛',
-        '🍹 傍晚回到 Sala Dan House 休息，晚上轻松吃饭、喝点东西',
-      ],
-    },
-  },
-  {
-    day: 7,
-    date: { en: 'Mar 5 (Thu)', zh: '3月5日（周四）' },
-    title: { en: 'Free Day & Preparation', zh: '自由活动和准备' },
-    region: 'lanta',
-    regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
-    mapQuery: 'Sala Dan, Koh Lanta, Thailand',
-    accommodation: { en: 'Sala Dan House (last night)', zh: 'Sala Dan House（最后一晚）' },
-    activities: {
-      en: [
-        '😴 Full relax day: sleep in, spend time on your favourite beach',
-        '🧘 Optional: yoga class or Thai cooking class',
-        '🛒 Afternoon: Buy essentials — sunscreen, seasickness pills, water, dry bag',
-        '🎫 Reconfirm ferry and transfer time to Koh Lipe from Saladan Pier',
-        '🧳 Pack bags in the evening and get an early night',
-      ],
-      zh: [
-        '😴 完全放松：睡个懒觉，在最喜欢的海滩再躺一整天',
-        '🧘 可选：去上瑜伽课、泰国料理课',
-        '🛒 下午买好路上需要的东西（防晒、晕船药、水、防水包等）',
-        '🎫 确认明天从 Saladan 码头前往丽贝岛的船票和接送时间',
-        '🧳 晚上整理行李，早点休息',
-      ],
-    },
-  },
 
   // ===== KOH LIPE (Days 8-12) =====
   {
     day: 8,
     date: { en: 'Mar 6 (Fri)', zh: '3月6日（周五）' },
-    title: { en: 'Transfer to Koh Lipe', zh: '前往丽贝岛' },
+    title: { en: 'Transfer to Koh Lipe & Check-in Varin Beach Resort', zh: '前往丽贝岛，入住 Varin Beach Resort' },
     region: 'lipe',
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
-    mapQuery: 'Koh Lipe, Thailand',
-    accommodation: { en: 'Varin Beach Resort (check-in after 15:00)', zh: 'Varin Beach Resort（15:00后入住）' },
+    mapQuery: 'Varin Beach Resort, Ko Lipe, Thailand',
+    accommodation: { 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | Status: Paid and Confirmed\n🛏️ Fan Cottage (Garden view, 28m², 1 king bed) — includes Breakfast & Free WiFi\n💰 CHF 141.20 (already paid)', 
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 状态：已付款并确认\n🛏️ 风扇小屋（花园景观，28平方米，1张大床）— 含早餐和免费WiFi\n💰 141.20瑞士法郎（已付款）' 
+    },
     activities: {
       en: [
-        '📦 Morning: Check out from Sala Dan House and head to Saladan Pier',
+        '📦 Morning: Check out from BOHO Hostel (by 10:00) and head to Saladan Pier',
         '🛥️ Take booked speedboat/ferry from Saladan Pier to Koh Lipe Pattaya Beach (~10:30 departure, 2.5–3 hrs)',
         '🏨 Arrive around midday; walk or short transfer to Varin Beach Resort; check in after 15:00',
         '🏖️ Afternoon: Walk along Pattaya Beach or Sunrise Beach, explore the three main beaches and Walking Street',
         '🍜 Evening: Choose a restaurant along Walking Street for your first island dinner',
       ],
       zh: [
-        '📦 早上退房后前往 Saladan 码头',
+        '📦 早上10:00前从 BOHO Hostel 退房，前往 Saladan 码头',
         '🛥️ 乘坐已预订的快艇/渡船前往丽贝岛 Pattaya Beach，约10:30出发，航程约2.5–3小时',
         '🏨 中午或下午早些时候抵达，步行或短程接驳前往 Varin Beach Resort；15:00后可办理入住',
         '🏖️ 下午：在 Pattaya Beach 或 Sunrise Beach 散步，熟悉三大海滩和 Walking Street 的大致方向',
@@ -283,7 +303,10 @@ const thailandDays: DayData[] = [
     region: 'lipe',
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
     mapQuery: 'Koh Lipe, Satun, Thailand',
-    accommodation: { en: 'Varin Beach Resort', zh: 'Varin Beach Resort' },
+    accommodation: { 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | 4 nights', 
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 共4晚' 
+    },
     activities: {
       en: [
         '🤿 Join a half-day or full-day snorkeling trip around Koh Lipe',
@@ -308,18 +331,21 @@ const thailandDays: DayData[] = [
     region: 'lipe',
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
     mapQuery: 'Sunrise Beach, Koh Lipe, Thailand',
-    accommodation: { en: 'Varin Beach Resort', zh: 'Varin Beach Resort' },
+    accommodation: { 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | includes Breakfast', 
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 含早餐' 
+    },
     activities: {
       en: [
         '🌅 Wake up early to watch sunrise at Sunrise Beach',
-        '☕ Breakfast at a beachfront café',
+        '☕ Breakfast at Varin Beach Resort (included)',
         '🏖️ Keep the daytime schedule empty: swim, sunbathe, read, and relax',
         '📖 No fixed plan — enjoy freedom',
         '💆 Evening: Foot or full-body massage, stay in island-chill mode',
       ],
       zh: [
         '🌅 早起去 Sunrise Beach 看日出',
-        '☕ 然后在海边咖啡馆吃早餐',
+        '☕ 在 Varin Beach Resort 吃早餐（已含）',
         '🏖️ 白天什么都不用安排：游泳、晒太阳、看书、发呆',
         '📖 随心所欲，没有固定计划',
         '💆 晚上做个脚部或全身按摩，继续小岛躺平模式',
@@ -333,7 +359,10 @@ const thailandDays: DayData[] = [
     region: 'lipe',
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
     mapQuery: 'Varin Beach Resort, Koh Lipe, Thailand',
-    accommodation: { en: 'Varin Beach Resort', zh: 'Varin Beach Resort' },
+    accommodation: { 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | Check-out: Mar 10 by 10:00', 
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 退房：3月10日10:00前' 
+    },
     activities: {
       en: [
         '🏖️ Spend the day at Varin Beach Resort or a beach bar with a great view',
@@ -380,39 +409,39 @@ const thailandDays: DayData[] = [
   // ===== TRAVEL DAY =====
   {
     day: 13,
-    date: { en: 'approx. Mar 11 (Wed)', zh: '约3月11日（周三）' },
+    date: { en: 'Mar 11 (Wed)', zh: '3月11日（周三）' },
     title: { en: 'Transfer to Penang', zh: '前往槟城' },
     region: 'travel',
     regionLabel: { en: 'Travel Day', zh: '旅行日' },
     mapQuery: 'George Town, Penang, Malaysia',
-    accommodation: { en: 'Hotel near George Town, Penang', zh: '槟城乔治市附近酒店' },
+    accommodation: { en: 'Airbnb in George Town, Penang', zh: '槟城乔治市民宿' },
     activities: {
       en: [
         '🛥️ Morning: Leave Koh Lipe by ferry, via Langkawi or Kuala Perlis',
         '🚌 Continue to Penang by bus, train, or short flight (e.g. Langkawi–Penang flight, or bus/train from Kuala Perlis to Butterworth)',
         '⛴️ Ferry from Butterworth to George Town if taking land route',
-        '🏨 Arrive in Penang and check in to a hotel near George Town',
+        '🏨 Arrive in Penang and check in to Airbnb in George Town',
         '🍜 Evening: Simple dinner near accommodation and rest',
       ],
       zh: [
         '🛥️ 早上从丽贝坐船离开泰国，经兰卡威或 Kuala Perlis 中转',
         '🚌 再转巴士、火车或短程航班前往槟城（例如兰卡威飞槟城，或从 Kuala Perlis 到 Butterworth）',
         '⛴️ 如走陆路，从 Butterworth 坐渡船到乔治市',
-        '🏨 抵达槟城后，入住乔治市附近酒店',
-        '🍜 晚上在酒店附近简单吃饭，早点休息',
+        '🏨 抵达槟城后，入住乔治市民宿',
+        '🍜 晚上在民宿附近简单吃饭，早点休息',
       ],
     },
   },
 
-  // ===== PENANG WEEK 1 (Days 14-19) =====
+  // ===== PENANG WEEK (Days 14-18) =====
   {
     day: 14,
-    date: { en: '≈ Mar 12 (Thu)', zh: '≈ 3月12日（周四）' },
+    date: { en: 'Mar 12 (Thu)', zh: '3月12日（周四）' },
     title: { en: 'George Town Walking Tour & Street Art', zh: '乔治市徒步和街头艺术' },
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Armenian Street, George Town, Penang, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
+    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
     activities: {
       en: [
         '🚶 Explore UNESCO Heritage Zone: Armenian Street, Love Lane, and surroundings',
@@ -432,12 +461,12 @@ const thailandDays: DayData[] = [
   },
   {
     day: 15,
-    date: { en: '≈ Mar 13 (Fri)', zh: '≈ 3月13日（周五）' },
+    date: { en: 'Mar 13 (Fri)', zh: '3月13日（周五）' },
     title: { en: 'Penang Hill + Kek Lok Si Temple', zh: '升旗山 + 极乐寺' },
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Penang Hill, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
+    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
     activities: {
       en: [
         '🚡 Take the funicular up Penang Hill for island views',
@@ -457,12 +486,12 @@ const thailandDays: DayData[] = [
   },
   {
     day: 16,
-    date: { en: '≈ Mar 14 (Sat)', zh: '≈ 3月14日（周六）' },
+    date: { en: 'Mar 14 (Sat)', zh: '3月14日（周六）' },
     title: { en: 'Food Tour & Heritage Mansions', zh: '美食团和文化馆' },
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Cheong Fatt Tze Mansion, Penang, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
+    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
     activities: {
       en: [
         '🍜 Join a guided food tour in George Town: char kway teow, laksa, Hokkien mee, nasi lemak, and more',
@@ -482,12 +511,12 @@ const thailandDays: DayData[] = [
   },
   {
     day: 17,
-    date: { en: '≈ Mar 15 (Sun)', zh: '≈ 3月15日（周日）' },
+    date: { en: 'Mar 15 (Sun)', zh: '3月15日（周日）' },
     title: { en: 'Penang National Park Hike', zh: '槟城国家公园徒步' },
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Penang National Park, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
+    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
     activities: {
       en: [
         '🥾 Hike through rainforest trails in Penang National Park',
@@ -507,12 +536,12 @@ const thailandDays: DayData[] = [
   },
   {
     day: 18,
-    date: { en: '≈ Mar 16 (Mon)', zh: '≈ 3月16日（周一）' },
+    date: { en: 'Mar 16 (Mon)', zh: '3月16日（周一）' },
     title: { en: 'Relaxation Day & Gurney Drive Sunset', zh: '放松日和 Gurney Drive 看日落' },
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Gurney Drive, Penang, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
+    accommodation: { en: 'Airbnb in George Town (last night)', zh: '乔治市民宿（最后一晚）' },
     activities: {
       en: [
         '😴 Sleep in and have a late breakfast',
@@ -532,203 +561,30 @@ const thailandDays: DayData[] = [
   },
   {
     day: 19,
-    date: { en: '≈ Mar 17 (Tue)', zh: '≈ 3月17日（周二）' },
-    title: { en: 'Batu Ferringhi Beach + Night Market', zh: '峇都丁宜海滩 + 夜市' },
-    region: 'penang',
-    regionLabel: { en: 'Penang', zh: '槟城' },
-    mapQuery: 'Batu Ferringhi Beach, Penang, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
+    date: { en: 'Mar 17 (Tue)', zh: '3月17日（周二）' },
+    title: { en: 'Departure Day — Fly Home ✈️', zh: '返程日 — 乘飞机回家 ✈️' },
+    region: 'travel',
+    regionLabel: { en: 'Travel Day', zh: '旅行日' },
+    mapQuery: 'Penang International Airport, Malaysia',
+    accommodation: null,
     activities: {
       en: [
-        '🏖️ Spend the day at Batu Ferringhi beach',
-        '🏊 Swimming, sunbathing, and beach walks',
-        '🛍️ Evening: Browse the Batu Ferringhi night market',
-        '🍜 Try street food stalls',
-        '🚕 Return to George Town',
+        '📦 Check out from hotel and store luggage if needed',
+        '🛍️ Last-minute shopping or revisit favourite spots in George Town',
+        '🍜 Final hawker food lunch — eat everything you\'ll miss!',
+        '🚕 Head to Penang International Airport (PEN) by taxi/Grab',
+        '✈️ Flight departs 19:40 from Penang (PEN) to Zhengzhou (CGO)',
+        '🛫 13h 20min journey with 1 stop and overnight layover',
+        '📅 Arrives Zhengzhou 09:00+1 (Wednesday, March 18)',
       ],
       zh: [
-        '🏖️ 白天在峇都丁宜海滩散步、玩水',
-        '🏊 游泳、晒太阳',
-        '🛍️ 晚上逛峇都丁宜夜市',
-        '🍜 吃路边摊小吃',
-        '🚕 返回乔治市',
-      ],
-    },
-  },
-
-  // ===== PENANG WEEK 2 (Days 20-26) =====
-  {
-    day: 20,
-    date: { en: '≈ Mar 18 (Wed)', zh: '≈ 3月18日（周三）' },
-    title: { en: 'Balik Pulau Countryside Cycling', zh: 'Balik Pulau 乡村骑行' },
-    region: 'penang',
-    regionLabel: { en: 'Penang', zh: '槟城' },
-    mapQuery: 'Balik Pulau, Penang, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
-    activities: {
-      en: [
-        '🚲 Join a cycling or countryside tour in Balik Pulau',
-        '🌾 Ride through rice fields, villages, and orchards',
-        '🍈 Taste tropical fruits along the way',
-        '📸 See a different, rural side of Penang island',
-        '🌙 Return to George Town for dinner',
-      ],
-      zh: [
-        '🚲 参加 Balik Pulau 骑行或乡村游',
-        '🌾 穿过稻田、小村庄和果园',
-        '🍈 沿途品尝热带水果',
-        '📸 看看岛的另一面',
-        '🌙 返回乔治市吃晚餐',
-      ],
-    },
-  },
-  {
-    day: 21,
-    date: { en: '≈ Mar 19 (Thu)', zh: '≈ 3月19日（周四）' },
-    title: { en: 'Entopia + Tropical Fruit Farm', zh: '蝴蝶园 + 热带水果园' },
-    region: 'penang',
-    regionLabel: { en: 'Penang', zh: '槟城' },
-    mapQuery: 'Entopia by Penang Butterfly Farm, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
-    activities: {
-      en: [
-        '🦋 Visit Entopia Butterfly Farm: see butterflies and insects',
-        '🍉 Head to Tropical Fruit Farm for tastings and guided tour',
-        '📸 Photo opportunities in beautiful garden settings',
-        '🍜 Lunch at the farm or nearby',
-        '🌙 Relaxed evening in George Town',
-      ],
-      zh: [
-        '🦋 参观 Entopia 蝴蝶公园：看各种蝴蝶和昆虫',
-        '🍉 去 Tropical Fruit Farm 品尝热带水果或参加导览',
-        '📸 在美丽的花园里拍照',
-        '🍜 在农场或附近吃午餐',
-        '🌙 晚上在乔治市轻松度过',
-      ],
-    },
-  },
-  {
-    day: 22,
-    date: { en: '≈ Mar 20 (Fri)', zh: '≈ 3月20日（周五）' },
-    title: { en: 'Free Day: Museums & Shopping', zh: '自由日：博物馆、购物或休息' },
-    region: 'penang',
-    regionLabel: { en: 'Penang', zh: '槟城' },
-    mapQuery: 'George Town, Penang, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
-    activities: {
-      en: [
-        '🎯 Completely flexible day',
-        '🏛️ Option: Visit Wonderfood Museum, Upside Down Museum, or other fun museums',
-        '🛍️ Option: Go shopping in George Town',
-        '😴 Option: Just rest and enjoy the hotel',
-        '🍜 Try any food you haven\'t tried yet!',
-      ],
-      zh: [
-        '🎯 完全自由的一天',
-        '🏛️ 可选：去 Wonderfood Museum、倒立博物馆等轻松打卡拍照',
-        '🛍️ 可选：在乔治市购物',
-        '😴 可选：就在酒店休息',
-        '🍜 尝试还没有试过的美食！',
-      ],
-    },
-  },
-  {
-    day: 23,
-    date: { en: '≈ Mar 21 (Sat)', zh: '≈ 3月21日（周六）' },
-    title: { en: 'Cooking Class + Trishaw Tour', zh: '烹饪课 + 三轮车游' },
-    region: 'penang',
-    regionLabel: { en: 'Penang', zh: '槟城' },
-    mapQuery: 'George Town, Penang, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
-    activities: {
-      en: [
-        '👨‍🍳 Join a cooking class: learn to cook Malaysian or Nyonya dishes like laksa or curry',
-        '🍜 Enjoy the dishes you cooked for lunch',
-        '🛺 Afternoon: Join a trishaw ride to cover more of the old town in a relaxed way',
-        '🏛️ Visit mosques, churches, and temples to learn about multicultural heritage',
-        '🎶 Evening: Visit a night market with live entertainment if available',
-      ],
-      zh: [
-        '👨‍🍳 参加烹饪课：学习制作叻沙、咖喱等马来或娘惹料理',
-        '🍜 中午享用自己做的菜',
-        '🛺 下午参加三轮车游，在晚风中慢慢逛老城',
-        '🏛️ 路过清真寺、教堂、庙宇，了解多元文化',
-        '🎶 晚上逛有街头表演的夜市',
-      ],
-    },
-  },
-  {
-    day: 24,
-    date: { en: '≈ Mar 22 (Sun)', zh: '≈ 3月22日（周日）' },
-    title: { en: 'ESCAPE Theme Park (Full Day)', zh: 'ESCAPE 主题乐园（全天）' },
-    region: 'penang',
-    regionLabel: { en: 'Penang', zh: '槟城' },
-    mapQuery: 'ESCAPE Penang, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
-    activities: {
-      en: [
-        '🎢 Full day at ESCAPE Penang',
-        '🧗 Rope courses and zip lines',
-        '🌊 Water slides and water activities',
-        '🍱 Lunch at the park',
-        '🌙 Return to George Town tired but happy!',
-      ],
-      zh: [
-        '🎢 在 ESCAPE 玩一整天',
-        '🧗 绳索、高空滑索',
-        '🌊 滑水道和水上活动',
-        '🍱 在乐园里吃午餐',
-        '🌙 晚上带着疲惫但开心的心情返回乔治市！',
-      ],
-    },
-  },
-  {
-    day: 25,
-    date: { en: '≈ Mar 23 (Mon)', zh: '≈ 3月23日（周一）' },
-    title: { en: 'Cameron Highlands Day Trip (Optional)', zh: '金马仑高原一日游（可选）' },
-    region: 'penang',
-    regionLabel: { en: 'Penang', zh: '槟城' },
-    mapQuery: 'Cameron Highlands, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
-    activities: {
-      en: [
-        '🚌 Optional day trip to Cameron Highlands (about 3–4 hours drive each way)',
-        '🍵 Visit tea plantations and strawberry farms',
-        '🌿 Enjoy the cool highland climate',
-        '📸 Beautiful scenery and photo opportunities',
-        '🌙 Return to Penang in the evening (or skip this and have a free day)',
-      ],
-      zh: [
-        '🚌 可选：前往金马仑高原一日游（单程约3–4小时车程）',
-        '🍵 参观茶园和草莓农场',
-        '🌿 享受凉爽的高原气候',
-        '📸 美丽的风景和拍照机会',
-        '🌙 晚上返回槟城（或者跳过这天，当自由日）',
-      ],
-    },
-  },
-  {
-    day: 26,
-    date: { en: '≈ Mar 24 (Tue)', zh: '≈ 3月24日（周二）' },
-    title: { en: 'Free Day & Farewell Dinner', zh: '自由日，最后购物，告别晚餐' },
-    region: 'penang',
-    regionLabel: { en: 'Penang', zh: '槟城' },
-    mapQuery: 'George Town, Penang, Malaysia',
-    accommodation: { en: 'George Town Hotel', zh: '乔治市酒店' },
-    activities: {
-      en: [
-        '🎯 Final free day in Penang',
-        '🛍️ Last-minute shopping for souvenirs',
-        '📸 Revisit favourite spots for final photos',
-        '🍜 Final hawker food run — eat everything you\'ll miss!',
-        '🍽️ Farewell dinner at a special restaurant',
-      ],
-      zh: [
-        '🎯 在槟城的最后一个自由日',
-        '🛍️ 最后买些纪念品',
-        '📸 重访最喜欢的地方拍最后的照片',
-        '🍜 最后一次扫荡小贩中心——把会想念的都吃一遍！',
-        '🍽️ 在一家特别的餐厅吃告别晚餐',
+        '📦 从酒店退房，如有需要可寄存行李',
+        '🛍️ 最后购物或重访乔治市最喜欢的景点',
+        '🍜 最后一顿小贩中心午餐——把会想念的都吃一遍！',
+        '🚕 乘出租车/Grab前往槟城国际机场（PEN）',
+        '✈️ 航班 19:40 从槟城（PEN）起飞前往郑州（CGO）',
+        '🛫 航程13小时20分钟，含1次中转和过夜停留',
+        '📅 抵达郑州时间为次日（3月18日周三）09:00',
       ],
     },
   },
@@ -1648,7 +1504,7 @@ const croatiaTips: TipSection[] = [
 
 // ===== TRIP OVERVIEWS =====
 const thailandOverview: TripOverview = {
-  duration: { en: 'February 27 – End of March 2026', zh: '2026年2月27日 – 3月底' },
+  duration: { en: 'February 27 – March 17, 2026', zh: '2026年2月27日 – 3月17日' },
   stays: [
     {
       location: { en: 'Ao Nang, Krabi', zh: '安南（Ao Nang）' },
@@ -1657,21 +1513,33 @@ const thailandOverview: TripOverview = {
       region: 'krabi',
     },
     {
+      location: { en: 'Koh Lanta (Lanta Old Town)', zh: '兰塔岛老城' },
+      dates: { en: 'Mar 1 – Mar 3 (2 nights)', zh: '3月1日 – 3月3日（2晚）' },
+      hotel: { en: 'Fresh House (#630068471)', zh: 'Fresh House（#630068471）' },
+      region: 'lanta',
+    },
+    {
+      location: { en: 'Koh Phi Phi', zh: '皮皮岛' },
+      dates: { en: 'Mar 3 – Mar 4 (1 night)', zh: '3月3日 – 3月4日（1晚）' },
+      hotel: { en: 'Phi Phi Twin Palms Bungalow (#630065883)', zh: 'Phi Phi Twin Palms Bungalow（#630065883）' },
+      region: 'lanta',
+    },
+    {
       location: { en: 'Koh Lanta (Sala Dan)', zh: '兰塔岛 Sala Dan' },
-      dates: { en: 'Mar 1 – Mar 6', zh: '3月1日 – 3月6日' },
-      hotel: { en: 'Sala Dan House', zh: 'Sala Dan House' },
+      dates: { en: 'Mar 4 – Mar 6 (2 nights)', zh: '3月4日 – 3月6日（2晚）' },
+      hotel: { en: 'BOHO Hostel (#630072187)', zh: 'BOHO Hostel（#630072187）' },
       region: 'lanta',
     },
     {
       location: { en: 'Koh Lipe', zh: '丽贝岛' },
-      dates: { en: 'Mar 6 – Mar 10', zh: '3月6日 – 3月10日' },
-      hotel: { en: 'Varin Beach Resort', zh: 'Varin Beach Resort' },
+      dates: { en: 'Mar 6 – Mar 10 (4 nights)', zh: '3月6日 – 3月10日（4晚）' },
+      hotel: { en: 'Varin Beach Resort (#629167643)', zh: 'Varin Beach Resort（#629167643）' },
       region: 'lipe',
     },
     {
-      location: { en: 'Penang', zh: '槟城' },
-      dates: { en: 'From ~Mar 11 for 1–2 weeks', zh: '约3月11日起停留1–2周' },
-      hotel: { en: 'TBD', zh: '待定' },
+      location: { en: 'Penang, Malaysia', zh: '槟城，马来西亚' },
+      dates: { en: 'Mar 11 – Mar 17 (7 nights)', zh: '3月11日 – 3月17日（7晚）' },
+      hotel: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
       region: 'penang',
     },
   ],

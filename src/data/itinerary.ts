@@ -1,48 +1,42 @@
-export type Language = 'en' | 'zh';
-export type TripId = 'thailand' | 'croatia';
-
-export interface Bilingual {
-  en: string;
-  zh: string;
-}
+export type { Language, TripId, Bilingual } from './types';
 
 export interface DayData {
   day: number;
-  date: Bilingual;
-  title: Bilingual;
+  date: { en: string; zh: string };
+  title: { en: string; zh: string };
   region: string;
-  regionLabel: Bilingual;
+  regionLabel: { en: string; zh: string };
   mapQuery: string;
-  accommodation: Bilingual | null;
+  accommodation: { en: string; zh: string } | null;
   activities: { en: string[]; zh: string[] };
 }
 
 export interface ActivityCategory {
-  title: Bilingual;
+  title: { en: string; zh: string };
   icon: string;
-  items: Bilingual[];
+  items: { en: string; zh: string }[];
 }
 
 export interface TipSection {
-  title: Bilingual;
+  title: { en: string; zh: string };
   icon: string;
-  items: Bilingual[];
+  items: { en: string; zh: string }[];
 }
 
 export interface TripOverview {
-  duration: Bilingual;
+  duration: { en: string; zh: string };
   stays: {
-    location: Bilingual;
-    dates: Bilingual;
-    hotel: Bilingual;
+    location: { en: string; zh: string };
+    dates: { en: string; zh: string };
+    hotel: { en: string; zh: string };
     region: string;
   }[];
 }
 
 export interface TripData {
-  id: TripId;
-  name: Bilingual;
-  footer: Bilingual;
+  id: 'thailand' | 'croatia';
+  name: { en: string; zh: string };
+  footer: { en: string; zh: string };
   regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
   days: DayData[];
   categories: ActivityCategory[];
@@ -1588,7 +1582,7 @@ const croatiaOverview: TripOverview = {
 };
 
 // ===== EXPORT TRIPS =====
-export const trips: Record<TripId, TripData> = {
+export const trips: Record<'thailand' | 'croatia', TripData> = {
   thailand: {
     id: 'thailand',
     name: { en: 'Thailand & Malaysia', zh: '泰国和马来西亚' },

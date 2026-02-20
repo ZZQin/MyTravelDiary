@@ -165,13 +165,13 @@ function WeatherWidget({ day, lang, onRefresh }: {
   // Parse location from mapQuery for display
   const location = day.mapQuery.split(',')[0];
   
-  // Simulated weather data (in a real app, this would come from an API)
-  const mockWeather = {
+  // Simulated weather data - memoized to prevent regeneration on scroll/re-render
+  const mockWeather = useMemo(() => ({
     tempHigh: 28 + Math.floor(Math.random() * 5),
     tempLow: 22 + Math.floor(Math.random() * 4),
-    condition: ['Sunny', 'Partly Cloudy', 'Cloudy'][Math.floor(Math.random() * 3)],
+    condition: ['Sunny', 'Partly Cloudy', 'Cloudy'][Math.floor(Math.random() * 3)] as 'Sunny' | 'Partly Cloudy' | 'Cloudy',
     humidity: 60 + Math.floor(Math.random() * 20),
-  };
+  }), [day.day]); // Only regenerate when day changes
   
   const icon = weatherIconMap[mockWeather.condition] || '☀️';
   
@@ -412,14 +412,12 @@ function DayPicker({
   lang,
   days,
   regionColors,
-  isNavCollapsed,
 }: {
   currentDay: number;
   setCurrentDay: (d: number) => void;
   lang: Language;
   days: DayData[];
   regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
-  isNavCollapsed: boolean;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -433,7 +431,7 @@ function DayPicker({
   }, [currentDay]);
 
   return (
-    <div className={`sticky z-30 bg-gray-50 border-b border-gray-200 py-3 px-2 transition-all ${isNavCollapsed ? 'top-[52px]' : 'top-0'}`}>
+    <div className="sticky z-30 bg-gray-50 border-b border-gray-200 py-3 px-2 top-0">
       <div
         ref={scrollRef}
         className="max-w-2xl mx-auto flex gap-2 overflow-x-auto scrollbar-hide py-1 px-1"
@@ -1083,7 +1081,6 @@ function ItineraryView({
         lang={lang} 
         days={tripData.days}
         regionColors={regionColors}
-        isNavCollapsed={isNavCollapsed}
       />
       <DayDetail 
         day={day} 
@@ -1577,22 +1574,33 @@ export function App() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY;
+      const isScrollingDown = scrollDelta > 0;
+      const isScrollingUp = scrollDelta < 0;
       
-      // Collapse header after scrolling down 150px
-      if (currentScrollY > 150 && !isHeaderCollapsed) {
+      // Collapse header when scrolling down past threshold
+      if (currentScrollY > 150 && isScrollingDown && !isHeaderCollapsed) {
         setIsHeaderCollapsed(true);
       }
-      // Expand header when scrolling back to top
-      else if (currentScrollY < 50 && isHeaderCollapsed) {
+      // Expand header only when scrolling up and near top
+      else if (currentScrollY < 80 && isScrollingUp && isHeaderCollapsed) {
+        setIsHeaderCollapsed(false);
+      }
+      // Also expand when at very top (scroll to top via click)
+      else if (currentScrollY < 10 && isHeaderCollapsed) {
         setIsHeaderCollapsed(false);
       }
       
-      // Collapse nav after scrolling down 250px (later than header)
-      if (currentScrollY > 250 && !isNavCollapsed) {
+      // Collapse nav when scrolling down past threshold
+      if (currentScrollY > 250 && isScrollingDown && !isNavCollapsed) {
         setIsNavCollapsed(true);
       }
-      // Expand nav when scrolling back up
-      else if (currentScrollY < 100 && isNavCollapsed) {
+      // Expand nav only when scrolling up
+      else if (currentScrollY < 150 && isScrollingUp && isNavCollapsed) {
+        setIsNavCollapsed(false);
+      }
+      // Also expand when at very top
+      else if (currentScrollY < 10 && isNavCollapsed) {
         setIsNavCollapsed(false);
       }
       
@@ -1644,10 +1652,10 @@ export function App() {
       />
       
       {/* Collapsed Nav Indicator */}
-      {isNavCollapsed && !isHeaderCollapsed && (
+      {isNavCollapsed && (
         <button
           onClick={() => setIsNavCollapsed(false)}
-          className="fixed top-[60px] left-1/2 -translate-x-1/2 z-45 bg-white text-sky-700 px-4 py-2 rounded-full shadow-lg text-sm font-medium hover:shadow-xl transition-all flex items-center gap-2"
+          className={`fixed left-1/2 -translate-x-1/2 z-45 bg-white text-sky-700 px-4 py-2 rounded-full shadow-lg text-sm font-medium hover:shadow-xl transition-all flex items-center gap-2 ${isHeaderCollapsed ? 'top-[60px]' : 'top-[148px]'}`}
         >
           <span>📅</span>
           {activeTab === 'itinerary' && (
@@ -1657,8 +1665,8 @@ export function App() {
         </button>
       )}
       
-      {/* Sticky Nav Section */}
-      <div className={`sticky z-40 transition-all ${isNavCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`} style={{ top: isHeaderCollapsed ? '0px' : '136px' }}>
+      {/* Sticky TabBar only */}
+      <div className={`sticky z-40 transition-all ${isNavCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`} style={{ top: isHeaderCollapsed ? '0px' : '136px' }}>
         <TabBar 
           activeTab={activeTab} 
           setActiveTab={(tab) => {
@@ -1668,7 +1676,9 @@ export function App() {
           lang={lang} 
           onCollapse={() => setIsNavCollapsed(true)}
         />
+      </div>
 
+      {/* Content views - outside sticky container for proper scrolling */}
       {activeTab === 'itinerary' && (
         <ItineraryView 
           lang={lang} 
@@ -1688,8 +1698,7 @@ export function App() {
       )}
       {activeTab === 'overview' && <OverviewView lang={lang} tripId={currentTrip} />}
       {activeTab === 'tips' && <TipsView lang={lang} tripId={currentTrip} />}
-      {activeTab === 'expenses' && <ExpensesView lang={lang} tripId={currentTrip} userData={userData} />}
-      </div>
+      {activeTab === 'expenses' && <ExpensesView lang={lang} tripId={currentTrip} userData={userData} />
 
       {/* Footer */}
       <footer className="text-center py-6 text-sm text-gray-400">

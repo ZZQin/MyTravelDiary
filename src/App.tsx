@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import {
   trips,
   type Language,
@@ -216,7 +216,7 @@ function WeatherWidget({ day, lang, onRefresh }: {
 }
 
 /* ─── Header ─── */
-function Header({ 
+const Header = React.memo(function Header({ 
   lang, 
   setLang, 
   currentTrip, 
@@ -239,7 +239,7 @@ function Header({
     return (
       <button
         onClick={onToggleCollapse}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:shadow-xl transition-all"
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:shadow-xl transition-all will-change-transform"
       >
         <span className="text-lg">🌏</span>
         <CountdownWidget tripId={currentTrip} lang={lang} compact />
@@ -249,7 +249,7 @@ function Header({
   }
   
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white shadow-lg">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white shadow-lg will-change-transform">
       <div className="max-w-2xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
@@ -1556,6 +1556,19 @@ export function App() {
   const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  
+  // Refs to track current state without re-triggering effect
+  const headerCollapsedRef = useRef(isHeaderCollapsed);
+  const navCollapsedRef = useRef(isNavCollapsed);
+  
+  // Keep refs in sync with state
+  useEffect(() => {
+    headerCollapsedRef.current = isHeaderCollapsed;
+  }, [isHeaderCollapsed]);
+  
+  useEffect(() => {
+    navCollapsedRef.current = isNavCollapsed;
+  }, [isNavCollapsed]);
 
   const {
     isLoaded,
@@ -1582,24 +1595,26 @@ export function App() {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
           const scrollDelta = currentScrollY - lastScrollY;
-          const isScrollingDown = scrollDelta > 2;
-          const isScrollingUp = scrollDelta < -2;
+          const isScrollingDown = scrollDelta > 3;
+          const isScrollingUp = scrollDelta < -3;
+          const isCurrentlyHeaderCollapsed = headerCollapsedRef.current;
+          const isCurrentlyNavCollapsed = navCollapsedRef.current;
           
-          // Header collapse - independent logic
-          if (isScrollingDown && currentScrollY > 100) {
+          // Header collapse - only set state if actually changing
+          if (isScrollingDown && currentScrollY > 80 && !isCurrentlyHeaderCollapsed) {
             setIsHeaderCollapsed(true);
-          } else if (isScrollingUp && currentScrollY < 200) {
+          } else if (isScrollingUp && currentScrollY < 150 && isCurrentlyHeaderCollapsed) {
             setIsHeaderCollapsed(false);
-          } else if (currentScrollY < 20) {
+          } else if (currentScrollY < 10 && isCurrentlyHeaderCollapsed) {
             setIsHeaderCollapsed(false);
           }
           
-          // Nav collapse - independent logic
-          if (isScrollingDown && currentScrollY > 180) {
+          // Nav collapse - only set state if actually changing
+          if (isScrollingDown && currentScrollY > 150 && !isCurrentlyNavCollapsed) {
             setIsNavCollapsed(true);
-          } else if (isScrollingUp && currentScrollY < 300) {
+          } else if (isScrollingUp && currentScrollY < 200 && isCurrentlyNavCollapsed) {
             setIsNavCollapsed(false);
-          } else if (currentScrollY < 20) {
+          } else if (currentScrollY < 10 && isCurrentlyNavCollapsed) {
             setIsNavCollapsed(false);
           }
           

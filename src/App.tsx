@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import {
   trips,
   type Language,
@@ -412,12 +412,14 @@ function DayPicker({
   lang,
   days,
   regionColors,
+  isNavCollapsed,
 }: {
   currentDay: number;
   setCurrentDay: (d: number) => void;
   lang: Language;
   days: DayData[];
   regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
+  isNavCollapsed: boolean;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -431,7 +433,7 @@ function DayPicker({
   }, [currentDay]);
 
   return (
-    <div className="sticky z-30 bg-gray-50 border-b border-gray-200 py-3 px-2 top-0">
+    <div className={`sticky z-30 bg-gray-50 border-b border-gray-200 py-3 px-2 transition-all ${isNavCollapsed ? 'top-0' : 'top-0'}`}>
       <div
         ref={scrollRef}
         className="max-w-2xl mx-auto flex gap-2 overflow-x-auto scrollbar-hide py-1 px-1"
@@ -1074,13 +1076,14 @@ function ItineraryView({
   const regionColors = tripData.regionColors;
   
   return (
-    <div className="bg-gray-50 min-h-[60vh]">
+    <div className="bg-gray-50 min-h-[60vh] pb-20">
       <DayPicker 
         currentDay={currentDay} 
         setCurrentDay={setCurrentDay} 
         lang={lang} 
         days={tripData.days}
         regionColors={regionColors}
+        isNavCollapsed={isNavCollapsed}
       />
       <DayDetail 
         day={day} 
@@ -1112,7 +1115,7 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
   const regionColors = tripData.regionColors;
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-5 space-y-6 bg-gray-50 min-h-[60vh]">
+    <div className="max-w-2xl mx-auto px-4 py-5 space-y-6 bg-gray-50 min-h-[60vh] pb-20">
       {/* Trip overview */}
       <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
         <h2 className="text-xl font-bold text-gray-900 mb-1">
@@ -1204,7 +1207,7 @@ function TipsView({ lang, tripId }: { lang: Language; tripId: TripId }) {
   const tripData = trips[tripId];
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-5 space-y-3 bg-gray-50 min-h-[60vh]">
+    <div className="max-w-2xl mx-auto px-4 py-5 space-y-3 bg-gray-50 min-h-[60vh] pb-20">
       <h2 className="text-xl font-bold text-gray-900 mb-2">
         {lang === 'en' ? '💡 Travel Tips' : '💡 旅行贴士'}
       </h2>
@@ -1282,7 +1285,7 @@ function ExpensesView({ lang, tripId, userData }: {
   });
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-5 bg-gray-50 min-h-[60vh]">
+    <div className="max-w-2xl mx-auto px-4 py-5 bg-gray-50 min-h-[60vh] pb-20">
       <h2 className="text-xl font-bold text-gray-900 mb-4">
         💰 {lang === 'en' ? 'Trip Expenses' : '行程费用'}
       </h2>
@@ -1572,44 +1575,44 @@ export function App() {
 
   // Scroll detection for collapse
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollDelta = currentScrollY - lastScrollY;
-      const isScrollingDown = scrollDelta > 0;
-      const isScrollingUp = scrollDelta < 0;
-      
-      // Collapse header when scrolling down past threshold
-      if (currentScrollY > 150 && isScrollingDown && !isHeaderCollapsed) {
-        setIsHeaderCollapsed(true);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const scrollDelta = currentScrollY - lastScrollY;
+          const isScrollingDown = scrollDelta > 2;
+          const isScrollingUp = scrollDelta < -2;
+          
+          // Header collapse - independent logic
+          if (isScrollingDown && currentScrollY > 100) {
+            setIsHeaderCollapsed(true);
+          } else if (isScrollingUp && currentScrollY < 200) {
+            setIsHeaderCollapsed(false);
+          } else if (currentScrollY < 20) {
+            setIsHeaderCollapsed(false);
+          }
+          
+          // Nav collapse - independent logic
+          if (isScrollingDown && currentScrollY > 180) {
+            setIsNavCollapsed(true);
+          } else if (isScrollingUp && currentScrollY < 300) {
+            setIsNavCollapsed(false);
+          } else if (currentScrollY < 20) {
+            setIsNavCollapsed(false);
+          }
+          
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
       }
-      // Expand header only when scrolling up and near top
-      else if (currentScrollY < 80 && isScrollingUp && isHeaderCollapsed) {
-        setIsHeaderCollapsed(false);
-      }
-      // Also expand when at very top (scroll to top via click)
-      else if (currentScrollY < 10 && isHeaderCollapsed) {
-        setIsHeaderCollapsed(false);
-      }
-      
-      // Collapse nav when scrolling down past threshold
-      if (currentScrollY > 250 && isScrollingDown && !isNavCollapsed) {
-        setIsNavCollapsed(true);
-      }
-      // Expand nav only when scrolling up
-      else if (currentScrollY < 150 && isScrollingUp && isNavCollapsed) {
-        setIsNavCollapsed(false);
-      }
-      // Also expand when at very top
-      else if (currentScrollY < 10 && isNavCollapsed) {
-        setIsNavCollapsed(false);
-      }
-      
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHeaderCollapsed, isNavCollapsed, lastScrollY]);
+  }, [lastScrollY]);
 
   // Reset day when switching trips
   const handleSetTrip = useCallback((trip: TripId) => {
@@ -1651,22 +1654,28 @@ export function App() {
         onToggleCollapse={() => setIsHeaderCollapsed(!isHeaderCollapsed)}
       />
       
-      {/* Collapsed Nav Indicator */}
-      {isNavCollapsed && (
+      {/* Collapsed Nav Indicator - only show in itinerary tab */}
+      {isNavCollapsed && activeTab === 'itinerary' && (
         <button
           onClick={() => setIsNavCollapsed(false)}
-          className={`fixed left-1/2 -translate-x-1/2 z-45 bg-white text-sky-700 px-4 py-2 rounded-full shadow-lg text-sm font-medium hover:shadow-xl transition-all flex items-center gap-2 ${isHeaderCollapsed ? 'top-[60px]' : 'top-[148px]'}`}
+          className={`fixed left-1/2 -translate-x-1/2 z-[45] bg-white text-sky-700 px-4 py-2 rounded-full shadow-lg text-sm font-medium hover:shadow-xl transition-all flex items-center gap-2 ${isHeaderCollapsed ? 'top-[60px]' : 'top-[148px]'}`}
         >
           <span>📅</span>
-          {activeTab === 'itinerary' && (
-            <span>Day {currentDay + 1}</span>
-          )}
+          <span>Day {currentDay + 1}</span>
           <span>▼</span>
         </button>
       )}
       
-      {/* Sticky TabBar only */}
-      <div className={`sticky z-40 transition-all ${isNavCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`} style={{ top: isHeaderCollapsed ? '0px' : '136px' }}>
+      {/* Sticky TabBar - hidden when collapsed but takes up space */}
+      <div 
+        className="sticky z-40" 
+        style={{ 
+          top: isHeaderCollapsed ? '0px' : '136px',
+          visibility: isNavCollapsed ? 'hidden' : 'visible',
+          height: isNavCollapsed ? '0' : 'auto',
+          overflow: isNavCollapsed ? 'hidden' : 'visible'
+        }}
+      >
         <TabBar 
           activeTab={activeTab} 
           setActiveTab={(tab) => {
@@ -1678,27 +1687,29 @@ export function App() {
         />
       </div>
 
-      {/* Content views - outside sticky container for proper scrolling */}
-      {activeTab === 'itinerary' && (
-        <ItineraryView 
-          lang={lang} 
-          currentDay={currentDay} 
-          setCurrentDay={handleSetDay}
-          tripId={currentTrip}
-          userData={userData}
-          isNavCollapsed={isNavCollapsed}
-          onAddJournal={addJournalEntry}
-          onDeleteJournal={deleteJournalEntry}
-          onAddExpense={addExpense}
-          onDeleteExpense={deleteExpense}
-          onAddPhoto={addPhoto}
-          onDeletePhoto={deletePhoto}
-          onToggleVisited={toggleActivityVisited}
-        />
-      )}
-      {activeTab === 'overview' && <OverviewView lang={lang} tripId={currentTrip} />}
-      {activeTab === 'tips' && <TipsView lang={lang} tripId={currentTrip} />}
-      {activeTab === 'expenses' && <ExpensesView lang={lang} tripId={currentTrip} userData={userData} />
+      {/* Content views - properly in document flow */}
+      <div className="relative">
+        {activeTab === 'itinerary' && (
+          <ItineraryView 
+            lang={lang} 
+            currentDay={currentDay} 
+            setCurrentDay={handleSetDay}
+            tripId={currentTrip}
+            userData={userData}
+            isNavCollapsed={isNavCollapsed}
+            onAddJournal={addJournalEntry}
+            onDeleteJournal={deleteJournalEntry}
+            onAddExpense={addExpense}
+            onDeleteExpense={deleteExpense}
+            onAddPhoto={addPhoto}
+            onDeletePhoto={deletePhoto}
+            onToggleVisited={toggleActivityVisited}
+          />
+        )}
+        {activeTab === 'overview' && <OverviewView lang={lang} tripId={currentTrip} />}
+        {activeTab === 'tips' && <TipsView lang={lang} tripId={currentTrip} />}
+        {activeTab === 'expenses' && <ExpensesView lang={lang} tripId={currentTrip} userData={userData} />}
+      </div>
 
       {/* Footer */}
       <footer className="text-center py-6 text-sm text-gray-400">

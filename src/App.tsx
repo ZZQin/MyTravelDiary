@@ -113,7 +113,7 @@ function OpenInMaps({ query, lang }: { query: string; lang: Language }) {
 }
 
 /* ─── Countdown Widget ─── */
-function CountdownWidget({ tripId, lang }: { tripId: TripId; lang: Language }) {
+function CountdownWidget({ tripId, lang, compact = false }: { tripId: TripId; lang: Language; compact?: boolean }) {
   const daysUntil = getDaysUntilTrip(tripId);
   const daysLeft = getDaysLeftInTrip(tripId);
   
@@ -124,15 +124,23 @@ function CountdownWidget({ tripId, lang }: { tripId: TripId; lang: Language }) {
   
   if (daysUntil !== null && daysUntil > 0) {
     message = lang === 'en' 
-      ? `${daysUntil} day${daysUntil !== 1 ? 's' : ''} until trip`
-      : `还有 ${daysUntil} 天出发`;
+      ? `${daysUntil}d until`
+      : `还有 ${daysUntil} 天`;
   } else if (daysLeft !== null && daysLeft >= 0) {
     message = lang === 'en'
-      ? `${daysLeft} day${daysLeft !== 1 ? 's' : ''} left in trip`
-      : `行程还剩 ${daysLeft} 天`;
+      ? `${daysLeft}d left`
+      : `剩 ${daysLeft} 天`;
     isActive = true;
   } else if (daysUntil !== null && daysUntil <= 0) {
-    message = lang === 'en' ? 'Trip has ended' : '行程已结束';
+    message = lang === 'en' ? 'Ended' : '已结束';
+  }
+  
+  if (compact) {
+    return (
+      <span className={`text-sm font-medium ${isActive ? 'text-emerald-300' : 'text-amber-300'}`}>
+        ⏰ {message}
+      </span>
+    );
   }
   
   return (
@@ -214,14 +222,31 @@ function Header({
   currentTrip, 
   setCurrentTrip,
   onOpenPacking,
+  isCollapsed,
+  onToggleCollapse,
 }: { 
   lang: Language; 
   setLang: (l: Language) => void;
   currentTrip: TripId;
   setCurrentTrip: (t: TripId) => void;
   onOpenPacking: () => void;
+  isCollapsed: boolean;
+  onToggleCollapse: () => void;
 }) {
   const tripData = trips[currentTrip];
+  
+  if (isCollapsed) {
+    return (
+      <button
+        onClick={onToggleCollapse}
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:shadow-xl transition-all"
+      >
+        <span className="text-lg">🌏</span>
+        <CountdownWidget tripId={currentTrip} lang={lang} compact />
+        <span className="text-xs ml-1">▼</span>
+      </button>
+    );
+  }
   
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white shadow-lg">
@@ -283,6 +308,14 @@ function Header({
             </button>
           ))}
         </div>
+        
+        {/* Collapse hint */}
+        <button
+          onClick={onToggleCollapse}
+          className="w-full mt-2 py-1 text-xs text-white/60 hover:text-white/90 flex items-center justify-center gap-1 transition-all"
+        >
+          <span>▲</span> {lang === 'en' ? 'Tap to collapse' : '点击收起'}
+        </button>
       </div>
     </header>
   );
@@ -1506,6 +1539,8 @@ export function App() {
   const [currentDay, setCurrentDay] = useState(0);
   const [activeTab, setActiveTab] = useState<TabId>('itinerary');
   const [isPackingOpen, setIsPackingOpen] = useState(false);
+  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const {
     isLoaded,
@@ -1523,10 +1558,32 @@ export function App() {
     deletePackingItem,
   } = useLocalStorage(currentTrip);
 
+  // Scroll detection for header collapse
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Collapse after scrolling down 150px
+      if (currentScrollY > 150 && !isHeaderCollapsed) {
+        setIsHeaderCollapsed(true);
+      }
+      // Expand when scrolling back to top
+      else if (currentScrollY < 50 && isHeaderCollapsed) {
+        setIsHeaderCollapsed(false);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHeaderCollapsed, lastScrollY]);
+
   // Reset day when switching trips
   const handleSetTrip = useCallback((trip: TripId) => {
     setCurrentTrip(trip);
     setCurrentDay(0);
+    setIsHeaderCollapsed(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -1556,6 +1613,8 @@ export function App() {
         currentTrip={currentTrip}
         setCurrentTrip={handleSetTrip}
         onOpenPacking={() => setIsPackingOpen(true)}
+        isCollapsed={isHeaderCollapsed}
+        onToggleCollapse={() => setIsHeaderCollapsed(!isHeaderCollapsed)}
       />
       <TabBar activeTab={activeTab} setActiveTab={setActiveTab} lang={lang} />
 

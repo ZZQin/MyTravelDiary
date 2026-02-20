@@ -334,14 +334,16 @@ function TabBar({
   activeTab,
   setActiveTab,
   lang,
+  onCollapse,
 }: {
   activeTab: TabId;
   setActiveTab: (t: TabId) => void;
   lang: Language;
+  onCollapse: () => void;
 }) {
   const tabs: TabId[] = ['itinerary', 'overview', 'tips', 'expenses'];
   return (
-    <div className="sticky top-[136px] z-40 bg-white border-b border-gray-200 shadow-sm">
+    <div className="bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-2xl mx-auto flex overflow-x-auto">
         {tabs.map((tab) => (
           <button
@@ -357,6 +359,13 @@ function TabBar({
           </button>
         ))}
       </div>
+      {/* Collapse hint */}
+      <button
+        onClick={onCollapse}
+        className="w-full py-1 text-xs text-gray-400 hover:text-gray-600 flex items-center justify-center gap-1 bg-gray-50/50"
+      >
+        <span>▲</span> {lang === 'en' ? 'Collapse' : '收起'}
+      </button>
     </div>
   );
 }
@@ -403,12 +412,14 @@ function DayPicker({
   lang,
   days,
   regionColors,
+  isNavCollapsed,
 }: {
   currentDay: number;
   setCurrentDay: (d: number) => void;
   lang: Language;
   days: DayData[];
   regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
+  isNavCollapsed: boolean;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -422,7 +433,7 @@ function DayPicker({
   }, [currentDay]);
 
   return (
-    <div className="sticky top-[188px] z-30 bg-gray-50 border-b border-gray-200 py-3 px-2">
+    <div className={`sticky z-30 bg-gray-50 border-b border-gray-200 py-3 px-2 transition-all ${isNavCollapsed ? 'top-[52px]' : 'top-0'}`}>
       <div
         ref={scrollRef}
         className="max-w-2xl mx-auto flex gap-2 overflow-x-auto scrollbar-hide py-1 px-1"
@@ -1032,6 +1043,7 @@ function ItineraryView({
   setCurrentDay,
   tripId,
   userData,
+  isNavCollapsed,
   onAddJournal,
   onDeleteJournal,
   onAddExpense,
@@ -1050,6 +1062,7 @@ function ItineraryView({
     photos: Record<number, { photos: { id: string; dataUrl: string; caption: string; timestamp: number }[] }>;
     visited: Record<number, { activities: Record<number, boolean> }>;
   };
+  isNavCollapsed: boolean;
   onAddJournal: (day: number, entry: { content: string; type: 'general' | 'restaurant' | 'warning' | 'gem' }) => void;
   onDeleteJournal: (day: number, entryId: string) => void;
   onAddExpense: (day: number, expense: { amount: number; currency: string; category: ExpenseCategory; description: string }) => void;
@@ -1070,6 +1083,7 @@ function ItineraryView({
         lang={lang} 
         days={tripData.days}
         regionColors={regionColors}
+        isNavCollapsed={isNavCollapsed}
       />
       <DayDetail 
         day={day} 
@@ -1540,6 +1554,7 @@ export function App() {
   const [activeTab, setActiveTab] = useState<TabId>('itinerary');
   const [isPackingOpen, setIsPackingOpen] = useState(false);
   const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
+  const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const {
@@ -1558,18 +1573,27 @@ export function App() {
     deletePackingItem,
   } = useLocalStorage(currentTrip);
 
-  // Scroll detection for header collapse
+  // Scroll detection for collapse
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Collapse after scrolling down 150px
+      // Collapse header after scrolling down 150px
       if (currentScrollY > 150 && !isHeaderCollapsed) {
         setIsHeaderCollapsed(true);
       }
-      // Expand when scrolling back to top
+      // Expand header when scrolling back to top
       else if (currentScrollY < 50 && isHeaderCollapsed) {
         setIsHeaderCollapsed(false);
+      }
+      
+      // Collapse nav after scrolling down 250px (later than header)
+      if (currentScrollY > 250 && !isNavCollapsed) {
+        setIsNavCollapsed(true);
+      }
+      // Expand nav when scrolling back up
+      else if (currentScrollY < 100 && isNavCollapsed) {
+        setIsNavCollapsed(false);
       }
       
       setLastScrollY(currentScrollY);
@@ -1577,18 +1601,20 @@ export function App() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHeaderCollapsed, lastScrollY]);
+  }, [isHeaderCollapsed, isNavCollapsed, lastScrollY]);
 
   // Reset day when switching trips
   const handleSetTrip = useCallback((trip: TripId) => {
     setCurrentTrip(trip);
     setCurrentDay(0);
     setIsHeaderCollapsed(false);
+    setIsNavCollapsed(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const handleSetDay = useCallback((d: number) => {
     setCurrentDay(d);
+    setIsNavCollapsed(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -1616,7 +1642,32 @@ export function App() {
         isCollapsed={isHeaderCollapsed}
         onToggleCollapse={() => setIsHeaderCollapsed(!isHeaderCollapsed)}
       />
-      <TabBar activeTab={activeTab} setActiveTab={setActiveTab} lang={lang} />
+      
+      {/* Collapsed Nav Indicator */}
+      {isNavCollapsed && !isHeaderCollapsed && (
+        <button
+          onClick={() => setIsNavCollapsed(false)}
+          className="fixed top-[60px] left-1/2 -translate-x-1/2 z-45 bg-white text-sky-700 px-4 py-2 rounded-full shadow-lg text-sm font-medium hover:shadow-xl transition-all flex items-center gap-2"
+        >
+          <span>📅</span>
+          {activeTab === 'itinerary' && (
+            <span>Day {currentDay + 1}</span>
+          )}
+          <span>▼</span>
+        </button>
+      )}
+      
+      {/* Sticky Nav Section */}
+      <div className={`sticky z-40 transition-all ${isNavCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`} style={{ top: isHeaderCollapsed ? '0px' : '136px' }}>
+        <TabBar 
+          activeTab={activeTab} 
+          setActiveTab={(tab) => {
+            setActiveTab(tab);
+            setIsNavCollapsed(false);
+          }} 
+          lang={lang} 
+          onCollapse={() => setIsNavCollapsed(true)}
+        />
 
       {activeTab === 'itinerary' && (
         <ItineraryView 
@@ -1625,6 +1676,7 @@ export function App() {
           setCurrentDay={handleSetDay}
           tripId={currentTrip}
           userData={userData}
+          isNavCollapsed={isNavCollapsed}
           onAddJournal={addJournalEntry}
           onDeleteJournal={deleteJournalEntry}
           onAddExpense={addExpense}
@@ -1637,6 +1689,7 @@ export function App() {
       {activeTab === 'overview' && <OverviewView lang={lang} tripId={currentTrip} />}
       {activeTab === 'tips' && <TipsView lang={lang} tripId={currentTrip} />}
       {activeTab === 'expenses' && <ExpensesView lang={lang} tripId={currentTrip} userData={userData} />}
+      </div>
 
       {/* Footer */}
       <footer className="text-center py-6 text-sm text-gray-400">

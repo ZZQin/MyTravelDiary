@@ -72,6 +72,7 @@ const thailandDays: DayData[] = [
     region: 'krabi',
     regionLabel: { en: 'Ao Nang & Krabi', zh: '安南和甲米' },
     mapQuery: 'Ao Nang, Krabi, Thailand',
+    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800',
     accommodation: { en: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand', zh: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand' },
     activities: {
       en: [

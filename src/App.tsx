@@ -853,7 +853,19 @@ function DayDetail({
         <h2 className="text-xl font-bold text-gray-900 mt-2 leading-snug">{day.title[lang]}</h2>
       </div>
 
-      {/* Weather Widget -->
+      {/* Day image */}
+      {day.image && (
+        <div className="w-full rounded-2xl overflow-hidden shadow-md">
+          <img
+            src={day.image}
+            alt={day.title[lang]}
+            className="w-full h-48 object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      {/* Weather Widget */}
       <WeatherWidget day={day} lang={lang} />
 
       {/* Activities with checkmarks */}

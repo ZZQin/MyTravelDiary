@@ -126,8 +126,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'Fresh House, Sriraya, Lanta Old Town, Koh Lanta, Thailand',
     accommodation: { 
-      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)\n\n
-      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）\n\n
+      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)',
+      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）',
     },
     activities: {
       en: [
@@ -184,8 +184,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Phi Phi', zh: '皮皮岛' },
     mapQuery: 'Phi Phi Twin Palms Bungalow, Ko Phi Phi, Thailand',
     accommodation: { 
-      en: 'Phi Phi Twin Palms Bungalow (108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000)\n\n
-      zh: 'Phi Phi Twin Palms Bungalow（108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000）\n\n
+      en: 'Phi Phi Twin Palms Bungalow (108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000)',
+      zh: 'Phi Phi Twin Palms Bungalow（108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000）',
     },
     activities: {
       en: [
@@ -215,7 +215,7 @@ const thailandDays: DayData[] = [
     mapQuery: 'BOHO Hostel, Saladan, Koh Lanta, Thailand',
     accommodation: { 
       en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)',
-      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）\n🏨 预订号：630072187 | 状态：已付款并确认\n
+      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）',
     },
     activities: {
       en: [
@@ -274,7 +274,7 @@ const thailandDays: DayData[] = [
     mapQuery: 'Varin Beach Resort, Ko Lipe, Thailand',
     accommodation: { 
       en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)',
-      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 状态：已付款并确认\n
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）',
     },
     activities: {
       en: [
@@ -1443,8 +1443,8 @@ const thailandTips: TipSection[] = [
     ],
   },
   {
-    title: { en: '
-    icon: '
+    title: { en: '💰 Budget Estimate', zh: '💰 预算参考' },
+    icon: '💰',
     items: [
       { en: 'Thailand daily: 1,500–3,000 THB/person (accommodation, food, transport)', zh: '泰国每日：每人约1,500–3,000泰铢（含住宿、餐饮和交通）' },
       { en: 'Thailand day tours: 1,000–2,000 THB/person (4-island, Phi Phi, snorkeling)', zh: '泰国一日游：每人约1,000–2,000泰铢（四岛游、皮皮岛、浮潜）' },
@@ -1507,8 +1507,8 @@ const croatiaTips: TipSection[] = [
     ],
   },
   {
-    title: { en: '
-    icon: '
+    title: { en: '💰 Budget & Currency', zh: '💰 预算与货币' },
+    icon: '💰',
     items: [
       { en: 'Croatia: Euro (€) widely accepted', zh: '克罗地亚：欧元广泛接受' },
       { en: 'Italy: Euro (€)', zh: '意大利：欧元' },

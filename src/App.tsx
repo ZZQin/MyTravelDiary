@@ -254,7 +254,9 @@ const Header = React.memo(function Header({
               >
                 {tripId === 'thailand' 
                   ? (lang === 'en' ? 'Thailand' : '泰国') 
-                  : (lang === 'en' ? 'Europe' : '欧洲')
+                  : tripId === 'croatia'
+                  ? (lang === 'en' ? 'Europe' : '欧洲')
+                  : (lang === 'en' ? 'China' : '中国')
                 }
               </button>
             ))}
@@ -827,7 +829,7 @@ function DayDetail({
   const visitedActivities = userData.visited[day.day]?.activities || {};
   
   // Determine trip currency based on region
-  const tripCurrency = day.region === 'penang' || day.region === 'thailand' ? 'THB' : 'EUR';
+  const tripCurrency = day.region === 'penang' || day.region === 'thailand' ? 'THB' : day.region === 'beijing' || day.region === 'hohhot' || day.region === 'ordos' ? 'CNY' : 'EUR';
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-4 space-y-4">
@@ -1125,7 +1127,9 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
           <iframe
             src={tripId === 'thailand' 
               ? 'https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1593176.4563202735!2d97.85793832931348!3d6.633667676264003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x3051d0f951cca225%3A0x404d7e0b5c25f2c2!2sKrabi%2C%20Thailand!3m2!1d8.0862997!2d98.9062835!4m5!1s0x304ac1d005d1f5b7%3A0x4293f22d09a54d4e!2sGeorge%20Town%2C%20Penang%2C%20Malaysia!3m2!1d5.414130699999999!2d100.3287506!5e0!3m2!1sen!2sus!4v1708620000000!5m2!1sen!2sus'
-              : 'https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d15041235.852829233!2d10.76135099216184!3d43.25667820166821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x134b05ee66c14f5f%3A0x71ff3f8f7e1e56b7!2sDubrovnik%2C%20Croatia!3m2!1d42.650660599999995!2d18.0944238!4m5!1s0x132f6196f9928ebb%3A0xb90f770693656e38!2sRome%2C%20Italy!3m2!1d41.9027835!2d12.4963655!5e0!3m2!1sen!2sus!4v1708620000000!5m2!1sen!2sus'
+              : tripId === 'croatia'
+              ? 'https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d15041235.852829233!2d10.76135099216184!3d43.25667820166821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x134b05ee66c14f5f%3A0x71ff3f8f7e1e56b7!2sDubrovnik%2C%20Croatia!3m2!1d42.650660599999995!2d18.0944238!4m5!1s0x132f6196f9928ebb%3A0xb90f770693656e38!2sRome%2C%20Italy!3m2!1d41.9027835!2d12.4963655!5e0!3m2!1sen!2sus!4v1708620000000!5m2!1sen!2sus'
+              : 'https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d982679.5543658676!2d115.57570410758274!3d40.42369843523811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x35f05296e7142cb9%3A0xb9625620af0fa98a!2sBeijing!3m2!1d39.904211!2d116.407395!4m5!1s0x5f194524c4d262eb%3A0x879fe3d7c5d5e9a8!2sOrdos%20City%2C%20Inner%20Mongolia%2C%20China!3m2!1d39.608266!2d109.781278!5e0!3m2!1sen!2sus!4v1708620000000!5m2!1sen!2sus'
             }
             className="w-full h-full border-0"
             allowFullScreen

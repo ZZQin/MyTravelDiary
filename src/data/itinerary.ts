@@ -1,5 +1,4 @@
 export type { Language, TripId, Bilingual } from './types';
-
 export interface DayData {
   day: number;
   date: { en: string; zh: string };
@@ -12,25 +11,21 @@ export interface DayData {
   image?: string; // URL to destination image
   coordinates?: { lat: number; lng: number }; // For route mapping
 }
-
 export interface TripRoute {
   origin: { lat: number; lng: number; name: Bilingual };
   destination: { lat: number; lng: number; name: Bilingual };
   waypoints: Array<{ lat: number; lng: number; name: Bilingual; day: number }>;
 }
-
 export interface ActivityCategory {
   title: { en: string; zh: string };
   icon: string;
   items: { en: string; zh: string }[];
 }
-
 export interface TipSection {
   title: { en: string; zh: string };
   icon: string;
   items: { en: string; zh: string }[];
 }
-
 export interface TripOverview {
   duration: { en: string; zh: string };
   stays: {
@@ -40,7 +35,6 @@ export interface TripOverview {
     region: string;
   }[];
 }
-
 export interface TripData {
   id: 'thailand' | 'croatia';
   name: { en: string; zh: string };
@@ -51,7 +45,6 @@ export interface TripData {
   tips: TipSection[];
   overview: TripOverview;
 }
-
 // ===== THAILAND & PENANG REGION COLORS =====
 const thailandRegionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
   krabi:  { bg: 'bg-blue-600',    text: 'text-blue-700',    light: 'bg-blue-50',    border: 'border-blue-400',   dot: 'bg-blue-500' },
@@ -60,7 +53,6 @@ const thailandRegionColors: Record<string, { bg: string; text: string; light: st
   travel: { bg: 'bg-amber-600',   text: 'text-amber-700',   light: 'bg-amber-50',   border: 'border-amber-400',  dot: 'bg-amber-500' },
   penang: { bg: 'bg-rose-600',    text: 'text-rose-700',    light: 'bg-rose-50',    border: 'border-rose-400',   dot: 'bg-rose-500' },
 };
-
 // ===== CROATIA & ITALY REGION COLORS =====
 const croatiaRegionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
   dubrovnik: { bg: 'bg-orange-600',  text: 'text-orange-700',  light: 'bg-orange-50',  border: 'border-orange-400',  dot: 'bg-orange-500' },
@@ -70,7 +62,6 @@ const croatiaRegionColors: Record<string, { bg: string; text: string; light: str
   italy:     { bg: 'bg-emerald-600', text: 'text-emerald-700', light: 'bg-emerald-50', border: 'border-emerald-400', dot: 'bg-emerald-500' },
   rome:      { bg: 'bg-red-600',     text: 'text-red-700',     light: 'bg-red-50',     border: 'border-red-400',     dot: 'bg-red-500' },
 };
-
 // ===== THAILAND & PENANG DAYS =====
 const thailandDays: DayData[] = [
   // ===== AO NANG & KRABI (Days 1-2) =====
@@ -81,20 +72,22 @@ const thailandDays: DayData[] = [
     region: 'krabi',
     regionLabel: { en: 'Ao Nang & Krabi', zh: '安南和甲米' },
     mapQuery: 'Ao Nang, Krabi, Thailand',
-    accommodation: { en: 'Ao Nang Townhouse (Opposite De Malee Private Pool Villa, behind Link Hostel, Ao Nang, Krabi 81180)\n🍜 Host Restaurant: Bryde Restaurant', zh: 'Ao Nang Townhouse（Opposite De Malee Private Pool Villa, behind Link Hostel, 泰国甲米 Ao Nang, Krabi 81180）\n🍜 房东餐厅：Bryde Restaurant' },
+    accommodation: { en: 'Ao Nang Townhouse', zh: 'Ao Nang Townhouse' },
     activities: {
       en: [
-        '✈️ Flight arrives at Krabi Airport at 18:05 (6:05 PM)',
+        '✈️ Your flight arrives at Krabi Airport at 18:05 (6:05 PM)',
+        '✈️ MM arrives at Krabi Airport at 18:25 (6:25 PM)',
         '🛂 Clear immigration and collect luggage',
         '🚕 Take taxi or pre-booked transfer to Ao Nang (approx. 30–40 min drive)',
-        '🏨 Check in to Ao Nang Townhouse (check-in after 14:00) and rest',
+        '🏨 Check in to accommodation and rest',
         '🍜 Dinner at a nearby restaurant, then sleep early to adjust to the time zone',
       ],
       zh: [
-        '✈️ 航班 18:05 抵达甲米机场（下午6:05）',
+        '✈️ 你的航班 18:05 抵达甲米机场（下午6:05）',
+        '✈️ MM 18:25 抵达甲米机场（下午6:25）',
         '🛂 办理入境手续和取行李',
         '🚕 乘坐出租车或预订的接机服务前往安南（车程约30–40分钟）',
-        '🏨 抵达后入住 Ao Nang Townhouse（14:00后可办理入住），稍作休息',
+        '🏨 抵达后入住，稍作休息',
         '🍜 晚上在酒店附近找一家餐厅吃晚餐，早点休息适应时差',
       ],
     },
@@ -124,7 +117,6 @@ const thailandDays: DayData[] = [
       ],
     },
   },
-
   // ===== KOH LANTA (Days 3-7) =====
   {
     day: 3,
@@ -134,8 +126,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'Fresh House, Sriraya, Lanta Old Town, Koh Lanta, Thailand',
     accommodation: { 
-      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630068471 | Status: Confirmed\n🛏️ Standard Fan Double Bed (Beach view, 27m², 1 king bed)\n💰 THB 1,701.02 (pay at property)', 
-      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）\n🏨 预订号：630068471 | 状态：已确认\n🛏️ 标准风扇双人房（海景，27平方米，1张大床）\n💰 1,701.02泰铢（到店支付）' 
+      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)\n\n
+      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）\n\n
     },
     activities: {
       en: [
@@ -192,8 +184,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Phi Phi', zh: '皮皮岛' },
     mapQuery: 'Phi Phi Twin Palms Bungalow, Ko Phi Phi, Thailand',
     accommodation: { 
-      en: 'Phi Phi Twin Palms Bungalow (108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000)\n🏨 Booking ID: 630065883 | Status: Confirmed\n🛏️ Standard Twin Room with Balcony (Courtyard view, 24m², 2 single beds)\n💰 THB 1,117.62 (charged Mar 1, 2026)', 
-      zh: 'Phi Phi Twin Palms Bungalow（108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000）\n🏨 预订号：630065883 | 状态：已确认\n🛏️ 标准双床阳台房（庭院景观，24平方米，2张单人床）\n💰 1,117.62泰铢（已于3月1日扣款）' 
+      en: 'Phi Phi Twin Palms Bungalow (108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000)\n\n
+      zh: 'Phi Phi Twin Palms Bungalow（108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000）\n\n
     },
     activities: {
       en: [
@@ -222,8 +214,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'BOHO Hostel, Saladan, Koh Lanta, Thailand',
     accommodation: { 
-      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630072187 | Status: Paid and Confirmed\n🛏️ Standard Double Room (15m², 1 double bed)\n💰 USD 57.72 (already paid)', 
-      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）\n🏨 预订号：630072187 | 状态：已付款并确认\n🛏️ 标准双人房（15平方米，1张双人床）\n💰 57.72美元（已付款）' 
+      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630072187 | Status: Paid and Confirmed\n
+      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）\n🏨 预订号：630072187 | 状态：已付款并确认\n
     },
     activities: {
       en: [
@@ -272,7 +264,6 @@ const thailandDays: DayData[] = [
       ],
     },
   },
-
   // ===== KOH LIPE (Days 8-12) =====
   {
     day: 8,
@@ -282,8 +273,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
     mapQuery: 'Varin Beach Resort, Ko Lipe, Thailand',
     accommodation: { 
-      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | Status: Paid and Confirmed\n🛏️ Fan Cottage (Garden view, 28m², 1 king bed) — includes Breakfast & Free WiFi\n💰 CHF 141.20 (already paid)', 
-      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 状态：已付款并确认\n🛏️ 风扇小屋（花园景观，28平方米，1张大床）— 含早餐和免费WiFi\n💰 141.20瑞士法郎（已付款）' 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | Status: Paid and Confirmed\n
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 状态：已付款并确认\n
     },
     activities: {
       en: [
@@ -413,7 +404,6 @@ const thailandDays: DayData[] = [
       ],
     },
   },
-
   // ===== TRAVEL DAY =====
   {
     day: 13,
@@ -442,7 +432,6 @@ const thailandDays: DayData[] = [
       ],
     },
   },
-
   // ===== PENANG WEEK (Days 14-18) =====
   {
     day: 14,
@@ -603,7 +592,6 @@ const thailandDays: DayData[] = [
     },
   },
 ];
-
 // ===== CROATIA & ITALY DAYS =====
 const croatiaDays: DayData[] = [
   // ===== DUBROVNIK (Days 1-5) =====
@@ -726,7 +714,6 @@ const croatiaDays: DayData[] = [
       ],
     },
   },
-
   // ===== SPLIT (Days 6-9) =====
   {
     day: 6,
@@ -822,7 +809,6 @@ const croatiaDays: DayData[] = [
       ],
     },
   },
-
   // ===== ZADAR & SENJ (Days 10-12) =====
   {
     day: 10,
@@ -943,7 +929,6 @@ const croatiaDays: DayData[] = [
       ],
     },
   },
-
   // ===== ITALY: VENICE & TUSCANY (Days 15-24) =====
   {
     day: 15,
@@ -1206,7 +1191,6 @@ const croatiaDays: DayData[] = [
       ],
     },
   },
-
   // ===== ROME (Days 25-29) =====
   {
     day: 26,
@@ -1328,7 +1312,6 @@ const croatiaDays: DayData[] = [
     },
   },
 ];
-
 // ===== THAILAND & PENANG CATEGORIES =====
 const thailandCategories: ActivityCategory[] = [
   {
@@ -1384,7 +1367,6 @@ const thailandCategories: ActivityCategory[] = [
     ],
   },
 ];
-
 // ===== CROATIA & ITALY CATEGORIES =====
 const croatiaCategories: ActivityCategory[] = [
   {
@@ -1448,7 +1430,6 @@ const croatiaCategories: ActivityCategory[] = [
     ],
   },
 ];
-
 // ===== THAILAND & PENANG TIPS =====
 const thailandTips: TipSection[] = [
   {
@@ -1484,8 +1465,8 @@ const thailandTips: TipSection[] = [
     ],
   },
   {
-    title: { en: '💰 Budget Guidance', zh: '💰 预算指导' },
-    icon: '💰',
+    title: { en: '
+    icon: '
     items: [
       { en: 'Thailand daily: 1,500–3,000 THB/person (accommodation, food, transport)', zh: '泰国每日：每人约1,500–3,000泰铢（含住宿、餐饮和交通）' },
       { en: 'Thailand day tours: 1,000–2,000 THB/person (4-island, Phi Phi, snorkeling)', zh: '泰国一日游：每人约1,000–2,000泰铢（四岛游、皮皮岛、浮潜）' },
@@ -1494,7 +1475,6 @@ const thailandTips: TipSection[] = [
     ],
   },
 ];
-
 // ===== CROATIA & ITALY TIPS =====
 const croatiaTips: TipSection[] = [
   {
@@ -1549,8 +1529,8 @@ const croatiaTips: TipSection[] = [
     ],
   },
   {
-    title: { en: '💰 Currency & Budget', zh: '💰 货币与预算' },
-    icon: '💰',
+    title: { en: '
+    icon: '
     items: [
       { en: 'Croatia: Euro (€) widely accepted', zh: '克罗地亚：欧元广泛接受' },
       { en: 'Italy: Euro (€)', zh: '意大利：欧元' },
@@ -1560,7 +1540,6 @@ const croatiaTips: TipSection[] = [
     ],
   },
 ];
-
 // ===== TRIP OVERVIEWS =====
 const thailandOverview: TripOverview = {
   duration: { en: 'February 27 – March 17, 2026', zh: '2026年2月27日 – 3月17日' },
@@ -1603,7 +1582,6 @@ const thailandOverview: TripOverview = {
     },
   ],
 };
-
 const croatiaOverview: TripOverview = {
   duration: { en: 'May 8 – June 5, 2026', zh: '2026年5月8日 – 6月5日' },
   stays: [
@@ -1657,7 +1635,6 @@ const croatiaOverview: TripOverview = {
     },
   ],
 };
-
 // ===== EXPORT TRIPS =====
 export const trips: Record<'thailand' | 'croatia', TripData> = {
   thailand: {
@@ -1681,14 +1658,12 @@ export const trips: Record<'thailand' | 'croatia', TripData> = {
     overview: croatiaOverview,
   },
 };
-
 // Legacy exports for backward compatibility
 export const days = thailandDays;
 export const penangCategories = thailandCategories;
 export const travelTips = thailandTips;
 export const tripOverview = thailandOverview;
 export const regionColors = thailandRegionColors;
-
 // ===== TRIP ROUTES FOR MAP DISPLAY =====
 export const tripRoutes: Record<TripId, TripRoute> = {
   thailand: {
@@ -1717,7 +1692,6 @@ export const tripRoutes: Record<TripId, TripRoute> = {
     ],
   },
 };
-
 // ===== DESTINATION IMAGES =====
 export const destinationImages: Record<TripId, Record<string, string>> = {
   thailand: {

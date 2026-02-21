@@ -1613,79 +1613,7 @@ const croatiaOverview: TripOverview = {
     },
   ],
 };
-// ===== EXPORT TRIPS =====
-export const trips: Record<'thailand' | 'croatia' | 'china', TripData> = {
-  thailand: {
-    id: 'thailand',
-    name: { en: 'Thailand & Malaysia', zh: '泰国和马来西亚' },
-    footer: { en: '🌴 Thailand & Malaysia 2026 · Have a wonderful trip!', zh: '🌴 泰国和马来西亚 2026 · 祝旅途愉快！' },
-    regionColors: thailandRegionColors,
-    days: thailandDays,
-    categories: thailandCategories,
-    tips: thailandTips,
-    overview: thailandOverview,
-  },
-  croatia: {
-    id: 'croatia',
-    name: { en: 'Croatia & Italy', zh: '克罗地亚和意大利' },
-    footer: { en: '🇭🇷🇮🇹 Croatia & Italy 2026 · Have a wonderful trip!', zh: '🇭🇷🇮🇹 克罗地亚和意大利 2026 · 祝旅途愉快！' },
-    regionColors: croatiaRegionColors,
-    days: croatiaDays,
-    categories: croatiaCategories,
-    tips: croatiaTips,
-    overview: croatiaOverview,
-  },
-  china: {
-    id: 'china',
-    name: { en: 'China: Beijing & Inner Mongolia', zh: '中国：北京与内蒙古' },
-    footer: { en: '🇨🇳 China 2026 · Have a wonderful trip!', zh: '🇨🇳 中国 2026 · 祝旅途愉快！' },
-    regionColors: chinaRegionColors,
-    days: chinaDays,
-    categories: chinaCategories,
-    tips: chinaTips,
-    overview: chinaOverview,
-  },
-};
-// ===== TRIP ROUTES FOR MAP DISPLAY =====
-export const tripRoutes: Record<TripId, TripRoute> = {
-  thailand: {
-    origin: { lat: 8.0, lng: 98.8, name: { en: 'Krabi, Thailand', zh: '甲米，泰国' } },
-    destination: { lat: 5.4, lng: 100.3, name: { en: 'Penang, Malaysia', zh: '槟城，马来西亚' } },
-    waypoints: [
-      { lat: 8.0, lng: 98.8, name: { en: 'Ao Nang, Krabi', zh: '安南，甲米' }, day: 1 },
-      { lat: 7.5, lng: 99.0, name: { en: 'Koh Lanta', zh: '兰塔岛' }, day: 3 },
-      { lat: 7.7, lng: 98.8, name: { en: 'Koh Phi Phi', zh: '皮皮岛' }, day: 5 },
-      { lat: 6.5, lng: 99.1, name: { en: 'Koh Lipe', zh: '丽贝岛' }, day: 6 },
-      { lat: 5.4, lng: 100.3, name: { en: 'George Town, Penang', zh: '乔治市，槟城' }, day: 13 },
-    ],
-  },
-  croatia: {
-    origin: { lat: 42.6, lng: 18.1, name: { en: 'Dubrovnik, Croatia', zh: '杜布罗夫尼克，克罗地亚' } },
-    destination: { lat: 41.9, lng: 12.5, name: { en: 'Rome, Italy', zh: '罗马，意大利' } },
-    waypoints: [
-      { lat: 42.6, lng: 18.1, name: { en: 'Dubrovnik', zh: '杜布罗夫尼克' }, day: 1 },
-      { lat: 43.5, lng: 16.4, name: { en: 'Split', zh: '斯普利特' }, day: 6 },
-      { lat: 44.1, lng: 15.2, name: { en: 'Zadar', zh: '扎达尔' }, day: 10 },
-      { lat: 44.9, lng: 14.9, name: { en: 'Senj', zh: '塞尼' }, day: 13 },
-      { lat: 45.4, lng: 12.3, name: { en: 'Venice', zh: '威尼斯' }, day: 15 },
-      { lat: 45.4, lng: 11.0, name: { en: 'Verona', zh: '维罗纳' }, day: 17 },
-      { lat: 43.4, lng: 11.3, name: { en: 'Tuscany', zh: '托斯卡纳' }, day: 19 },
-      { lat: 41.9, lng: 12.5, name: { en: 'Rome', zh: '罗马' }, day: 25 },
-    ],
-  },
-  china: {
-    origin: { lat: 39.9, lng: 116.4, name: { en: 'Beijing, China', zh: '中国·北京' } },
-    destination: { lat: 39.9, lng: 116.4, name: { en: 'Beijing, China', zh: '中国·北京' } },
-    waypoints: [
-      { lat: 39.9, lng: 116.4, name: { en: 'Beijing', zh: '北京' }, day: 1 },
-      { lat: 40.8, lng: 111.7, name: { en: 'Hohhot', zh: '呼和浩特' }, day: 4 },
-      { lat: 39.6, lng: 109.8, name: { en: 'Ordos Desert', zh: '鄂尔多斯沙漠' }, day: 7 },
-      { lat: 39.9, lng: 116.4, name: { en: 'Beijing', zh: '北京' }, day: 9 },
-    ],
-  },
-};
 
-// ===== CHINA TRIP DATA =====
 const chinaRegionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
   beijing: { bg: 'bg-red-600', text: 'text-red-700', light: 'bg-red-50', border: 'border-red-400', dot: 'bg-red-500' },
   hohhot: { bg: 'bg-emerald-600', text: 'text-emerald-700', light: 'bg-emerald-50', border: 'border-emerald-400', dot: 'bg-emerald-500' },
@@ -2007,3 +1935,76 @@ const chinaOverview: TripOverview = {
     },
   ],
 };
+
+export const trips: Record<'thailand' | 'croatia' | 'china', TripData> = {
+  thailand: {
+    id: 'thailand',
+    name: { en: 'Thailand & Malaysia', zh: '泰国和马来西亚' },
+    footer: { en: '🌴 Thailand & Malaysia 2026 · Have a wonderful trip!', zh: '🌴 泰国和马来西亚 2026 · 祝旅途愉快！' },
+    regionColors: thailandRegionColors,
+    days: thailandDays,
+    categories: thailandCategories,
+    tips: thailandTips,
+    overview: thailandOverview,
+  },
+  croatia: {
+    id: 'croatia',
+    name: { en: 'Croatia & Italy', zh: '克罗地亚和意大利' },
+    footer: { en: '🇭🇷🇮🇹 Croatia & Italy 2026 · Have a wonderful trip!', zh: '🇭🇷🇮🇹 克罗地亚和意大利 2026 · 祝旅途愉快！' },
+    regionColors: croatiaRegionColors,
+    days: croatiaDays,
+    categories: croatiaCategories,
+    tips: croatiaTips,
+    overview: croatiaOverview,
+  },
+  china: {
+    id: 'china',
+    name: { en: 'China: Beijing & Inner Mongolia', zh: '中国：北京与内蒙古' },
+    footer: { en: '🇨🇳 China 2026 · Have a wonderful trip!', zh: '🇨🇳 中国 2026 · 祝旅途愉快！' },
+    regionColors: chinaRegionColors,
+    days: chinaDays,
+    categories: chinaCategories,
+    tips: chinaTips,
+    overview: chinaOverview,
+  },
+};
+// ===== TRIP ROUTES FOR MAP DISPLAY =====
+export const tripRoutes: Record<TripId, TripRoute> = {
+  thailand: {
+    origin: { lat: 8.0, lng: 98.8, name: { en: 'Krabi, Thailand', zh: '甲米，泰国' } },
+    destination: { lat: 5.4, lng: 100.3, name: { en: 'Penang, Malaysia', zh: '槟城，马来西亚' } },
+    waypoints: [
+      { lat: 8.0, lng: 98.8, name: { en: 'Ao Nang, Krabi', zh: '安南，甲米' }, day: 1 },
+      { lat: 7.5, lng: 99.0, name: { en: 'Koh Lanta', zh: '兰塔岛' }, day: 3 },
+      { lat: 7.7, lng: 98.8, name: { en: 'Koh Phi Phi', zh: '皮皮岛' }, day: 5 },
+      { lat: 6.5, lng: 99.1, name: { en: 'Koh Lipe', zh: '丽贝岛' }, day: 6 },
+      { lat: 5.4, lng: 100.3, name: { en: 'George Town, Penang', zh: '乔治市，槟城' }, day: 13 },
+    ],
+  },
+  croatia: {
+    origin: { lat: 42.6, lng: 18.1, name: { en: 'Dubrovnik, Croatia', zh: '杜布罗夫尼克，克罗地亚' } },
+    destination: { lat: 41.9, lng: 12.5, name: { en: 'Rome, Italy', zh: '罗马，意大利' } },
+    waypoints: [
+      { lat: 42.6, lng: 18.1, name: { en: 'Dubrovnik', zh: '杜布罗夫尼克' }, day: 1 },
+      { lat: 43.5, lng: 16.4, name: { en: 'Split', zh: '斯普利特' }, day: 6 },
+      { lat: 44.1, lng: 15.2, name: { en: 'Zadar', zh: '扎达尔' }, day: 10 },
+      { lat: 44.9, lng: 14.9, name: { en: 'Senj', zh: '塞尼' }, day: 13 },
+      { lat: 45.4, lng: 12.3, name: { en: 'Venice', zh: '威尼斯' }, day: 15 },
+      { lat: 45.4, lng: 11.0, name: { en: 'Verona', zh: '维罗纳' }, day: 17 },
+      { lat: 43.4, lng: 11.3, name: { en: 'Tuscany', zh: '托斯卡纳' }, day: 19 },
+      { lat: 41.9, lng: 12.5, name: { en: 'Rome', zh: '罗马' }, day: 25 },
+    ],
+  },
+  china: {
+    origin: { lat: 39.9, lng: 116.4, name: { en: 'Beijing, China', zh: '中国·北京' } },
+    destination: { lat: 39.9, lng: 116.4, name: { en: 'Beijing, China', zh: '中国·北京' } },
+    waypoints: [
+      { lat: 39.9, lng: 116.4, name: { en: 'Beijing', zh: '北京' }, day: 1 },
+      { lat: 40.8, lng: 111.7, name: { en: 'Hohhot', zh: '呼和浩特' }, day: 4 },
+      { lat: 39.6, lng: 109.8, name: { en: 'Ordos Desert', zh: '鄂尔多斯沙漠' }, day: 7 },
+      { lat: 39.9, lng: 116.4, name: { en: 'Beijing', zh: '北京' }, day: 9 },
+    ],
+  },
+};
+
+// ===== CHINA TRIP DATA =====

@@ -1,5 +1,4 @@
 export type { Language, TripId, Bilingual } from './types';
-
 export interface DayData {
   day: number;
   date: { en: string; zh: string };
@@ -9,20 +8,24 @@ export interface DayData {
   mapQuery: string;
   accommodation: { en: string; zh: string } | null;
   activities: { en: string[]; zh: string[] };
+  image?: string; // URL to destination image
+  coordinates?: { lat: number; lng: number }; // For route mapping
 }
-
+export interface TripRoute {
+  origin: { lat: number; lng: number; name: Bilingual };
+  destination: { lat: number; lng: number; name: Bilingual };
+  waypoints: Array<{ lat: number; lng: number; name: Bilingual; day: number }>;
+}
 export interface ActivityCategory {
   title: { en: string; zh: string };
   icon: string;
   items: { en: string; zh: string }[];
 }
-
 export interface TipSection {
   title: { en: string; zh: string };
   icon: string;
   items: { en: string; zh: string }[];
 }
-
 export interface TripOverview {
   duration: { en: string; zh: string };
   stays: {
@@ -32,7 +35,6 @@ export interface TripOverview {
     region: string;
   }[];
 }
-
 export interface TripData {
   id: 'thailand' | 'croatia';
   name: { en: string; zh: string };
@@ -43,7 +45,6 @@ export interface TripData {
   tips: TipSection[];
   overview: TripOverview;
 }
-
 // ===== THAILAND & PENANG REGION COLORS =====
 const thailandRegionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
   krabi:  { bg: 'bg-blue-600',    text: 'text-blue-700',    light: 'bg-blue-50',    border: 'border-blue-400',   dot: 'bg-blue-500' },
@@ -52,7 +53,6 @@ const thailandRegionColors: Record<string, { bg: string; text: string; light: st
   travel: { bg: 'bg-amber-600',   text: 'text-amber-700',   light: 'bg-amber-50',   border: 'border-amber-400',  dot: 'bg-amber-500' },
   penang: { bg: 'bg-rose-600',    text: 'text-rose-700',    light: 'bg-rose-50',    border: 'border-rose-400',   dot: 'bg-rose-500' },
 };
-
 // ===== CROATIA & ITALY REGION COLORS =====
 const croatiaRegionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
   dubrovnik: { bg: 'bg-orange-600',  text: 'text-orange-700',  light: 'bg-orange-50',  border: 'border-orange-400',  dot: 'bg-orange-500' },
@@ -62,7 +62,6 @@ const croatiaRegionColors: Record<string, { bg: string; text: string; light: str
   italy:     { bg: 'bg-emerald-600', text: 'text-emerald-700', light: 'bg-emerald-50', border: 'border-emerald-400', dot: 'bg-emerald-500' },
   rome:      { bg: 'bg-red-600',     text: 'text-red-700',     light: 'bg-red-50',     border: 'border-red-400',     dot: 'bg-red-500' },
 };
-
 // ===== THAILAND & PENANG DAYS =====
 const thailandDays: DayData[] = [
   // ===== AO NANG & KRABI (Days 1-2) =====
@@ -73,20 +72,22 @@ const thailandDays: DayData[] = [
     region: 'krabi',
     regionLabel: { en: 'Ao Nang & Krabi', zh: '安南和甲米' },
     mapQuery: 'Ao Nang, Krabi, Thailand',
-    accommodation: { en: 'Ao Nang Townhouse (164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand)', zh: 'Ao Nang Townhouse（164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand）' },
+    accommodation: { en: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand', zh: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand' },
     activities: {
       en: [
-        '✈️ You arrive 18:05, MM arrives 18:25 at Krabi Airport',
+        '✈️ Your flight arrives at Krabi Airport at 18:05 (6:05 PM)',
+        '✈️ MM arrives at Krabi Airport at 18:25 (6:25 PM)',
         '🛂 Clear immigration and collect luggage',
         '🚕 Take taxi or pre-booked transfer to Ao Nang (approx. 30–40 min drive)',
-        '🏨 Check in to Ao Nang Townhouse (check-in after 14:00) and rest',
+        '🏨 Check in to accommodation and rest',
         '🍜 Dinner at a nearby restaurant, then sleep early to adjust to the time zone',
       ],
       zh: [
-        '✈️ 你于18:05抵达，MM于18:25抵达甲米机场',
+        '✈️ 你的航班 18:05 抵达甲米机场（下午6:05）',
+        '✈️ MM 18:25 抵达甲米机场（下午6:25）',
         '🛂 办理入境手续和取行李',
         '🚕 乘坐出租车或预订的接机服务前往安南（车程约30–40分钟）',
-        '🏨 抵达后入住 Ao Nang Townhouse（14:00后可办理入住），稍作休息',
+        '🏨 抵达后入住，稍作休息',
         '🍜 晚上在酒店附近找一家餐厅吃晚餐，早点休息适应时差',
       ],
     },
@@ -98,7 +99,7 @@ const thailandDays: DayData[] = [
     region: 'krabi',
     regionLabel: { en: 'Ao Nang & Krabi', zh: '安南和甲米' },
     mapQuery: 'Railay Beach, Krabi, Thailand',
-    accommodation: { en: 'Ao Nang Townhouse', zh: 'Ao Nang Townhouse' },
+    accommodation: { en: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand', zh: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand' },
     activities: {
       en: [
         '🛥️ Morning: Take a longtail boat from Ao Nang Beach to Railay Beach (about 10–15 min)',
@@ -116,7 +117,6 @@ const thailandDays: DayData[] = [
       ],
     },
   },
-
   // ===== KOH LANTA (Days 3-7) =====
   {
     day: 3,
@@ -126,8 +126,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'Fresh House, Sriraya, Lanta Old Town, Koh Lanta, Thailand',
     accommodation: { 
-      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)', 
-      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）' 
+      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)\n\n
+      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）\n\n
     },
     activities: {
       en: [
@@ -163,6 +163,7 @@ const thailandDays: DayData[] = [
         '🏖️ Visit quiet southern beaches, viewpoints, and cafés',
         '🏘️ Explore Lanta Old Town (walking distance from Fresh House)',
         '🏞️ If energy and weather allow, visit the national park & lighthouse area for cliff and sea views',
+        '💻 WORK CALL 16:00-18:00 (Thailand local time) — Find quiet spot at accommodation or nearby café with WiFi',
         '🌙 Evening: Dine near Fresh House in Old Town',
       ],
       zh: [
@@ -170,6 +171,7 @@ const thailandDays: DayData[] = [
         '🏖️ 去南部僻静海滩、各个观景点和咖啡馆',
         '🏘️ 逛 Lanta Old Town（从 Fresh House 步行可达）',
         '🏞️ 视体力和天气，可以去国家公园灯塔附近看悬崖和海景',
+        '💻 工作电话 16:00-18:00（泰国当地时间）— 在住宿或附近咖啡馆找安静地方，确保有WiFi',
         '🌙 晚上在 Fresh House 附近的 Old Town 用餐',
       ],
     },
@@ -182,8 +184,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Phi Phi', zh: '皮皮岛' },
     mapQuery: 'Phi Phi Twin Palms Bungalow, Ko Phi Phi, Thailand',
     accommodation: { 
-      en: 'Phi Phi Twin Palms Bungalow (108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000)', 
-      zh: 'Phi Phi Twin Palms Bungalow（108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000）' 
+      en: 'Phi Phi Twin Palms Bungalow (108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000)\n\n
+      zh: 'Phi Phi Twin Palms Bungalow（108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000）\n\n
     },
     activities: {
       en: [
@@ -212,8 +214,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'BOHO Hostel, Saladan, Koh Lanta, Thailand',
     accommodation: { 
-      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)', 
-      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）' 
+      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)',
+      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）\n🏨 预订号：630072187 | 状态：已付款并确认\n
     },
     activities: {
       en: [
@@ -221,6 +223,7 @@ const thailandDays: DayData[] = [
         '🛥️ Take ferry/speedboat back to Koh Lanta (Saladan)',
         '🏨 Check in to BOHO Hostel (check-in from 14:00)',
         '🌅 Afternoon: Walk to Long Beach area or explore Sala Dan village',
+        '💻 WORK CALL 15:00-17:00 (Thailand local time) — BOHO Hostel has good WiFi, find quiet corner or use private room',
         '🍜 Evening: Dinner at a beachfront restaurant near Saladan',
       ],
       zh: [
@@ -228,6 +231,7 @@ const thailandDays: DayData[] = [
         '🛥️ 乘渡船/快艇返回兰塔岛（Sala Dan）',
         '🏨 入住 BOHO Hostel（14:00后可办理入住）',
         '🌅 下午：步行前往 Long Beach 一带或在 Sala Dan 小镇逛逛',
+        '💻 工作电话 15:00-17:00（泰国当地时间）— BOHO Hostel WiFi不错，找安静角落或使用私人房间',
         '🍜 晚上：在 Saladan 附近的海边餐厅吃饭',
       ],
     },
@@ -260,7 +264,6 @@ const thailandDays: DayData[] = [
       ],
     },
   },
-
   // ===== KOH LIPE (Days 8-12) =====
   {
     day: 8,
@@ -270,8 +273,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
     mapQuery: 'Varin Beach Resort, Ko Lipe, Thailand',
     accommodation: { 
-      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)', 
-      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）' 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)',
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 状态：已付款并确认\n
     },
     activities: {
       en: [
@@ -363,6 +366,7 @@ const thailandDays: DayData[] = [
         '🍹 Enjoy drinks, swimming, and taking photos',
         '🏊 Afternoon: Hang out by the pool or on the sand',
         '📸 Chat and watch the sky change colours',
+        '💻 WORK CALL 16:00-18:00 (Thailand local time) — Varin Beach Resort lobby/reception area has WiFi, or use resort bar area',
         '🍽️ Evening: Choose a slightly fancier restaurant for a "special" dinner',
       ],
       zh: [
@@ -370,6 +374,7 @@ const thailandDays: DayData[] = [
         '🍹 点饮料、游泳、拍照',
         '🏊 下午在泳池边或沙滩上拍照、聊天',
         '📸 看天色慢慢变化',
+        '💻 工作电话 16:00-18:00（泰国当地时间）— Varin Beach Resort大堂/接待区有WiFi，或使用度假村酒吧区域',
         '🍽️ 晚上找一家稍正式一点的餐厅，来一顿有「仪式感」的晚餐',
       ],
     },
@@ -399,7 +404,6 @@ const thailandDays: DayData[] = [
       ],
     },
   },
-
   // ===== TRAVEL DAY =====
   {
     day: 13,
@@ -415,6 +419,7 @@ const thailandDays: DayData[] = [
         '🚌 Continue to Penang by bus, train, or short flight (e.g. Langkawi–Penang flight, or bus/train from Kuala Perlis to Butterworth)',
         '⛴️ Ferry from Butterworth to George Town if taking land route',
         '🏨 Arrive in Penang and check in to Airbnb in George Town',
+        '💻 WORK CALL 15:00-17:00 (Thailand local time) — Airbnb should have WiFi, find quiet room or nearby café like Starbucks/Co-working space',
         '🍜 Evening: Simple dinner near accommodation and rest',
       ],
       zh: [
@@ -422,11 +427,11 @@ const thailandDays: DayData[] = [
         '🚌 再转巴士、火车或短程航班前往槟城（例如兰卡威飞槟城，或从 Kuala Perlis 到 Butterworth）',
         '⛴️ 如走陆路，从 Butterworth 坐渡船到乔治市',
         '🏨 抵达槟城后，入住乔治市民宿',
+        '💻 工作电话 15:00-17:00（泰国当地时间）— 民宿应有WiFi，找安静房间或附近星巴克/共享办公空间',
         '🍜 晚上在民宿附近简单吃饭，早点休息',
       ],
     },
   },
-
   // ===== PENANG WEEK (Days 14-18) =====
   {
     day: 14,
@@ -435,7 +440,7 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Armenian Street, George Town, Penang, Malaysia',
-    accommodation: { en: 'Airbnb in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
+    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
     activities: {
       en: [
         '🚶 Explore UNESCO Heritage Zone: Armenian Street, Love Lane, and surroundings',
@@ -460,7 +465,7 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Penang Hill, Malaysia',
-    accommodation: { en: 'Airbnb in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
+    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
     activities: {
       en: [
         '🚡 Take the funicular up Penang Hill for island views',
@@ -485,7 +490,7 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Cheong Fatt Tze Mansion, Penang, Malaysia',
-    accommodation: { en: 'Airbnb in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
+    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
     activities: {
       en: [
         '🍜 Join a guided food tour in George Town: char kway teow, laksa, Hokkien mee, nasi lemak, and more',
@@ -510,7 +515,7 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Penang National Park, Malaysia',
-    accommodation: { en: 'Airbnb in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
+    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
     activities: {
       en: [
         '🥾 Hike through rainforest trails in Penang National Park',
@@ -535,12 +540,13 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Gurney Drive, Penang, Malaysia',
-    accommodation: { en: 'Airbnb in George Town, last night (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（最后一晚，22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
+    accommodation: { en: 'Airbnb in George Town (last night)', zh: '乔治市民宿（最后一晚）' },
     activities: {
       en: [
         '😴 Sleep in and have a late breakfast',
         '🏖️ Light activity: stroll around George Town, visit quirky museums like Wonderfood Museum',
         '🌅 Walk along Gurney Drive seafront around sunset',
+        '💻 WORK CALL 16:00-18:00 (Thailand local time) — Airbnb WiFi or nearby hotel lobby (G Hotel, Hotel Jen) for quiet space',
         '🍜 Dinner at Gurney Drive hawker centre',
         '💆 Get a massage to unwind',
       ],
@@ -548,6 +554,7 @@ const thailandDays: DayData[] = [
         '😴 睡个懒觉，晚点吃早餐',
         '🏖️ 轻松活动：在乔治市随便走走，可以去 Wonderfood Museum 等趣味博物馆',
         '🌅 傍晚在 Gurney Drive 海边步道散步看日落',
+        '💻 工作电话 16:00-18:00（泰国当地时间）— 使用民宿WiFi或附近酒店大堂（G Hotel、Hotel Jen）找安静空间',
         '🍜 在 Gurney Drive 小贩中心吃晚餐',
         '💆 做个按摩放松',
       ],
@@ -566,6 +573,7 @@ const thailandDays: DayData[] = [
         '📦 Check out from hotel and store luggage if needed',
         '🛍️ Last-minute shopping or revisit favourite spots in George Town',
         '🍜 Final hawker food lunch — eat everything you\'ll miss!',
+        '💻 WORK CALL 15:00-16:00 (9:00-10:00 AM Zurich) — Every other Tuesday call, find quiet café or hotel lobby in George Town',
         '🚕 Head to Penang International Airport (PEN) by taxi/Grab',
         '✈️ Flight departs 19:40 from Penang (PEN) to Zhengzhou (CGO)',
         '🛫 13h 20min journey with 1 stop and overnight layover',
@@ -575,6 +583,7 @@ const thailandDays: DayData[] = [
         '📦 从酒店退房，如有需要可寄存行李',
         '🛍️ 最后购物或重访乔治市最喜欢的景点',
         '🍜 最后一顿小贩中心午餐——把会想念的都吃一遍！',
+        '💻 工作电话 15:00-16:00（苏黎世时间9:00-10:00）— 隔周二例会，在乔治市找安静咖啡馆或酒店大堂',
         '🚕 乘出租车/Grab前往槟城国际机场（PEN）',
         '✈️ 航班 19:40 从槟城（PEN）起飞前往郑州（CGO）',
         '🛫 航程13小时20分钟，含1次中转和过夜停留',
@@ -583,7 +592,6 @@ const thailandDays: DayData[] = [
     },
   },
 ];
-
 // ===== CROATIA & ITALY DAYS =====
 const croatiaDays: DayData[] = [
   // ===== DUBROVNIK (Days 1-5) =====
@@ -669,12 +677,14 @@ const croatiaDays: DayData[] = [
         '😴 Sleep in and relax',
         '🏛️ Optional: Short section of City Walls (if feeling up to it)',
         '☕ Seaside café rest and people watching',
+        '💻 WORK CALL 9:00-11:00 (Croatia time) — Find quiet spot at hotel or nearby café with WiFi',
         '🍽️ Slow pace dinner at a waterfront restaurant',
       ],
       zh: [
         '😴 睡个懒觉，放松身心',
         '🏛️ 可选：只走一小段城墙（视体力而定）',
         '☕ 在海边咖啡馆休息，看风景',
+        '💻 工作电话 9:00-11:00（克罗地亚时间）— 在酒店或附近咖啡馆找安静地方，确保有WiFi',
         '🍽️ 在海滨餐厅慢慢享用晚餐',
       ],
     },
@@ -689,12 +699,14 @@ const croatiaDays: DayData[] = [
     accommodation: { en: 'Makarska Hotel', zh: '马卡尔斯卡酒店' },
     activities: {
       en: [
+        '💻 WORK CALL 9:00-10:00 — Every other Tuesday call, take from hotel before departure',
         '🚌 Bus or private transfer north along the coast',
         '🏨 Check in at mid-point town (e.g., Makarska)',
         '🚶 Easy seaside walk',
         '🍽️ Dinner with coastal views',
       ],
       zh: [
+        '💻 工作电话 9:00-10:00 — 隔周二例会，出发前在酒店完成',
         '🚌 乘大巴或包车沿海岸向北',
         '🏨 入住中途海滨小镇（如马卡尔斯卡）',
         '🚶 海边轻松散步',
@@ -702,7 +714,6 @@ const croatiaDays: DayData[] = [
       ],
     },
   },
-
   // ===== SPLIT (Days 6-9) =====
   {
     day: 6,
@@ -716,12 +727,14 @@ const croatiaDays: DayData[] = [
       en: [
         '🚌 Bus/car to Split (1.5–2 hours)',
         '🏨 Check in near Riva/Diocletian\'s Palace',
+        '💻 WORK CALL 8:00-10:00 (Croatia time) — Hotel WiFi or nearby café with quiet corner',
         '🚶 Light evening stroll on the promenade',
         '🍽️ Dinner at a local konoba',
       ],
       zh: [
         '🚌 乘巴士/自驾1.5–2小时到斯普利特',
         '🏨 入住靠近海滨长廊/戴克里先宫的住宿',
+        '💻 工作电话 8:00-10:00（克罗地亚时间）— 酒店WiFi或附近安静咖啡馆',
         '🚶 傍晚在海滨长廊轻松散步',
         '🍽️ 在当地小馆（konoba）用晚餐',
       ],
@@ -796,7 +809,6 @@ const croatiaDays: DayData[] = [
       ],
     },
   },
-
   // ===== ZADAR & SENJ (Days 10-12) =====
   {
     day: 10,
@@ -833,12 +845,14 @@ const croatiaDays: DayData[] = [
       en: [
         '🏛️ Easy Old Town day: Roman forum, churches, waterfront',
         '☕ Coffee breaks at historic cafés',
+        '💻 WORK CALL 9:00-11:00 (Croatia time) — Hotel WiFi or quiet café in Old Town',
         '🌅 Sunset at Sea Organ & Greeting to the Sun',
         '🍽️ Seafood dinner near the water',
       ],
       zh: [
         '🏛️ 老城轻松游览：古罗马广场、教堂、海边',
         '☕ 在历史悠久的咖啡馆休息',
+        '💻 工作电话 9:00-11:00（克罗地亚时间）— 酒店WiFi或老城安静咖啡馆',
         '🌅 傍晚去海风琴和"向太阳致敬"看日落',
         '🍽️ 海边海鲜晚餐',
       ],
@@ -879,12 +893,14 @@ const croatiaDays: DayData[] = [
       en: [
         '🚌 Drive or bus along coastal D8 route to Senj (2–2.5 hours)',
         '🏨 Check in and meet friend',
+        '💻 WORK CALL 8:00-10:00 (Croatia time) — Hotel WiFi or quiet spot at accommodation',
         '🏖️ Easy beach or Nehaj Fortress visit',
         '🍽️ Dinner with friend',
       ],
       zh: [
         '🚌 从扎达尔沿海岸D8路线到塞尼（约2–2.5小时）',
         '🏨 入住，与朋友会面',
+        '💻 工作电话 8:00-10:00（克罗地亚时间）— 酒店WiFi或住宿安静地方',
         '🏖️ 轻松海滩或参观 Nehaj 堡垒',
         '🍽️ 与朋友共进晚餐',
       ],
@@ -913,7 +929,6 @@ const croatiaDays: DayData[] = [
       ],
     },
   },
-
   // ===== ITALY: VENICE & TUSCANY (Days 15-24) =====
   {
     day: 15,
@@ -1000,17 +1015,19 @@ const croatiaDays: DayData[] = [
         '🚗 Pick up rental car near Siena',
         '🏛️ Short Siena walk: Piazza del Campo, Duomo exterior',
         '🏨 20–30 min drive to Castelnuovo Berardenga',
+        '💻 WORK CALL 9:00-11:00 (Italy time) — Agriturismo WiFi or quiet spot',
       ],
       zh: [
-        '🚄 早上从维罗纳乘火车经佛罗伦萨到锡耶纳（约3–3.5小时）',
+        '🚄 早上从米兰乘火车经佛罗伦萨到锡耶纳（约3–3.5小时）',
         '🚗 在锡耶纳附近取租车',
         '🏛️ 简单逛逛坎波广场和大教堂外观',
         '🏨 开车约20–30分钟抵达Castelnuovo Berardenga',
+        '💻 工作电话 9:00-11:00（意大利时间）— 乡村酒店WiFi或安静地方',
       ],
     },
   },
   {
-    day: 19,
+    day: 20,
     date: { en: 'May 26 (Tue)', zh: '5月26日（周二）' },
     title: { en: 'Chianti Wineries & Festivals', zh: '基安蒂酒庄与节庆' },
     region: 'italy',
@@ -1019,12 +1036,14 @@ const croatiaDays: DayData[] = [
     accommodation: { en: 'Agriturismo in Castelnuovo Berardenga', zh: 'Castelnuovo Berardenga 乡村酒店' },
     activities: {
       en: [
+        '💻 WORK CALL 9:00-10:00 — Every other Tuesday call from agriturismo',
         '🍷 Morning: Visit Fèlsina or Agricola San Felice winery (10–15 min drive)',
         '🧀 Wine tasting with local salumi and pecorino',
         '🎭 Afternoon: Optional medieval festival in Arezzo area or visit Radda/Gaiole',
         '🍽️ Evening: Return to village for dinner',
       ],
       zh: [
+        '💻 工作电话 9:00-10:00 — 隔周二例会，在乡村酒店完成',
         '🍷 上午：前往附近酒庄 Fèlsina 或 Agricola San Felice 品酒（10–15分钟车程）',
         '🧀 品尝经典基安蒂和桑娇维塞，配当地冷盘和羊奶酪',
         '🎭 下午：参加阿雷佐一带中世纪节庆，或去 Radda/Gaiole 小镇',
@@ -1033,8 +1052,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 20,
-    date: { en: 'May 27 (Wed)', zh: '5月27日（周三）' },
+    day: 21,
+    date: { en: 'May 26 (Tue)', zh: '5月27日（周三）' },
     title: { en: 'Val d\'Orcia: Pienza & Montalcino', zh: '瓦尔道尔恰：皮恩扎与蒙塔尔奇诺' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
@@ -1044,20 +1063,22 @@ const croatiaDays: DayData[] = [
       en: [
         '🚗 Drive ~50 km to Pienza (~50 min)',
         '🧀 Stroll Via dell\'Amore, town walls, taste Pecorino di Pienza',
+        '💻 WORK CALL 8:00-10:00 (Italy time) — Take call from Pienza café or return to agriturismo',
         '🍷 Drive to Montalcino for fortress views and Brunello wine',
         '🍽️ Dinner back at the agriturismo',
       ],
       zh: [
         '🚗 开车约50公里（50分钟）到皮恩扎',
         '🧀 漫步"爱之路"、城墙，品尝 Pienza 羊奶芝士',
+        '💻 工作电话 8:00-10:00（意大利时间）— 在皮恩扎咖啡馆或返回乡村酒店',
         '🍷 再开车约20分钟到蒙塔尔奇诺，参观堡垒，品尝布鲁奈罗红酒',
         '🍽️ 傍晚返回乡村酒店用晚餐',
       ],
     },
   },
   {
-    day: 21,
-    date: { en: 'May 28 (Thu)', zh: '5月28日（周四）' },
+    day: 22,
+    date: { en: 'May 27 (Wed)', zh: '5月28日（周四）' },
     title: { en: 'Montepulciano, Hot Springs & Festival', zh: '蒙特普尔恰诺、温泉与节庆' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
@@ -1079,8 +1100,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 22,
-    date: { en: 'May 29 (Fri)', zh: '5月29日（周五）' },
+    day: 23,
+    date: { en: 'May 28 (Thu)', zh: '5月29日（周五）' },
     title: { en: 'Siena Deep Dive', zh: '锡耶纳深度游' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
@@ -1102,8 +1123,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 23,
-    date: { en: 'May 30 (Sat)', zh: '5月30日（周六）' },
+    day: 24,
+    date: { en: 'May 29 (Fri)', zh: '5月30日（周六）' },
     title: { en: 'Cortona & Arezzo', zh: '科尔托纳与阿雷佐' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
@@ -1125,7 +1146,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 24,
+    day: 25,
     date: { en: 'May 31 (Sun)', zh: '5月31日（周日）' },
     title: { en: 'Maggiolata Festival & Transfer to Rome', zh: '花卉节与前往罗马' },
     region: 'italy',
@@ -1147,11 +1168,10 @@ const croatiaDays: DayData[] = [
       ],
     },
   },
-
   // ===== ROME (Days 25-29) =====
   {
-    day: 25,
-    date: { en: 'Jun 1 (Mon)', zh: '6月1日（周一）' },
+    day: 26,
+    date: { en: 'May 30 (Sat)', zh: '6月1日（周一）' },
     title: { en: 'Ancient Rome Easy Day', zh: '古罗马轻松日' },
     region: 'rome',
     regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
@@ -1161,20 +1181,22 @@ const croatiaDays: DayData[] = [
       en: [
         '🏛️ Colosseum (easy-access route)',
         '📸 Viewpoints over the Roman Forum',
+        '💻 WORK CALL 9:00-11:00 (Italy time) — Hotel WiFi or nearby café with quiet space',
         '🚕 Taxi transfers and plenty of rests',
         '🍽️ Dinner near hotel',
       ],
       zh: [
         '🏛️ 参观斗兽场（选择相对轻松路线）',
         '📸 在观景点远眺古罗马广场',
+        '💻 工作电话 9:00-11:00（意大利时间）— 酒店WiFi或附近安静咖啡馆',
         '🚕 建议打车往返并多安排休息',
         '🍽️ 酒店附近用晚餐',
       ],
     },
   },
   {
-    day: 26,
-    date: { en: 'Jun 2 (Tue)', zh: '6月2日（周二）' },
+    day: 27,
+    date: { en: 'May 31 (Sun)', zh: '6月2日（周二）' },
     title: { en: 'Vatican Area', zh: '梵蒂冈区域' },
     region: 'rome',
     regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
@@ -1196,8 +1218,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 27,
-    date: { en: 'Jun 3 (Wed)', zh: '6月3日（周三）' },
+    day: 28,
+    date: { en: 'Jun 1 (Mon)', zh: '6月3日（周三）' },
     title: { en: 'Classic Rome Walk', zh: '经典罗马步行' },
     region: 'rome',
     regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
@@ -1207,20 +1229,22 @@ const croatiaDays: DayData[] = [
       en: [
         '💧 Trevi Fountain → Spanish Steps → Pantheon → Piazza Navona',
         '☕ Keep walking segments short with frequent breaks',
+        '💻 WORK CALL 8:00-10:00 (Italy time) — Hotel WiFi or café near Pantheon/Piazza Navona',
         '🚕 Use taxis between sections if needed',
         '🍨 Gelato stops along the way',
       ],
       zh: [
         '💧 特雷维喷泉 → 西班牙台阶 → 万神殿 → 纳沃纳广场',
         '☕ 将步行路段分成多段，中间多休息',
+        '💻 工作电话 8:00-10:00（意大利时间）— 酒店WiFi或万神殿/纳沃纳广场附近咖啡馆',
         '🚕 必要时乘坐出租车连接景点',
         '🍨 沿途吃冰淇淋',
       ],
     },
   },
   {
-    day: 28,
-    date: { en: 'Jun 4 (Thu)', zh: '6月4日（周四）' },
+    day: 29,
+    date: { en: 'Jun 2 (Tue)', zh: '6月4日（周四）' },
     title: { en: 'Extra Rome / Packing', zh: '额外的罗马时光/整理行李' },
     region: 'rome',
     regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
@@ -1242,8 +1266,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 29,
-    date: { en: 'Jun 5 (Fri)', zh: '6月5日（周五）' },
+    day: 30,
+    date: { en: 'Jun 3 (Wed)', zh: '6月5日（周五）' },
     title: { en: 'Rome → Home', zh: '罗马 → 返程' },
     region: 'travel',
     regionLabel: { en: 'Travel Day', zh: '旅行日' },
@@ -1265,7 +1289,6 @@ const croatiaDays: DayData[] = [
     },
   },
 ];
-
 // ===== THAILAND & PENANG CATEGORIES =====
 const thailandCategories: ActivityCategory[] = [
   {
@@ -1321,7 +1344,6 @@ const thailandCategories: ActivityCategory[] = [
     ],
   },
 ];
-
 // ===== CROATIA & ITALY CATEGORIES =====
 const croatiaCategories: ActivityCategory[] = [
   {
@@ -1386,7 +1408,6 @@ const croatiaCategories: ActivityCategory[] = [
     ],
   },
 ];
-
 // ===== THAILAND & PENANG TIPS =====
 const thailandTips: TipSection[] = [
   {
@@ -1422,8 +1443,8 @@ const thailandTips: TipSection[] = [
     ],
   },
   {
-    title: { en: '💰 Budget Guidance', zh: '💰 预算指导' },
-    icon: '💰',
+    title: { en: '
+    icon: '
     items: [
       { en: 'Thailand daily: 1,500–3,000 THB/person (accommodation, food, transport)', zh: '泰国每日：每人约1,500–3,000泰铢（含住宿、餐饮和交通）' },
       { en: 'Thailand day tours: 1,000–2,000 THB/person (4-island, Phi Phi, snorkeling)', zh: '泰国一日游：每人约1,000–2,000泰铢（四岛游、皮皮岛、浮潜）' },
@@ -1432,7 +1453,6 @@ const thailandTips: TipSection[] = [
     ],
   },
 ];
-
 // ===== CROATIA & ITALY TIPS =====
 const croatiaTips: TipSection[] = [
   {
@@ -1487,8 +1507,8 @@ const croatiaTips: TipSection[] = [
     ],
   },
   {
-    title: { en: '💰 Currency & Budget', zh: '💰 货币与预算' },
-    icon: '💰',
+    title: { en: '
+    icon: '
     items: [
       { en: 'Croatia: Euro (€) widely accepted', zh: '克罗地亚：欧元广泛接受' },
       { en: 'Italy: Euro (€)', zh: '意大利：欧元' },
@@ -1498,7 +1518,6 @@ const croatiaTips: TipSection[] = [
     ],
   },
 ];
-
 // ===== TRIP OVERVIEWS =====
 const thailandOverview: TripOverview = {
   duration: { en: 'February 27 – March 17, 2026', zh: '2026年2月27日 – 3月17日' },
@@ -1512,25 +1531,25 @@ const thailandOverview: TripOverview = {
     {
       location: { en: 'Koh Lanta (Lanta Old Town)', zh: '兰塔岛老城' },
       dates: { en: 'Mar 1 – Mar 3 (2 nights)', zh: '3月1日 – 3月3日（2晚）' },
-      hotel: { en: 'Fresh House', zh: 'Fresh House' },
+      hotel: { en: 'Fresh House (#630068471)', zh: 'Fresh House（#630068471）' },
       region: 'lanta',
     },
     {
       location: { en: 'Koh Phi Phi', zh: '皮皮岛' },
       dates: { en: 'Mar 3 – Mar 4 (1 night)', zh: '3月3日 – 3月4日（1晚）' },
-      hotel: { en: 'Phi Phi Twin Palms Bungalow', zh: 'Phi Phi Twin Palms Bungalow' },
+      hotel: { en: 'Phi Phi Twin Palms Bungalow (#630065883)', zh: 'Phi Phi Twin Palms Bungalow（#630065883）' },
       region: 'lanta',
     },
     {
       location: { en: 'Koh Lanta (Sala Dan)', zh: '兰塔岛 Sala Dan' },
       dates: { en: 'Mar 4 – Mar 6 (2 nights)', zh: '3月4日 – 3月6日（2晚）' },
-      hotel: { en: 'BOHO Hostel', zh: 'BOHO Hostel' },
+      hotel: { en: 'BOHO Hostel (#630072187)', zh: 'BOHO Hostel（#630072187）' },
       region: 'lanta',
     },
     {
       location: { en: 'Koh Lipe', zh: '丽贝岛' },
       dates: { en: 'Mar 6 – Mar 10 (4 nights)', zh: '3月6日 – 3月10日（4晚）' },
-      hotel: { en: 'Varin Beach Resort', zh: 'Varin Beach Resort' },
+      hotel: { en: 'Varin Beach Resort (#629167643)', zh: 'Varin Beach Resort（#629167643）' },
       region: 'lipe',
     },
     {
@@ -1541,7 +1560,6 @@ const thailandOverview: TripOverview = {
     },
   ],
 };
-
 const croatiaOverview: TripOverview = {
   duration: { en: 'May 8 – June 5, 2026', zh: '2026年5月8日 – 6月5日' },
   stays: [
@@ -1595,7 +1613,6 @@ const croatiaOverview: TripOverview = {
     },
   ],
 };
-
 // ===== EXPORT TRIPS =====
 export const trips: Record<'thailand' | 'croatia', TripData> = {
   thailand: {
@@ -1619,10 +1636,53 @@ export const trips: Record<'thailand' | 'croatia', TripData> = {
     overview: croatiaOverview,
   },
 };
-
 // Legacy exports for backward compatibility
 export const days = thailandDays;
 export const penangCategories = thailandCategories;
 export const travelTips = thailandTips;
 export const tripOverview = thailandOverview;
 export const regionColors = thailandRegionColors;
+// ===== TRIP ROUTES FOR MAP DISPLAY =====
+export const tripRoutes: Record<TripId, TripRoute> = {
+  thailand: {
+    origin: { lat: 8.0, lng: 98.8, name: { en: 'Krabi, Thailand', zh: '甲米，泰国' } },
+    destination: { lat: 5.4, lng: 100.3, name: { en: 'Penang, Malaysia', zh: '槟城，马来西亚' } },
+    waypoints: [
+      { lat: 8.0, lng: 98.8, name: { en: 'Ao Nang, Krabi', zh: '安南，甲米' }, day: 1 },
+      { lat: 7.5, lng: 99.0, name: { en: 'Koh Lanta', zh: '兰塔岛' }, day: 3 },
+      { lat: 7.7, lng: 98.8, name: { en: 'Koh Phi Phi', zh: '皮皮岛' }, day: 5 },
+      { lat: 6.5, lng: 99.1, name: { en: 'Koh Lipe', zh: '丽贝岛' }, day: 6 },
+      { lat: 5.4, lng: 100.3, name: { en: 'George Town, Penang', zh: '乔治市，槟城' }, day: 13 },
+    ],
+  },
+  croatia: {
+    origin: { lat: 42.6, lng: 18.1, name: { en: 'Dubrovnik, Croatia', zh: '杜布罗夫尼克，克罗地亚' } },
+    destination: { lat: 41.9, lng: 12.5, name: { en: 'Rome, Italy', zh: '罗马，意大利' } },
+    waypoints: [
+      { lat: 42.6, lng: 18.1, name: { en: 'Dubrovnik', zh: '杜布罗夫尼克' }, day: 1 },
+      { lat: 43.5, lng: 16.4, name: { en: 'Split', zh: '斯普利特' }, day: 6 },
+      { lat: 44.1, lng: 15.2, name: { en: 'Zadar', zh: '扎达尔' }, day: 10 },
+      { lat: 44.9, lng: 14.9, name: { en: 'Senj', zh: '塞尼' }, day: 13 },
+      { lat: 45.4, lng: 12.3, name: { en: 'Venice', zh: '威尼斯' }, day: 15 },
+      { lat: 45.4, lng: 11.0, name: { en: 'Verona', zh: '维罗纳' }, day: 17 },
+      { lat: 43.4, lng: 11.3, name: { en: 'Tuscany', zh: '托斯卡纳' }, day: 19 },
+      { lat: 41.9, lng: 12.5, name: { en: 'Rome', zh: '罗马' }, day: 25 },
+    ],
+  },
+};
+// ===== DESTINATION IMAGES =====
+export const destinationImages: Record<TripId, Record<string, string>> = {
+  thailand: {
+    'krabi': 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800',
+    'lanta': 'https://images.unsplash.com/photo-1553603227-2358aabe821e?w=800',
+    'lipe': 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800',
+    'penang': 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800',
+  },
+  croatia: {
+    'dubrovnik': 'https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=800',
+    'split': 'https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=800',
+    'zadar': 'https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=800',
+    'italy': 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=800',
+    'rome': 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800',
+  },
+};

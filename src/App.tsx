@@ -17,6 +17,7 @@ import {
   weatherIconMap,
 } from './data/types';
 import { useLocalStorage, calculateTotalExpenses } from './hooks/useLocalStorage';
+import { RouteMap } from './components/RouteMap';
 
 /* ─── Utility: Date parsing for countdown ─── */
 function parseTripDates(tripId: TripId): { start: Date; end: Date } | null {
@@ -792,7 +793,8 @@ function PhotoSection({
 /* ─── Day Detail View ─── */
 function DayDetail({ 
   day, 
-  lang, 
+  lang,
+  tripId,
   regionColors,
   userData,
   onAddJournal,
@@ -805,6 +807,7 @@ function DayDetail({
 }: { 
   day: DayData; 
   lang: Language;
+  tripId: TripId;
   regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
   userData: {
     journals: Record<number, { entries: { id: string; content: string; type: string; timestamp: number }[] }>;
@@ -870,34 +873,6 @@ function DayDetail({
       {/* Weather Widget */}
       <WeatherWidget day={day} lang={lang} />
 
-      {/* Journal Section */}
-      <JournalSection
-        day={day.day}
-        lang={lang}
-        journalData={userData.journals[day.day]}
-        onAddEntry={(entry) => onAddJournal(day.day, entry)}
-        onDeleteEntry={(entryId) => onDeleteJournal(day.day, entryId)}
-      />
-
-      {/* Expense Section */}
-      <ExpenseSection
-        day={day.day}
-        lang={lang}
-        expenseData={userData.expenses[day.day]}
-        onAddExpense={(expense) => onAddExpense(day.day, expense)}
-        onDeleteExpense={(expenseId) => onDeleteExpense(day.day, expenseId)}
-        tripCurrency={tripCurrency}
-      />
-
-      {/* Photo Memories */}
-      <PhotoSection
-        day={day.day}
-        lang={lang}
-        photoData={userData.photos[day.day]}
-        onAddPhoto={(photo) => onAddPhoto(day.day, photo)}
-        onDeletePhoto={(photoId) => onDeletePhoto(day.day, photoId)}
-      />
-
       {/* Activities with checkmarks */}
       <div className="space-y-3">
         <h3 className="text-lg font-bold text-gray-800">
@@ -906,6 +881,26 @@ function DayDetail({
         <div className="space-y-2.5">
           {day.activities[lang].map((activity, idx) => {
             const isVisited = visitedActivities[idx] || false;
+            const isWorkCall = activity.includes('WORK CALL') || activity.includes('工作电话');
+            
+            if (isWorkCall) {
+              return (
+                <div
+                  key={idx}
+                  className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-4 shadow-sm border-2 border-amber-300"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center">
+                      <span className="text-white text-sm">💼</span>
+                    </div>
+                    <span className="text-base leading-relaxed flex-1 font-semibold text-amber-900">
+                      {activity.replace('💻 ', '').replace('💻 ', '')}
+                    </span>
+                  </div>
+                </div>
+              );
+            }
+            
             return (
               <div
                 key={idx}
@@ -933,6 +928,34 @@ function DayDetail({
           })}
         </div>
       </div>
+
+      {/* Journal Section */}
+      <JournalSection
+        day={day.day}
+        lang={lang}
+        journalData={userData.journals[day.day]}
+        onAddEntry={(entry) => onAddJournal(day.day, entry)}
+        onDeleteEntry={(entryId) => onDeleteJournal(day.day, entryId)}
+      />
+
+      {/* Expense Section */}
+      <ExpenseSection
+        day={day.day}
+        lang={lang}
+        expenseData={userData.expenses[day.day]}
+        onAddExpense={(expense) => onAddExpense(day.day, expense)}
+        onDeleteExpense={(expenseId) => onDeleteExpense(day.day, expenseId)}
+        tripCurrency={tripCurrency}
+      />
+
+      {/* Photo Memories */}
+      <PhotoSection
+        day={day.day}
+        lang={lang}
+        photoData={userData.photos[day.day]}
+        onAddPhoto={(photo) => onAddPhoto(day.day, photo)}
+        onDeletePhoto={(photoId) => onDeletePhoto(day.day, photoId)}
+      />
 
       {/* Accommodation */}
       {day.accommodation && (
@@ -1054,7 +1077,8 @@ function ItineraryView({
       />
       <DayDetail 
         day={day} 
-        lang={lang} 
+        lang={lang}
+        tripId={tripId}
         regionColors={regionColors}
         userData={userData}
         onAddJournal={onAddJournal}
@@ -1083,6 +1107,9 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-5 space-y-6 bg-gray-50 min-h-[60vh] pb-20">
+      {/* Route Map */}
+      <RouteMap tripId={tripId} lang={lang} />
+
       {/* Trip overview */}
       <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
         <h2 className="text-xl font-bold text-gray-900 mb-1">

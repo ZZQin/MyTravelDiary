@@ -1636,12 +1636,6 @@ export const trips: Record<'thailand' | 'croatia', TripData> = {
     overview: croatiaOverview,
   },
 };
-// Legacy exports for backward compatibility
-export const days = thailandDays;
-export const penangCategories = thailandCategories;
-export const travelTips = thailandTips;
-export const tripOverview = thailandOverview;
-export const regionColors = thailandRegionColors;
 // ===== TRIP ROUTES FOR MAP DISPLAY =====
 export const tripRoutes: Record<TripId, TripRoute> = {
   thailand: {

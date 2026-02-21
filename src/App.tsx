@@ -239,7 +239,7 @@ const Header = React.memo(function Header({
     return (
       <button
         onClick={onToggleCollapse}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:shadow-xl transition-all will-change-transform"
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:shadow-xl transition-all"
       >
         <span className="text-lg">🌏</span>
         <CountdownWidget tripId={currentTrip} lang={lang} compact />
@@ -249,7 +249,7 @@ const Header = React.memo(function Header({
   }
   
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white shadow-lg will-change-transform">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white shadow-lg">
       <div className="max-w-2xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">

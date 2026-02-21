@@ -1,5 +1,5 @@
 export type Language = 'en' | 'zh';
-export type TripId = 'thailand' | 'croatia' | 'china';
+export type TripId = 'thailand' | 'china' | 'croatia';
 
 export interface Bilingual {
   en: string;

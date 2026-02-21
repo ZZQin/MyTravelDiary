@@ -852,6 +852,21 @@ function DayDetail({
         <h2 className="text-xl font-bold text-gray-900 mt-2 leading-snug">{day.title[lang]}</h2>
       </div>
 
+      {/* Destination Image */}
+      {day.image && (
+        <div className="w-full rounded-2xl overflow-hidden shadow-md bg-gray-200 relative" style={{ height: 200 }}>
+          <img
+            src={day.image}
+            alt={day.title[lang]}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          />
+        </div>
+      )}
+
       {/* Weather Widget -->
       <WeatherWidget day={day} lang={lang} />
 

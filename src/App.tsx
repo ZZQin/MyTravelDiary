@@ -222,104 +222,65 @@ const Header = React.memo(function Header({
   currentTrip, 
   setCurrentTrip,
   onOpenPacking,
-  isCollapsed,
-  onToggleCollapse,
 }: { 
   lang: Language; 
   setLang: (l: Language) => void;
   currentTrip: TripId;
   setCurrentTrip: (t: TripId) => void;
   onOpenPacking: () => void;
-  isCollapsed: boolean;
-  onToggleCollapse: () => void;
 }) {
-  const tripData = trips[currentTrip];
-  
-  if (isCollapsed) {
-    return (
-      <button
-        onClick={onToggleCollapse}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 hover:shadow-xl transition-all"
-      >
-        <span className="text-lg">🌏</span>
-        <CountdownWidget tripId={currentTrip} lang={lang} compact />
-        <span className="text-xs ml-1">▼</span>
-      </button>
-    );
-  }
-  
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white shadow-lg">
-      <div className="max-w-2xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-between mb-2">
+      <div className="max-w-2xl mx-auto px-4 py-2">
+        <div className="flex items-center justify-between gap-3">
+          {/* Left: Icon + Countdown */}
           <div className="flex items-center gap-2">
-            <span className="text-2xl">🌏</span>
-            <h1 className="text-lg font-bold leading-tight">
-              {lang === 'en' ? 'Travel Itinerary' : '旅行计划'}
-            </h1>
+            <span className="text-xl">🌏</span>
+            <CountdownWidget tripId={currentTrip} lang={lang} compact />
           </div>
-          <div className="flex items-center gap-2">
+          
+          {/* Center: Trip Selector (compact) */}
+          <div className="flex bg-white/10 rounded-lg p-0.5 gap-0.5 flex-1 max-w-[200px]">
+            {(Object.keys(trips) as TripId[]).map((tripId) => (
+              <button
+                key={tripId}
+                onClick={() => setCurrentTrip(tripId)}
+                className={`flex-1 py-1.5 px-2 rounded-md text-xs font-medium transition-all ${
+                  currentTrip === tripId
+                    ? 'bg-white text-sky-800 shadow'
+                    : 'text-white/80 hover:bg-white/10'
+                }`}
+              >
+                {tripId === 'thailand' 
+                  ? (lang === 'en' ? 'Thailand' : '泰国') 
+                  : (lang === 'en' ? 'Europe' : '欧洲')
+                }
+              </button>
+            ))}
+          </div>
+          
+          {/* Right: Packing + Language */}
+          <div className="flex items-center gap-1.5">
             <button
               onClick={onOpenPacking}
-              className="bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-lg text-sm font-medium transition-all"
+              className="bg-white/20 hover:bg-white/30 text-white w-8 h-8 rounded-lg text-sm font-medium transition-all flex items-center justify-center"
               title={lang === 'en' ? 'Packing List' : '打包清单'}
             >
               🎒
             </button>
-            <div className="flex bg-white/20 rounded-full p-0.5 gap-0.5">
-              <button
-                onClick={() => setLang('en')}
-                className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all ${
-                  lang === 'en' ? 'bg-white text-sky-800 shadow' : 'text-white/90 hover:bg-white/10'
-                }`}
-              >
-                EN
-              </button>
-              <button
-                onClick={() => setLang('zh')}
-                className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-all ${
-                  lang === 'zh' ? 'bg-white text-sky-800 shadow' : 'text-white/90 hover:bg-white/10'
-                }`}
-              >
-                中文
-              </button>
-            </div>
+            <button
+              onClick={() => setLang(lang === 'en' ? 'zh' : 'en')}
+              className="bg-white/20 hover:bg-white/30 text-white w-8 h-8 rounded-lg text-xs font-semibold transition-all"
+              title={lang === 'en' ? 'Switch to Chinese' : '切换到英文'}
+            >
+              {lang === 'en' ? '中' : 'EN'}
+            </button>
           </div>
         </div>
-        
-        {/* Countdown */}
-        <div className="mb-2">
-          <CountdownWidget tripId={currentTrip} lang={lang} />
-        </div>
-        
-        {/* Trip Selector */}
-        <div className="flex bg-white/10 rounded-lg p-1 gap-1">
-          {(Object.keys(trips) as TripId[]).map((tripId) => (
-            <button
-              key={tripId}
-              onClick={() => setCurrentTrip(tripId)}
-              className={`flex-1 py-2 px-2 rounded-md text-sm font-medium transition-all ${
-                currentTrip === tripId
-                  ? 'bg-white text-sky-800 shadow'
-                  : 'text-white/80 hover:bg-white/10'
-              }`}
-            >
-              {trips[tripId].name[lang]}
-            </button>
-          ))}
-        </div>
-        
-        {/* Collapse hint */}
-        <button
-          onClick={onToggleCollapse}
-          className="w-full mt-2 py-1 text-xs text-white/60 hover:text-white/90 flex items-center justify-center gap-1 transition-all"
-        >
-          <span>▲</span> {lang === 'en' ? 'Tap to collapse' : '点击收起'}
-        </button>
       </div>
     </header>
   );
-}
+})
 
 /* ─── Tab Bar ─── */
 type TabId = 'itinerary' | 'overview' | 'tips' | 'expenses';
@@ -334,12 +295,10 @@ function TabBar({
   activeTab,
   setActiveTab,
   lang,
-  onCollapse,
 }: {
   activeTab: TabId;
   setActiveTab: (t: TabId) => void;
   lang: Language;
-  onCollapse: () => void;
 }) {
   const tabs: TabId[] = ['itinerary', 'overview', 'tips', 'expenses'];
   return (
@@ -359,13 +318,6 @@ function TabBar({
           </button>
         ))}
       </div>
-      {/* Collapse hint */}
-      <button
-        onClick={onCollapse}
-        className="w-full py-1 text-xs text-gray-400 hover:text-gray-600 flex items-center justify-center gap-1 bg-gray-50/50"
-      >
-        <span>▲</span> {lang === 'en' ? 'Collapse' : '收起'}
-      </button>
     </div>
   );
 }
@@ -412,14 +364,12 @@ function DayPicker({
   lang,
   days,
   regionColors,
-  isNavCollapsed,
 }: {
   currentDay: number;
   setCurrentDay: (d: number) => void;
   lang: Language;
   days: DayData[];
   regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
-  isNavCollapsed: boolean;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -433,7 +383,7 @@ function DayPicker({
   }, [currentDay]);
 
   return (
-    <div className={`sticky z-30 bg-gray-50 border-b border-gray-200 py-3 px-2 transition-all ${isNavCollapsed ? 'top-0' : 'top-0'}`}>
+    <div className="sticky top-[48px] z-30 bg-gray-50 border-b border-gray-200 py-3 px-2">
       <div
         ref={scrollRef}
         className="max-w-2xl mx-auto flex gap-2 overflow-x-auto scrollbar-hide py-1 px-1"
@@ -1043,7 +993,6 @@ function ItineraryView({
   setCurrentDay,
   tripId,
   userData,
-  isNavCollapsed,
   onAddJournal,
   onDeleteJournal,
   onAddExpense,
@@ -1062,7 +1011,6 @@ function ItineraryView({
     photos: Record<number, { photos: { id: string; dataUrl: string; caption: string; timestamp: number }[] }>;
     visited: Record<number, { activities: Record<number, boolean> }>;
   };
-  isNavCollapsed: boolean;
   onAddJournal: (day: number, entry: { content: string; type: 'general' | 'restaurant' | 'warning' | 'gem' }) => void;
   onDeleteJournal: (day: number, entryId: string) => void;
   onAddExpense: (day: number, expense: { amount: number; currency: string; category: ExpenseCategory; description: string }) => void;
@@ -1083,7 +1031,6 @@ function ItineraryView({
         lang={lang} 
         days={tripData.days}
         regionColors={regionColors}
-        isNavCollapsed={isNavCollapsed}
       />
       <DayDetail 
         day={day} 
@@ -1553,8 +1500,6 @@ export function App() {
   const [currentDay, setCurrentDay] = useState(0);
   const [activeTab, setActiveTab] = useState<TabId>('itinerary');
   const [isPackingOpen, setIsPackingOpen] = useState(false);
-  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
-  const [isNavCollapsed, setIsNavCollapsed] = useState(false);
 
   const {
     isLoaded,
@@ -1572,20 +1517,15 @@ export function App() {
     deletePackingItem,
   } = useLocalStorage(currentTrip);
 
-
-
   // Reset day when switching trips
   const handleSetTrip = useCallback((trip: TripId) => {
     setCurrentTrip(trip);
     setCurrentDay(0);
-    setIsHeaderCollapsed(false);
-    setIsNavCollapsed(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const handleSetDay = useCallback((d: number) => {
     setCurrentDay(d);
-    setIsNavCollapsed(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -1610,40 +1550,14 @@ export function App() {
         currentTrip={currentTrip}
         setCurrentTrip={handleSetTrip}
         onOpenPacking={() => setIsPackingOpen(true)}
-        isCollapsed={isHeaderCollapsed}
-        onToggleCollapse={() => setIsHeaderCollapsed(!isHeaderCollapsed)}
       />
-      
-      {/* Collapsed Nav Indicator - only show in itinerary tab */}
-      {isNavCollapsed && activeTab === 'itinerary' && (
-        <button
-          onClick={() => setIsNavCollapsed(false)}
-          className={`fixed left-1/2 -translate-x-1/2 z-[45] bg-white text-sky-700 px-4 py-2 rounded-full shadow-lg text-sm font-medium hover:shadow-xl transition-all flex items-center gap-2 ${isHeaderCollapsed ? 'top-[60px]' : 'top-[148px]'}`}
-        >
-          <span>📅</span>
-          <span>Day {currentDay + 1}</span>
-          <span>▼</span>
-        </button>
-      )}
-      
-      {/* Sticky TabBar - hidden when collapsed but takes up space */}
-      <div 
-        className="sticky z-40" 
-        style={{ 
-          top: isHeaderCollapsed ? '0px' : '136px',
-          visibility: isNavCollapsed ? 'hidden' : 'visible',
-          height: isNavCollapsed ? '0' : 'auto',
-          overflow: isNavCollapsed ? 'hidden' : 'visible'
-        }}
-      >
+
+      {/* Sticky TabBar */}
+      <div className="sticky top-[48px] z-40">
         <TabBar 
           activeTab={activeTab} 
-          setActiveTab={(tab) => {
-            setActiveTab(tab);
-            setIsNavCollapsed(false);
-          }} 
+          setActiveTab={setActiveTab}
           lang={lang} 
-          onCollapse={() => setIsNavCollapsed(true)}
         />
       </div>
 
@@ -1656,7 +1570,6 @@ export function App() {
             setCurrentDay={handleSetDay}
             tripId={currentTrip}
             userData={userData}
-            isNavCollapsed={isNavCollapsed}
             onAddJournal={addJournalEntry}
             onDeleteJournal={deleteJournalEntry}
             onAddExpense={addExpense}

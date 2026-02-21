@@ -1670,19 +1670,4 @@ export const tripRoutes: Record<TripId, TripRoute> = {
     ],
   },
 };
-// ===== DESTINATION IMAGES =====
-export const destinationImages: Record<TripId, Record<string, string>> = {
-  thailand: {
-    'krabi': 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800',
-    'lanta': 'https://images.unsplash.com/photo-1553603227-2358aabe821e?w=800',
-    'lipe': 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800',
-    'penang': 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800',
-  },
-  croatia: {
-    'dubrovnik': 'https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=800',
-    'split': 'https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=800',
-    'zadar': 'https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=800',
-    'italy': 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=800',
-    'rome': 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800',
-  },
-};
+

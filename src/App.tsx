@@ -18,7 +18,6 @@ import {
 } from './data/types';
 import { useLocalStorage, calculateTotalExpenses } from './hooks/useLocalStorage';
 import { RouteMap } from './components/RouteMap';
-import { DestinationImage } from './components/DestinationImage';
 
 /* ─── Utility: Date parsing for countdown ─── */
 function parseTripDates(tripId: TripId): { start: Date; end: Date } | null {
@@ -850,9 +849,6 @@ function DayDetail({
         </div>
         <h2 className="text-xl font-bold text-gray-900 mt-2 leading-snug">{day.title[lang]}</h2>
       </div>
-
-      {/* Destination Image */}
-      <DestinationImage tripId={tripId} region={day.region} title={day.title[lang]} />
 
       {/* Weather Widget */}
       <WeatherWidget day={day} lang={lang} />

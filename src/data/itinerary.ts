@@ -72,7 +72,7 @@ const thailandDays: DayData[] = [
     region: 'krabi',
     regionLabel: { en: 'Ao Nang & Krabi', zh: '安南和甲米' },
     mapQuery: 'Ao Nang, Krabi, Thailand',
-    accommodation: { en: 'Ao Nang Townhouse', zh: 'Ao Nang Townhouse' },
+    accommodation: { en: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand', zh: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand' },
     activities: {
       en: [
         '✈️ Your flight arrives at Krabi Airport at 18:05 (6:05 PM)',
@@ -99,7 +99,7 @@ const thailandDays: DayData[] = [
     region: 'krabi',
     regionLabel: { en: 'Ao Nang & Krabi', zh: '安南和甲米' },
     mapQuery: 'Railay Beach, Krabi, Thailand',
-    accommodation: { en: 'Ao Nang Townhouse', zh: 'Ao Nang Townhouse' },
+    accommodation: { en: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand', zh: '164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand' },
     activities: {
       en: [
         '🛥️ Morning: Take a longtail boat from Ao Nang Beach to Railay Beach (about 10–15 min)',

@@ -850,27 +850,7 @@ function DayDetail({
         <h2 className="text-xl font-bold text-gray-900 mt-2 leading-snug">{day.title[lang]}</h2>
       </div>
 
-      {/* Destination Image */}
-      <div className="w-full rounded-2xl overflow-hidden shadow-md bg-gray-200 relative" style={{ height: 180 }}>
-        <img
-          src={`https://source.unsplash.com/800x400/?${encodeURIComponent(day.mapQuery.split(',')[0])},travel,landmark`}
-          alt={day.title[lang]}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          onError={(e) => {
-            // Fallback to a gradient background if image fails to load
-            (e.target as HTMLImageElement).style.display = 'none';
-            (e.target as HTMLImageElement).parentElement!.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-          }}
-        />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-          <span className="text-white text-sm font-medium">
-            📍 {day.mapQuery.split(',')[0]}
-          </span>
-        </div>
-      </div>
-
-      {/* Weather Widget */}
+      {/* Weather Widget -->
       <WeatherWidget day={day} lang={lang} />
 
       {/* Activities with checkmarks */}

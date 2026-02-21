@@ -1028,7 +1028,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 20,
+    day: 19,
     date: { en: 'May 26 (Tue)', zh: '5月26日（周二）' },
     title: { en: 'Chianti Wineries & Festivals', zh: '基安蒂酒庄与节庆' },
     region: 'italy',
@@ -1053,8 +1053,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 21,
-    date: { en: 'May 26 (Tue)', zh: '5月27日（周三）' },
+    day: 20,
+    date: { en: 'May 27 (Wed)', zh: '5月27日（周三）' },
     title: { en: 'Val d\'Orcia: Pienza & Montalcino', zh: '瓦尔道尔恰：皮恩扎与蒙塔尔奇诺' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
@@ -1078,8 +1078,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 22,
-    date: { en: 'May 27 (Wed)', zh: '5月28日（周四）' },
+    day: 21,
+    date: { en: 'May 28 (Thu)', zh: '5月28日（周四）' },
     title: { en: 'Montepulciano, Hot Springs & Festival', zh: '蒙特普尔恰诺、温泉与节庆' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
@@ -1101,8 +1101,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 23,
-    date: { en: 'May 28 (Thu)', zh: '5月29日（周五）' },
+    day: 22,
+    date: { en: 'May 29 (Fri)', zh: '5月29日（周五）' },
     title: { en: 'Siena Deep Dive', zh: '锡耶纳深度游' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
@@ -1124,8 +1124,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 24,
-    date: { en: 'May 29 (Fri)', zh: '5月30日（周六）' },
+    day: 23,
+    date: { en: 'May 30 (Sat)', zh: '5月30日（周六）' },
     title: { en: 'Cortona & Arezzo', zh: '科尔托纳与阿雷佐' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
@@ -1147,7 +1147,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 25,
+    day: 24,
     date: { en: 'May 31 (Sun)', zh: '5月31日（周日）' },
     title: { en: 'Maggiolata Festival & Transfer to Rome', zh: '花卉节与前往罗马' },
     region: 'italy',
@@ -1171,8 +1171,8 @@ const croatiaDays: DayData[] = [
   },
   // ===== ROME (Days 25-29) =====
   {
-    day: 26,
-    date: { en: 'May 30 (Sat)', zh: '6月1日（周一）' },
+    day: 25,
+    date: { en: 'Jun 1 (Mon)', zh: '6月1日（周一）' },
     title: { en: 'Ancient Rome Easy Day', zh: '古罗马轻松日' },
     region: 'rome',
     regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
@@ -1196,8 +1196,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 27,
-    date: { en: 'May 31 (Sun)', zh: '6月2日（周二）' },
+    day: 26,
+    date: { en: 'Jun 2 (Tue)', zh: '6月2日（周二）' },
     title: { en: 'Vatican Area', zh: '梵蒂冈区域' },
     region: 'rome',
     regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
@@ -1219,8 +1219,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 28,
-    date: { en: 'Jun 1 (Mon)', zh: '6月3日（周三）' },
+    day: 27,
+    date: { en: 'Jun 3 (Wed)', zh: '6月3日（周三）' },
     title: { en: 'Classic Rome Walk', zh: '经典罗马步行' },
     region: 'rome',
     regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
@@ -1244,8 +1244,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 29,
-    date: { en: 'Jun 2 (Tue)', zh: '6月4日（周四）' },
+    day: 28,
+    date: { en: 'Jun 4 (Thu)', zh: '6月4日（周四）' },
     title: { en: 'Extra Rome / Packing', zh: '额外的罗马时光/整理行李' },
     region: 'rome',
     regionLabel: { en: 'Rome, Italy', zh: '意大利·罗马' },
@@ -1267,8 +1267,8 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 30,
-    date: { en: 'Jun 3 (Wed)', zh: '6月5日（周五）' },
+    day: 29,
+    date: { en: 'Jun 5 (Fri)', zh: '6月5日（周五）' },
     title: { en: 'Rome → Home', zh: '罗马 → 返程' },
     region: 'travel',
     regionLabel: { en: 'Travel Day', zh: '旅行日' },

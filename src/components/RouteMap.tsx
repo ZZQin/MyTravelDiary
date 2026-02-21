@@ -22,18 +22,6 @@ export function RouteMap({ tripId, lang }: RouteMapProps) {
 
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-      <div className="p-4 bg-gradient-to-r from-sky-600 to-blue-700 text-white">
-        <h3 className="text-lg font-bold">
-          {lang === 'en' ? '🗺️ Trip Route' : '🗺️ 行程路线'}
-        </h3>
-        <p className="text-sm opacity-90">
-          {lang === 'en' 
-            ? `From ${route.origin.name.en} to ${route.destination.name.en}`
-            : `从${route.origin.name.zh}到${route.destination.name.zh}`
-          }
-        </p>
-      </div>
-      
       <div className="h-80 w-full">
         <iframe
           src={mapUrl}

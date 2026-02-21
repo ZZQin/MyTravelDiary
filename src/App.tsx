@@ -1199,13 +1199,25 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
                   </span>
                 </button>
                 {openCategory === idx && (
-                  <div className="px-4 pb-4 space-y-2">
+                  <div className="px-4 pb-4 space-y-3">
                     {cat.items.map((item, iIdx) => (
                       <div
                         key={iIdx}
-                        className={`rounded-lg p-3 text-base text-gray-700 border ${categoryColors}`}
+                        className={`rounded-xl overflow-hidden border ${categoryColors}`}
                       >
-                        • {item[lang]}
+                        {item.image && (
+                          <div className="w-full h-40 overflow-hidden">
+                            <img
+                              src={item.image}
+                              alt={item[lang]}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                        )}
+                        <div className="p-3 text-base text-gray-700">
+                          • {item[lang]}
+                        </div>
                       </div>
                     ))}
                   </div>

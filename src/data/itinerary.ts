@@ -9,6 +9,14 @@ export interface DayData {
   mapQuery: string;
   accommodation: { en: string; zh: string } | null;
   activities: { en: string[]; zh: string[] };
+  image?: string; // URL to destination image
+  coordinates?: { lat: number; lng: number }; // For route mapping
+}
+
+export interface TripRoute {
+  origin: { lat: number; lng: number; name: Bilingual };
+  destination: { lat: number; lng: number; name: Bilingual };
+  waypoints: Array<{ lat: number; lng: number; name: Bilingual; day: number }>;
 }
 
 export interface ActivityCategory {
@@ -1680,3 +1688,49 @@ export const penangCategories = thailandCategories;
 export const travelTips = thailandTips;
 export const tripOverview = thailandOverview;
 export const regionColors = thailandRegionColors;
+
+// ===== TRIP ROUTES FOR MAP DISPLAY =====
+export const tripRoutes: Record<TripId, TripRoute> = {
+  thailand: {
+    origin: { lat: 8.0, lng: 98.8, name: { en: 'Krabi, Thailand', zh: '甲米，泰国' } },
+    destination: { lat: 5.4, lng: 100.3, name: { en: 'Penang, Malaysia', zh: '槟城，马来西亚' } },
+    waypoints: [
+      { lat: 8.0, lng: 98.8, name: { en: 'Ao Nang, Krabi', zh: '安南，甲米' }, day: 1 },
+      { lat: 7.5, lng: 99.0, name: { en: 'Koh Lanta', zh: '兰塔岛' }, day: 3 },
+      { lat: 7.7, lng: 98.8, name: { en: 'Koh Phi Phi', zh: '皮皮岛' }, day: 5 },
+      { lat: 6.5, lng: 99.1, name: { en: 'Koh Lipe', zh: '丽贝岛' }, day: 6 },
+      { lat: 5.4, lng: 100.3, name: { en: 'George Town, Penang', zh: '乔治市，槟城' }, day: 13 },
+    ],
+  },
+  croatia: {
+    origin: { lat: 42.6, lng: 18.1, name: { en: 'Dubrovnik, Croatia', zh: '杜布罗夫尼克，克罗地亚' } },
+    destination: { lat: 41.9, lng: 12.5, name: { en: 'Rome, Italy', zh: '罗马，意大利' } },
+    waypoints: [
+      { lat: 42.6, lng: 18.1, name: { en: 'Dubrovnik', zh: '杜布罗夫尼克' }, day: 1 },
+      { lat: 43.5, lng: 16.4, name: { en: 'Split', zh: '斯普利特' }, day: 6 },
+      { lat: 44.1, lng: 15.2, name: { en: 'Zadar', zh: '扎达尔' }, day: 10 },
+      { lat: 44.9, lng: 14.9, name: { en: 'Senj', zh: '塞尼' }, day: 13 },
+      { lat: 45.4, lng: 12.3, name: { en: 'Venice', zh: '威尼斯' }, day: 15 },
+      { lat: 45.4, lng: 11.0, name: { en: 'Verona', zh: '维罗纳' }, day: 17 },
+      { lat: 43.4, lng: 11.3, name: { en: 'Tuscany', zh: '托斯卡纳' }, day: 19 },
+      { lat: 41.9, lng: 12.5, name: { en: 'Rome', zh: '罗马' }, day: 25 },
+    ],
+  },
+};
+
+// ===== DESTINATION IMAGES =====
+export const destinationImages: Record<TripId, Record<string, string>> = {
+  thailand: {
+    'krabi': 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800',
+    'lanta': 'https://images.unsplash.com/photo-1553603227-2358aabe821e?w=800',
+    'lipe': 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800',
+    'penang': 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800',
+  },
+  croatia: {
+    'dubrovnik': 'https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=800',
+    'split': 'https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=800',
+    'zadar': 'https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=800',
+    'italy': 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?w=800',
+    'rome': 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800',
+  },
+};

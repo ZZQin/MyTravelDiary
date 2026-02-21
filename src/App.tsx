@@ -17,6 +17,8 @@ import {
   weatherIconMap,
 } from './data/types';
 import { useLocalStorage, calculateTotalExpenses } from './hooks/useLocalStorage';
+import { RouteMap } from './components/RouteMap';
+import { DestinationImage } from './components/DestinationImage';
 
 /* ─── Utility: Date parsing for countdown ─── */
 function parseTripDates(tripId: TripId): { start: Date; end: Date } | null {
@@ -792,7 +794,8 @@ function PhotoSection({
 /* ─── Day Detail View ─── */
 function DayDetail({ 
   day, 
-  lang, 
+  lang,
+  tripId,
   regionColors,
   userData,
   onAddJournal,
@@ -805,6 +808,7 @@ function DayDetail({
 }: { 
   day: DayData; 
   lang: Language;
+  tripId: TripId;
   regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
   userData: {
     journals: Record<number, { entries: { id: string; content: string; type: string; timestamp: number }[] }>;
@@ -846,6 +850,9 @@ function DayDetail({
         </div>
         <h2 className="text-xl font-bold text-gray-900 mt-2 leading-snug">{day.title[lang]}</h2>
       </div>
+
+      {/* Destination Image */}
+      <DestinationImage tripId={tripId} region={day.region} title={day.title[lang]} />
 
       {/* Weather Widget */}
       <WeatherWidget day={day} lang={lang} />
@@ -1054,7 +1061,8 @@ function ItineraryView({
       />
       <DayDetail 
         day={day} 
-        lang={lang} 
+        lang={lang}
+        tripId={tripId}
         regionColors={regionColors}
         userData={userData}
         onAddJournal={onAddJournal}
@@ -1083,6 +1091,9 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-5 space-y-6 bg-gray-50 min-h-[60vh] pb-20">
+      {/* Route Map */}
+      <RouteMap tripId={tripId} lang={lang} />
+
       {/* Trip overview */}
       <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
         <h2 className="text-xl font-bold text-gray-900 mb-1">

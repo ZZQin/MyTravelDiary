@@ -73,17 +73,17 @@ const thailandDays: DayData[] = [
     region: 'krabi',
     regionLabel: { en: 'Ao Nang & Krabi', zh: '安南和甲米' },
     mapQuery: 'Ao Nang, Krabi, Thailand',
-    accommodation: { en: 'Ao Nang Townhouse (Ao Nang, Krabi 81180)', zh: 'Ao Nang Townhouse（泰国甲米 Ao Nang, Krabi 81180）' },
+    accommodation: { en: 'Ao Nang Townhouse (164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand)', zh: 'Ao Nang Townhouse（164 14 Klong Heng Rd Ao Nang, Mueang Krabi District, Krabi 81180, Thailand）' },
     activities: {
       en: [
-        '✈️ Flight arrives at Krabi Airport at 18:05 (6:05 PM)',
+        '✈️ You arrive 18:05, MM arrives 18:25 at Krabi Airport',
         '🛂 Clear immigration and collect luggage',
         '🚕 Take taxi or pre-booked transfer to Ao Nang (approx. 30–40 min drive)',
         '🏨 Check in to Ao Nang Townhouse (check-in after 14:00) and rest',
         '🍜 Dinner at a nearby restaurant, then sleep early to adjust to the time zone',
       ],
       zh: [
-        '✈️ 航班 18:05 抵达甲米机场（下午6:05）',
+        '✈️ 你于18:05抵达，MM于18:25抵达甲米机场',
         '🛂 办理入境手续和取行李',
         '🚕 乘坐出租车或预订的接机服务前往安南（车程约30–40分钟）',
         '🏨 抵达后入住 Ao Nang Townhouse（14:00后可办理入住），稍作休息',
@@ -126,8 +126,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'Fresh House, Sriraya, Lanta Old Town, Koh Lanta, Thailand',
     accommodation: { 
-      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630068471 | Status: Confirmed\n🛏️ Standard Fan Double Bed (Beach view, 27m², 1 king bed)\n💰 THB 1,701.02 (pay at property)', 
-      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）\n🏨 预订号：630068471 | 状态：已确认\n🛏️ 标准风扇双人房（海景，27平方米，1张大床）\n💰 1,701.02泰铢（到店支付）' 
+      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)', 
+      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）' 
     },
     activities: {
       en: [
@@ -154,8 +154,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'Koh Lanta Old Town, Thailand',
     accommodation: { 
-      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630068471 | Check-out: Mar 3 by 12:00', 
-      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）\n🏨 预订号：630068471 | 退房：3月3日12:00前' 
+      en: 'Fresh House (Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150)', 
+      zh: 'Fresh House（Sriraya, Lanta Old Town, Koh Lanta Yai, Koh Lanta, Thailand 81150）' 
     },
     activities: {
       en: [
@@ -182,8 +182,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Phi Phi', zh: '皮皮岛' },
     mapQuery: 'Phi Phi Twin Palms Bungalow, Ko Phi Phi, Thailand',
     accommodation: { 
-      en: 'Phi Phi Twin Palms Bungalow (108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000)\n🏨 Booking ID: 630065883 | Status: Confirmed\n🛏️ Standard Twin Room with Balcony (Courtyard view, 24m², 2 single beds)\n💰 THB 1,117.62 (charged Mar 1, 2026)', 
-      zh: 'Phi Phi Twin Palms Bungalow（108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000）\n🏨 预订号：630065883 | 状态：已确认\n🛏️ 标准双床阳台房（庭院景观，24平方米，2张单人床）\n💰 1,117.62泰铢（已于3月1日扣款）' 
+      en: 'Phi Phi Twin Palms Bungalow (108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000)', 
+      zh: 'Phi Phi Twin Palms Bungalow（108, Moo 7, Ao Nang Subdistrict, Meuang Karbi District, Ko Phi Phi, Thailand 81000）' 
     },
     activities: {
       en: [
@@ -212,8 +212,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'BOHO Hostel, Saladan, Koh Lanta, Thailand',
     accommodation: { 
-      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630072187 | Status: Paid and Confirmed\n🛏️ Standard Double Room (15m², 1 double bed)\n💰 USD 57.72 (already paid)', 
-      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）\n🏨 预订号：630072187 | 状态：已付款并确认\n🛏️ 标准双人房（15平方米，1张双人床）\n💰 57.72美元（已付款）' 
+      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)', 
+      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）' 
     },
     activities: {
       en: [
@@ -240,8 +240,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lanta', zh: '兰塔岛' },
     mapQuery: 'Koh Lanta Four Islands, Thailand',
     accommodation: { 
-      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)\n🏨 Booking ID: 630072187 | Check-out: Mar 6 by 10:00', 
-      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）\n🏨 预订号：630072187 | 退房：3月6日10:00前' 
+      en: 'BOHO Hostel (150 Moo 1, Saladan, Koh Lanta, Thailand 81150)', 
+      zh: 'BOHO Hostel（150 Moo 1, Saladan, Koh Lanta, Thailand 81150）' 
     },
     activities: {
       en: [
@@ -270,8 +270,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
     mapQuery: 'Varin Beach Resort, Ko Lipe, Thailand',
     accommodation: { 
-      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | Status: Paid and Confirmed\n🛏️ Fan Cottage (Garden view, 28m², 1 king bed) — includes Breakfast & Free WiFi\n💰 CHF 141.20 (already paid)', 
-      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 状态：已付款并确认\n🛏️ 风扇小屋（花园景观，28平方米，1张大床）— 含早餐和免费WiFi\n💰 141.20瑞士法郎（已付款）' 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)', 
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）' 
     },
     activities: {
       en: [
@@ -298,8 +298,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
     mapQuery: 'Koh Lipe, Satun, Thailand',
     accommodation: { 
-      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | 4 nights', 
-      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 共4晚' 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)', 
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）' 
     },
     activities: {
       en: [
@@ -326,8 +326,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
     mapQuery: 'Sunrise Beach, Koh Lipe, Thailand',
     accommodation: { 
-      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | includes Breakfast', 
-      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 含早餐' 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)', 
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）' 
     },
     activities: {
       en: [
@@ -354,8 +354,8 @@ const thailandDays: DayData[] = [
     regionLabel: { en: 'Koh Lipe', zh: '丽贝岛' },
     mapQuery: 'Varin Beach Resort, Koh Lipe, Thailand',
     accommodation: { 
-      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)\n🏨 Booking ID: 629167643 | Check-out: Mar 10 by 10:00', 
-      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）\n🏨 预订号：629167643 | 退房：3月10日10:00前' 
+      en: 'Varin Beach Resort (171 M7, Ko Lipe, Thailand 91000)', 
+      zh: 'Varin Beach Resort（171 M7, Ko Lipe, Thailand 91000）' 
     },
     activities: {
       en: [
@@ -408,7 +408,7 @@ const thailandDays: DayData[] = [
     region: 'travel',
     regionLabel: { en: 'Travel Day', zh: '旅行日' },
     mapQuery: 'George Town, Penang, Malaysia',
-    accommodation: { en: 'Airbnb in George Town, Penang', zh: '槟城乔治市民宿' },
+    accommodation: { en: 'Airbnb in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
     activities: {
       en: [
         '🛥️ Morning: Leave Koh Lipe by ferry, via Langkawi or Kuala Perlis',
@@ -435,7 +435,7 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Armenian Street, George Town, Penang, Malaysia',
-    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
+    accommodation: { en: 'Airbnb in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
     activities: {
       en: [
         '🚶 Explore UNESCO Heritage Zone: Armenian Street, Love Lane, and surroundings',
@@ -460,7 +460,7 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Penang Hill, Malaysia',
-    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
+    accommodation: { en: 'Airbnb in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
     activities: {
       en: [
         '🚡 Take the funicular up Penang Hill for island views',
@@ -485,7 +485,7 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Cheong Fatt Tze Mansion, Penang, Malaysia',
-    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
+    accommodation: { en: 'Airbnb in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
     activities: {
       en: [
         '🍜 Join a guided food tour in George Town: char kway teow, laksa, Hokkien mee, nasi lemak, and more',
@@ -510,7 +510,7 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Penang National Park, Malaysia',
-    accommodation: { en: 'Airbnb in George Town', zh: '乔治市民宿' },
+    accommodation: { en: 'Airbnb in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
     activities: {
       en: [
         '🥾 Hike through rainforest trails in Penang National Park',
@@ -535,7 +535,7 @@ const thailandDays: DayData[] = [
     region: 'penang',
     regionLabel: { en: 'Penang', zh: '槟城' },
     mapQuery: 'Gurney Drive, Penang, Malaysia',
-    accommodation: { en: 'Airbnb in George Town (last night)', zh: '乔治市民宿（最后一晚）' },
+    accommodation: { en: 'Airbnb in George Town, last night (22, Lebuh Dickens, George Town, Pulau Pinang 10050)', zh: '乔治市民宿（最后一晚，22, Lebuh Dickens, George Town, Pulau Pinang 10050）' },
     activities: {
       en: [
         '😴 Sleep in and have a late breakfast',
@@ -964,43 +964,45 @@ const croatiaDays: DayData[] = [
   {
     day: 17,
     date: { en: 'May 24 (Sun)', zh: '5月24日（周日）' },
-    title: { en: 'Venice → Milan', zh: '威尼斯 → 米兰' },
+    title: { en: 'Venice → Verona', zh: '威尼斯 → 维罗纳' },
     region: 'italy',
-    regionLabel: { en: 'Milan, Italy', zh: '意大利·米兰' },
-    mapQuery: 'Milano Centrale, Italy',
-    accommodation: { en: 'Milan Hotel', zh: '米兰酒店' },
+    regionLabel: { en: 'Verona, Italy', zh: '意大利·维罗纳' },
+    mapQuery: 'Arena di Verona, Italy',
+    accommodation: { en: 'Verona Hotel', zh: '维罗纳酒店' },
     activities: {
       en: [
         '☕ Easy morning in Venice',
-        '🚄 Late morning high-speed train to Milano Centrale (~2–2.5 hours)',
-        '⛪ Duomo exterior and Galleria Vittorio Emanuele II',
-        '🍽️ Early dinner, early rest',
+        '🚄 Late morning high-speed train to Verona (~1–1.5 hours)',
+        '🏛️ Arena di Verona: Ancient Roman amphitheater',
+        '💕 Juliet\'s House (Casa di Giulietta): Iconic balcony',
+        '🍽️ Dinner in the historic center',
       ],
       zh: [
         '☕ 早上在威尼斯悠闲吃早餐、散步',
-        '🚄 中午左右乘高速火车到米兰中央车站（约2–2.5小时）',
-        '⛪ 参观米兰大教堂外观和埃马努埃莱二世长廊',
-        '🍽️ 早点吃晚餐，早点休息',
+        '🚄 中午左右乘高速火车到维罗纳（约1–1.5小时）',
+        '🏛️ 维罗纳竞技场：古罗马圆形剧场',
+        '💕 朱丽叶之家（Casa di Giulietta）：经典阳台',
+        '🍽️ 在历史中心享用晚餐',
       ],
     },
   },
   {
     day: 18,
     date: { en: 'May 25 (Mon)', zh: '5月25日（周一）' },
-    title: { en: 'Milan → Siena → Tuscany Base', zh: '米兰 → 锡耶纳 → 托斯卡纳基地' },
+    title: { en: 'Verona → Siena → Tuscany Base', zh: '维罗纳 → 锡耶纳 → 托斯卡纳基地' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
     mapQuery: 'Castelnuovo Berardenga, Tuscany, Italy',
     accommodation: { en: 'Agriturismo in Castelnuovo Berardenga', zh: 'Castelnuovo Berardenga 乡村酒店' },
     activities: {
       en: [
-        '🚄 Morning train Milan → Siena (via Florence, ~3–3.5 hours)',
+        '🚄 Morning train Verona → Siena (via Florence, ~3–3.5 hours)',
         '🚗 Pick up rental car near Siena',
         '🏛️ Short Siena walk: Piazza del Campo, Duomo exterior',
         '🏨 20–30 min drive to Castelnuovo Berardenga',
       ],
       zh: [
-        '🚄 早上从米兰乘火车经佛罗伦萨到锡耶纳（约3–3.5小时）',
+        '🚄 早上从维罗纳乘火车经佛罗伦萨到锡耶纳（约3–3.5小时）',
         '🚗 在锡耶纳附近取租车',
         '🏛️ 简单逛逛坎波广场和大教堂外观',
         '🏨 开车约20–30分钟抵达Castelnuovo Berardenga',
@@ -1342,7 +1344,8 @@ const croatiaCategories: ActivityCategory[] = [
       { en: 'St. Mark\'s Square & Basilica: Heart of Venice', zh: '圣马可广场和大教堂：威尼斯的心脏' },
       { en: 'Rialto Bridge: Iconic crossing over Grand Canal', zh: '里亚托桥：大运河上的标志性建筑' },
       { en: 'Grand Canal Vaporetto: Scenic water bus ride', zh: '大运河水上巴士：风景优美的水上交通' },
-      { en: 'Milan Duomo: Gothic cathedral and Galleria Vittorio Emanuele II', zh: '米兰大教堂：哥特式教堂和埃马努埃莱二世长廊' },
+      { en: 'Arena di Verona: Ancient Roman amphitheater', zh: '维罗纳竞技场：古罗马圆形剧场' },
+      { en: 'Juliet\'s House (Casa di Giulietta): Iconic balcony', zh: '朱丽叶之家（Casa di Giulietta）：经典阳台' },
     ],
   },
   {
@@ -1441,8 +1444,8 @@ const croatiaTips: TipSection[] = [
       { en: 'Split → Hvar: Fast ferry (50–70 min each way)', zh: '斯普利特 → 赫瓦尔：快速渡轮（单程50–70分钟）' },
       { en: 'Split → Zadar: Bus (~2–3 hours)', zh: '斯普利特 → 扎达尔：大巴（约2–3小时）' },
       { en: 'Senj → Venice: Bus via Rijeka (~5.5–6 hours total)', zh: '塞尼 → 威尼斯：经里耶卡乘大巴（总计约5.5–6小时）' },
-      { en: 'Venice → Milan: High-speed train (~2–2.5 hours)', zh: '威尼斯 → 米兰：高速火车（约2–2.5小时）' },
-      { en: 'Milan → Siena: Train via Florence (~3–3.5 hours)', zh: '米兰 → 锡耶纳：经佛罗伦萨乘火车（约3–3.5小时）' },
+      { en: 'Venice → Verona: High-speed train (~1–1.5 hours)', zh: '威尼斯 → 维罗纳：高速火车（约1–1.5小时）' },
+      { en: 'Verona → Siena: Train via Florence (~3–3.5 hours)', zh: '维罗纳 → 锡耶纳：经佛罗伦萨乘火车（约3–3.5小时）' },
       { en: 'Tuscany: Rental car recommended for flexibility', zh: '托斯卡纳：建议租车以便灵活出行' },
     ],
   },
@@ -1509,25 +1512,25 @@ const thailandOverview: TripOverview = {
     {
       location: { en: 'Koh Lanta (Lanta Old Town)', zh: '兰塔岛老城' },
       dates: { en: 'Mar 1 – Mar 3 (2 nights)', zh: '3月1日 – 3月3日（2晚）' },
-      hotel: { en: 'Fresh House (#630068471)', zh: 'Fresh House（#630068471）' },
+      hotel: { en: 'Fresh House', zh: 'Fresh House' },
       region: 'lanta',
     },
     {
       location: { en: 'Koh Phi Phi', zh: '皮皮岛' },
       dates: { en: 'Mar 3 – Mar 4 (1 night)', zh: '3月3日 – 3月4日（1晚）' },
-      hotel: { en: 'Phi Phi Twin Palms Bungalow (#630065883)', zh: 'Phi Phi Twin Palms Bungalow（#630065883）' },
+      hotel: { en: 'Phi Phi Twin Palms Bungalow', zh: 'Phi Phi Twin Palms Bungalow' },
       region: 'lanta',
     },
     {
       location: { en: 'Koh Lanta (Sala Dan)', zh: '兰塔岛 Sala Dan' },
       dates: { en: 'Mar 4 – Mar 6 (2 nights)', zh: '3月4日 – 3月6日（2晚）' },
-      hotel: { en: 'BOHO Hostel (#630072187)', zh: 'BOHO Hostel（#630072187）' },
+      hotel: { en: 'BOHO Hostel', zh: 'BOHO Hostel' },
       region: 'lanta',
     },
     {
       location: { en: 'Koh Lipe', zh: '丽贝岛' },
       dates: { en: 'Mar 6 – Mar 10 (4 nights)', zh: '3月6日 – 3月10日（4晚）' },
-      hotel: { en: 'Varin Beach Resort (#629167643)', zh: 'Varin Beach Resort（#629167643）' },
+      hotel: { en: 'Varin Beach Resort', zh: 'Varin Beach Resort' },
       region: 'lipe',
     },
     {
@@ -1573,7 +1576,7 @@ const croatiaOverview: TripOverview = {
       region: 'italy',
     },
     {
-      location: { en: 'Milan, Italy', zh: '米兰，意大利' },
+      location: { en: 'Verona, Italy', zh: '维罗纳，意大利' },
       dates: { en: 'May 24', zh: '5月24日' },
       hotel: { en: 'TBD', zh: '待定' },
       region: 'italy',

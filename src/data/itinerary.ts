@@ -414,7 +414,7 @@ const thailandDays: DayData[] = [
     region: 'travel',
     regionLabel: { en: 'Travel Day', zh: '旅行日' },
     mapQuery: 'George Town, Penang, Malaysia',
-    accommodation: { en: 'Airbnb Room in George Town (22 Lebuh Dickens, Penang)\n🏠 Hosted by Jamie\n🕐 Check-in: Mar 11, 1:00 PM | Check-out: Mar 17, 11:00 AM', zh: '乔治市民宿（22 Lebuh Dickens, 槟城）\n🏠 房东：Jamie\n🕐 入住：3月11日13:00 | 退房：3月17日11:00' },
+    accommodation: { en: 'Airbnb Room in George Town (22, Lebuh Dickens, George Town, Pulau Pinang 10050)\n🏠 Hosted by Jamie\n🕐 Check-in: Mar 11, 1:00 PM | Check-out: Mar 17, 11:00 AM', zh: '乔治市民宿（22, Lebuh Dickens, George Town, Pulau Pinang 10050）\n🏠 房东：Jamie\n🕐 入住：3月11日13:00 | 退房：3月17日11:00' },
     activities: {
       en: [
         '🛥️ Morning: Leave Koh Lipe by ferry, via Langkawi or Kuala Perlis',

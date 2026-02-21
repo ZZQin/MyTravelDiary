@@ -6,6 +6,8 @@ A personal travel itinerary and journal app built with React, TypeScript, and Vi
 
 **GitHub Pages:** https://zzqin.github.io/MyTravelDiary/
 
+**Last Updated:** February 21, 2026
+
 ## Features
 
 - 📅 Day-by-day itinerary view

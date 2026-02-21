@@ -17,6 +17,7 @@ import {
   weatherIconMap,
 } from './data/types';
 import { useLocalStorage, calculateTotalExpenses } from './hooks/useLocalStorage';
+import { CalendarView } from './components/CalendarView';
 
 /* ─── Utility: Date parsing for countdown ─── */
 function parseTripDates(tripId: TripId): { start: Date; end: Date } | null {
@@ -1089,6 +1090,9 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-5 space-y-6 bg-gray-50 min-h-[60vh] pb-20">
+      {/* All Trips Calendar */}
+      <CalendarView lang={lang} />
+
       {/* Route Map */}
       <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
         <h2 className="text-xl font-bold text-gray-900 mb-3">

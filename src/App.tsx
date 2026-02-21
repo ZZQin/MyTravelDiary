@@ -17,7 +17,6 @@ import {
   weatherIconMap,
 } from './data/types';
 import { useLocalStorage, calculateTotalExpenses } from './hooks/useLocalStorage';
-import { RouteMap } from './components/RouteMap';
 
 /* ─── Utility: Date parsing for countdown ─── */
 function parseTripDates(tripId: TripId): { start: Date; end: Date } | null {
@@ -1091,35 +1090,6 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
   return (
     <div className="max-w-2xl mx-auto px-4 py-5 space-y-6 bg-gray-50 min-h-[60vh] pb-20">
       {/* Route Map */}
-      <RouteMap tripId={tripId} lang={lang} />
-
-      {/* Trip overview */}
-      <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-        <h2 className="text-xl font-bold text-gray-900 mb-1">
-          {lang === 'en' ? '🌏 Trip Overview' : '🌏 行程概览'}
-        </h2>
-        <p className="text-base text-gray-600 mb-4">{tripData.overview.duration[lang]}</p>
-
-        <div className="space-y-3">
-          {tripData.overview.stays.map((stay, idx) => {
-            const colors = rc(regionColors, stay.region);
-            return (
-              <div key={idx} className={`${colors.light} rounded-xl p-4 border ${colors.border}`}>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className={`${colors.dot} w-2.5 h-2.5 rounded-full`}></span>
-                  <span className={`${colors.text} text-base font-bold`}>
-                    {stay.location[lang]}
-                  </span>
-                </div>
-                <div className="text-sm text-gray-600 ml-5">{stay.dates[lang]}</div>
-                <div className="text-sm text-gray-800 font-medium ml-5">🏨 {stay.hotel[lang]}</div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Route Map */}
       <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
         <h2 className="text-xl font-bold text-gray-900 mb-3">
           {lang === 'en' ? '🗺️ Route Map' : '🗺️ 路线地图'}
@@ -1147,6 +1117,32 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
                 <span className={`${colors.dot} w-2 h-2 rounded-full`}></span>
                 {stay.location[lang].split(',')[0]}
               </span>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Trip overview */}
+      <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+        <h2 className="text-xl font-bold text-gray-900 mb-1">
+          {lang === 'en' ? '🌏 Trip Overview' : '🌏 行程概览'}
+        </h2>
+        <p className="text-base text-gray-600 mb-4">{tripData.overview.duration[lang]}</p>
+
+        <div className="space-y-3">
+          {tripData.overview.stays.map((stay, idx) => {
+            const colors = rc(regionColors, stay.region);
+            return (
+              <div key={idx} className={`${colors.light} rounded-xl p-4 border ${colors.border}`}>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className={`${colors.dot} w-2.5 h-2.5 rounded-full`}></span>
+                  <span className={`${colors.text} text-base font-bold`}>
+                    {stay.location[lang]}
+                  </span>
+                </div>
+                <div className="text-sm text-gray-600 ml-5">{stay.dates[lang]}</div>
+                <div className="text-sm text-gray-800 font-medium ml-5">🏨 {stay.hotel[lang]}</div>
+              </div>
             );
           })}
         </div>

@@ -4,7 +4,7 @@ A personal travel itinerary and journal app built with React, TypeScript, and Vi
 
 ## Live Demo
 
-Access the web app here: **https://resplendent-mandazi-6da2ab.netlify.app/**
+**GitHub Pages:** https://zzqin.github.io/MyTravelDiary/
 
 ## Features
 
@@ -40,6 +40,16 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deploy to GitHub Pages
+
+To enable GitHub Pages deployment:
+
+1. Go to your repository on GitHub: **Settings → Pages**
+2. Under "Source", select **"GitHub Actions"**
+3. The workflow file (`.github/workflows/deploy.yml`) is already created
+4. Push any change to trigger the deployment
+5. Your app will be available at: `https://zzqin.github.io/MyTravelDiary/`
 
 ---
 

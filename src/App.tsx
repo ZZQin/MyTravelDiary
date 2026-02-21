@@ -1555,20 +1555,6 @@ export function App() {
   const [isPackingOpen, setIsPackingOpen] = useState(false);
   const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  
-  // Refs to track current state without re-triggering effect
-  const headerCollapsedRef = useRef(isHeaderCollapsed);
-  const navCollapsedRef = useRef(isNavCollapsed);
-  
-  // Keep refs in sync with state
-  useEffect(() => {
-    headerCollapsedRef.current = isHeaderCollapsed;
-  }, [isHeaderCollapsed]);
-  
-  useEffect(() => {
-    navCollapsedRef.current = isNavCollapsed;
-  }, [isNavCollapsed]);
 
   const {
     isLoaded,
@@ -1586,48 +1572,7 @@ export function App() {
     deletePackingItem,
   } = useLocalStorage(currentTrip);
 
-  // Scroll detection for collapse
-  useEffect(() => {
-    let ticking = false;
-    
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          const scrollDelta = currentScrollY - lastScrollY;
-          const isScrollingDown = scrollDelta > 3;
-          const isScrollingUp = scrollDelta < -3;
-          const isCurrentlyHeaderCollapsed = headerCollapsedRef.current;
-          const isCurrentlyNavCollapsed = navCollapsedRef.current;
-          
-          // Header collapse - only set state if actually changing
-          if (isScrollingDown && currentScrollY > 80 && !isCurrentlyHeaderCollapsed) {
-            setIsHeaderCollapsed(true);
-          } else if (isScrollingUp && currentScrollY < 150 && isCurrentlyHeaderCollapsed) {
-            setIsHeaderCollapsed(false);
-          } else if (currentScrollY < 10 && isCurrentlyHeaderCollapsed) {
-            setIsHeaderCollapsed(false);
-          }
-          
-          // Nav collapse - only set state if actually changing
-          if (isScrollingDown && currentScrollY > 150 && !isCurrentlyNavCollapsed) {
-            setIsNavCollapsed(true);
-          } else if (isScrollingUp && currentScrollY < 200 && isCurrentlyNavCollapsed) {
-            setIsNavCollapsed(false);
-          } else if (currentScrollY < 10 && isCurrentlyNavCollapsed) {
-            setIsNavCollapsed(false);
-          }
-          
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
 
   // Reset day when switching trips
   const handleSetTrip = useCallback((trip: TripId) => {

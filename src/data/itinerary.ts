@@ -986,29 +986,54 @@ const croatiaDays: DayData[] = [
   {
     day: 17,
     date: { en: 'May 24 (Sun)', zh: '5月24日（周日）' },
-    title: { en: 'Venice → Milan', zh: '威尼斯 → 米兰' },
+    title: { en: 'Venice → Verona → Milan', zh: '威尼斯 → 维罗纳 → 米兰' },
     region: 'italy',
-    regionLabel: { en: 'Milan, Italy', zh: '意大利·米兰' },
-    mapQuery: 'Milano Centrale, Italy',
-    accommodation: { en: 'Milan Hotel', zh: '米兰酒店' },
+    regionLabel: { en: 'Verona, Italy', zh: '意大利·维罗纳' },
+    mapQuery: 'Verona Arena, Italy',
+    accommodation: { en: 'Verona Hotel', zh: '维罗纳酒店' },
     activities: {
       en: [
-        '☕ Easy morning in Venice',
-        '🚄 Late morning high-speed train to Milano Centrale (~2–2.5 hours)',
-        '⛪ Duomo exterior and Galleria Vittorio Emanuele II',
-        '🍽️ Early dinner, early rest',
+        '☕ Morning in Venice, check out',
+        '🚄 Train to Verona (~1.5 hours)',
+        '🏛️ Afternoon: Arena di Verona — Roman amphitheater older than Colosseum',
+        '💕 Evening: Juliet\'s House (Casa di Giulietta) — balcony of Romeo & Juliet',
+        '🍝 Dinner in Piazza delle Erbe, overnight in Verona',
       ],
       zh: [
-        '☕ 早上在威尼斯悠闲吃早餐、散步',
-        '🚄 中午左右乘高速火车到米兰中央车站（约2–2.5小时）',
-        '⛪ 参观米兰大教堂外观和埃马努埃莱二世长廊',
-        '🍽️ 早点吃晚餐，早点休息',
+        '☕ 上午在威尼斯最后逛逛，退房',
+        '🚄 乘火车前往维罗纳（约1.5小时）',
+        '🏛️ 下午：维罗纳圆形竞技场 — 比罗马斗兽场历史还长的罗马 amphitheater',
+        '💕 傍晚：朱丽叶之家（Casa di Giulietta）— 罗密欧与朱丽叶的阳台',
+        '🍝 在百草广场晚餐，维罗纳过夜',
       ],
     },
   },
   {
     day: 18,
     date: { en: 'May 25 (Mon)', zh: '5月25日（周一）' },
+    title: { en: 'Verona → Milan', zh: '维罗纳 → 米兰' },
+    region: 'italy',
+    regionLabel: { en: 'Milan, Italy', zh: '意大利·米兰' },
+    mapQuery: 'Milano Centrale, Italy',
+    accommodation: { en: 'Milan Hotel', zh: '米兰酒店' },
+    activities: {
+      en: [
+        '🌅 Morning stroll: Ponte Pietra bridge, Castelvecchio',
+        '🚄 Late morning train to Milan (~1.5 hours)',
+        '⛪ Duomo exterior and Galleria Vittorio Emanuele II',
+        '🍽️ Early dinner, early rest',
+      ],
+      zh: [
+        '🌅 上午漫步：石桥（Ponte Pietra）、老城堡（Castelvecchio）',
+        '🚄 中午左右乘火车前往米兰（约1.5小时）',
+        '⛪ 参观米兰大教堂外观和埃马努埃莱二世长廊',
+        '🍽️ 早点吃晚餐，早点休息',
+      ],
+    },
+  },
+  {
+    day: 20,
+    date: { en: 'May 26 (Tue)', zh: '5月26日（周二）' },
     title: { en: 'Milan → Siena → Tuscany Base', zh: '米兰 → 锡耶纳 → 托斯卡纳基地' },
     region: 'italy',
     regionLabel: { en: 'Castelnuovo Berardenga, Tuscany', zh: '意大利·托斯卡纳' },
@@ -1032,7 +1057,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 19,
+    day: 20,
     date: { en: 'May 26 (Tue)', zh: '5月26日（周二）' },
     title: { en: 'Chianti Wineries & Festivals', zh: '基安蒂酒庄与节庆' },
     region: 'italy',
@@ -1057,7 +1082,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 20,
+    day: 21,
     date: { en: 'May 27 (Wed)', zh: '5月27日（周三）' },
     title: { en: 'Val d\'Orcia: Pienza & Montalcino', zh: '瓦尔道尔恰：皮恩扎与蒙塔尔奇诺' },
     region: 'italy',
@@ -1082,7 +1107,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 21,
+    day: 22,
     date: { en: 'May 28 (Thu)', zh: '5月28日（周四）' },
     title: { en: 'Montepulciano, Hot Springs & Festival', zh: '蒙特普尔恰诺、温泉与节庆' },
     region: 'italy',
@@ -1105,7 +1130,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 22,
+    day: 23,
     date: { en: 'May 29 (Fri)', zh: '5月29日（周五）' },
     title: { en: 'Siena Deep Dive', zh: '锡耶纳深度游' },
     region: 'italy',
@@ -1128,7 +1153,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 23,
+    day: 24,
     date: { en: 'May 30 (Sat)', zh: '5月30日（周六）' },
     title: { en: 'Cortona & Arezzo', zh: '科尔托纳与阿雷佐' },
     region: 'italy',
@@ -1151,7 +1176,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 24,
+    day: 25,
     date: { en: 'May 31 (Sun)', zh: '5月31日（周日）' },
     title: { en: 'Maggiolata Festival & Transfer to Rome', zh: '花卉节与前往罗马' },
     region: 'italy',
@@ -1176,7 +1201,7 @@ const croatiaDays: DayData[] = [
 
   // ===== ROME (Days 25-29) =====
   {
-    day: 25,
+    day: 26,
     date: { en: 'Jun 1 (Mon)', zh: '6月1日（周一）' },
     title: { en: 'Ancient Rome Easy Day', zh: '古罗马轻松日' },
     region: 'rome',
@@ -1201,7 +1226,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 26,
+    day: 27,
     date: { en: 'Jun 2 (Tue)', zh: '6月2日（周二）' },
     title: { en: 'Vatican Area', zh: '梵蒂冈区域' },
     region: 'rome',
@@ -1224,7 +1249,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 27,
+    day: 28,
     date: { en: 'Jun 3 (Wed)', zh: '6月3日（周三）' },
     title: { en: 'Classic Rome Walk', zh: '经典罗马步行' },
     region: 'rome',
@@ -1249,7 +1274,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 28,
+    day: 29,
     date: { en: 'Jun 4 (Thu)', zh: '6月4日（周四）' },
     title: { en: 'Extra Rome / Packing', zh: '额外的罗马时光/整理行李' },
     region: 'rome',
@@ -1272,7 +1297,7 @@ const croatiaDays: DayData[] = [
     },
   },
   {
-    day: 29,
+    day: 30,
     date: { en: 'Jun 5 (Fri)', zh: '6月5日（周五）' },
     title: { en: 'Rome → Home', zh: '罗马 → 返程' },
     region: 'travel',

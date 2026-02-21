@@ -31,7 +31,7 @@ export function RouteMap({ tripId, lang }: RouteMapProps) {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Trip Route"
+          title="Route Map"
         />
       </div>
       

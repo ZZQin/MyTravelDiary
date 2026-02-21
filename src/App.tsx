@@ -858,6 +858,26 @@ function DayDetail({
         <div className="space-y-2.5">
           {day.activities[lang].map((activity, idx) => {
             const isVisited = visitedActivities[idx] || false;
+            const isWorkCall = activity.includes('WORK CALL') || activity.includes('工作电话');
+            
+            if (isWorkCall) {
+              return (
+                <div
+                  key={idx}
+                  className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-4 shadow-sm border-2 border-amber-300"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center">
+                      <span className="text-white text-sm">💼</span>
+                    </div>
+                    <span className="text-base leading-relaxed flex-1 font-semibold text-amber-900">
+                      {activity.replace('💻 ', '').replace('💻 ', '')}
+                    </span>
+                  </div>
+                </div>
+              );
+            }
+            
             return (
               <div
                 key={idx}

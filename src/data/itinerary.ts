@@ -73,7 +73,7 @@ const thailandDays: DayData[] = [
     region: 'krabi',
     regionLabel: { en: 'Ao Nang & Krabi', zh: '安南和甲米' },
     mapQuery: 'Ao Nang, Krabi, Thailand',
-    accommodation: { en: 'Ao Nang Townhouse (Ao Nang, Krabi 81180)', zh: 'Ao Nang Townhouse（泰国甲米 Ao Nang, Krabi 81180）' },
+    accommodation: { en: 'Ao Nang Townhouse (Opposite De Malee Private Pool Villa, behind Link Hostel, Ao Nang, Krabi 81180)\n🍜 Host Restaurant: Bryde Restaurant', zh: 'Ao Nang Townhouse（Opposite De Malee Private Pool Villa, behind Link Hostel, 泰国甲米 Ao Nang, Krabi 81180）\n🍜 房东餐厅：Bryde Restaurant' },
     activities: {
       en: [
         '✈️ Flight arrives at Krabi Airport at 18:05 (6:05 PM)',
@@ -414,7 +414,7 @@ const thailandDays: DayData[] = [
     region: 'travel',
     regionLabel: { en: 'Travel Day', zh: '旅行日' },
     mapQuery: 'George Town, Penang, Malaysia',
-    accommodation: { en: 'Airbnb in George Town, Penang', zh: '槟城乔治市民宿' },
+    accommodation: { en: 'Airbnb Room in George Town (22 Lebuh Dickens, Penang)\n🏠 Hosted by Jamie\n🕐 Check-in: Mar 11, 1:00 PM | Check-out: Mar 17, 11:00 AM', zh: '乔治市民宿（22 Lebuh Dickens, 槟城）\n🏠 房东：Jamie\n🕐 入住：3月11日13:00 | 退房：3月17日11:00' },
     activities: {
       en: [
         '🛥️ Morning: Leave Koh Lipe by ferry, via Langkawi or Kuala Perlis',

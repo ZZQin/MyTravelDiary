@@ -850,34 +850,6 @@ function DayDetail({
       {/* Weather Widget */}
       <WeatherWidget day={day} lang={lang} />
 
-      {/* Journal Section */}
-      <JournalSection
-        day={day.day}
-        lang={lang}
-        journalData={userData.journals[day.day]}
-        onAddEntry={(entry) => onAddJournal(day.day, entry)}
-        onDeleteEntry={(entryId) => onDeleteJournal(day.day, entryId)}
-      />
-
-      {/* Expense Section */}
-      <ExpenseSection
-        day={day.day}
-        lang={lang}
-        expenseData={userData.expenses[day.day]}
-        onAddExpense={(expense) => onAddExpense(day.day, expense)}
-        onDeleteExpense={(expenseId) => onDeleteExpense(day.day, expenseId)}
-        tripCurrency={tripCurrency}
-      />
-
-      {/* Photo Memories */}
-      <PhotoSection
-        day={day.day}
-        lang={lang}
-        photoData={userData.photos[day.day]}
-        onAddPhoto={(photo) => onAddPhoto(day.day, photo)}
-        onDeletePhoto={(photoId) => onDeletePhoto(day.day, photoId)}
-      />
-
       {/* Activities with checkmarks */}
       <div className="space-y-3">
         <h3 className="text-lg font-bold text-gray-800">
@@ -913,6 +885,34 @@ function DayDetail({
           })}
         </div>
       </div>
+
+      {/* Journal Section */}
+      <JournalSection
+        day={day.day}
+        lang={lang}
+        journalData={userData.journals[day.day]}
+        onAddEntry={(entry) => onAddJournal(day.day, entry)}
+        onDeleteEntry={(entryId) => onDeleteJournal(day.day, entryId)}
+      />
+
+      {/* Expense Section */}
+      <ExpenseSection
+        day={day.day}
+        lang={lang}
+        expenseData={userData.expenses[day.day]}
+        onAddExpense={(expense) => onAddExpense(day.day, expense)}
+        onDeleteExpense={(expenseId) => onDeleteExpense(day.day, expenseId)}
+        tripCurrency={tripCurrency}
+      />
+
+      {/* Photo Memories */}
+      <PhotoSection
+        day={day.day}
+        lang={lang}
+        photoData={userData.photos[day.day]}
+        onAddPhoto={(photo) => onAddPhoto(day.day, photo)}
+        onDeletePhoto={(photoId) => onDeletePhoto(day.day, photoId)}
+      />
 
       {/* Accommodation */}
       {day.accommodation && (

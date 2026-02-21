@@ -36,7 +36,7 @@ export interface TripOverview {
   }[];
 }
 export interface TripData {
-  id: 'thailand' | 'croatia';
+  id: 'thailand' | 'croatia' | 'china';
   name: { en: string; zh: string };
   footer: { en: string; zh: string };
   regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
@@ -1614,7 +1614,7 @@ const croatiaOverview: TripOverview = {
   ],
 };
 // ===== EXPORT TRIPS =====
-export const trips: Record<'thailand' | 'croatia', TripData> = {
+export const trips: Record<'thailand' | 'croatia' | 'china', TripData> = {
   thailand: {
     id: 'thailand',
     name: { en: 'Thailand & Malaysia', zh: '泰国和马来西亚' },
@@ -1634,6 +1634,16 @@ export const trips: Record<'thailand' | 'croatia', TripData> = {
     categories: croatiaCategories,
     tips: croatiaTips,
     overview: croatiaOverview,
+  },
+  china: {
+    id: 'china',
+    name: { en: 'China: Beijing & Inner Mongolia', zh: '中国：北京与内蒙古' },
+    footer: { en: '🇨🇳 China 2026 · Have a wonderful trip!', zh: '🇨🇳 中国 2026 · 祝旅途愉快！' },
+    regionColors: chinaRegionColors,
+    days: chinaDays,
+    categories: chinaCategories,
+    tips: chinaTips,
+    overview: chinaOverview,
   },
 };
 // ===== TRIP ROUTES FOR MAP DISPLAY =====
@@ -1663,5 +1673,337 @@ export const tripRoutes: Record<TripId, TripRoute> = {
       { lat: 41.9, lng: 12.5, name: { en: 'Rome', zh: '罗马' }, day: 25 },
     ],
   },
+  china: {
+    origin: { lat: 39.9, lng: 116.4, name: { en: 'Beijing, China', zh: '中国·北京' } },
+    destination: { lat: 39.9, lng: 116.4, name: { en: 'Beijing, China', zh: '中国·北京' } },
+    waypoints: [
+      { lat: 39.9, lng: 116.4, name: { en: 'Beijing', zh: '北京' }, day: 1 },
+      { lat: 40.8, lng: 111.7, name: { en: 'Hohhot', zh: '呼和浩特' }, day: 4 },
+      { lat: 39.6, lng: 109.8, name: { en: 'Ordos Desert', zh: '鄂尔多斯沙漠' }, day: 7 },
+      { lat: 39.9, lng: 116.4, name: { en: 'Beijing', zh: '北京' }, day: 9 },
+    ],
+  },
 };
 
+// ===== CHINA TRIP DATA =====
+const chinaRegionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
+  beijing: { bg: 'bg-red-600', text: 'text-red-700', light: 'bg-red-50', border: 'border-red-400', dot: 'bg-red-500' },
+  hohhot: { bg: 'bg-emerald-600', text: 'text-emerald-700', light: 'bg-emerald-50', border: 'border-emerald-400', dot: 'bg-emerald-500' },
+  ordos: { bg: 'bg-amber-600', text: 'text-amber-700', light: 'bg-amber-50', border: 'border-amber-400', dot: 'bg-amber-500' },
+};
+
+const chinaDays: DayData[] = [
+  {
+    day: 1,
+    date: { en: 'Apr 19 (Sat)', zh: '4月19日（周六）' },
+    title: { en: 'Arrive Beijing + Social Dinner #1', zh: '抵达北京 + 社交晚宴 #1' },
+    region: 'beijing',
+    regionLabel: { en: 'Beijing, China', zh: '中国·北京' },
+    mapQuery: 'Wangfujing, Beijing, China',
+    accommodation: { en: 'Hotel near Wangfujing / Dongsishitiao', zh: '王府井/东四十条附近酒店' },
+    activities: {
+      en: [
+        '✈️ Land at Beijing Capital Airport at 08:45',
+        '🏨 Check-in to hotel near Wangfujing / Dongsishitiao',
+        '🚶 Afternoon: Rest, short walk (hutongs / Wangfujing, or corner of Forbidden City)',
+        '🍽️ Evening: Social dinner with friends/family (Siji Minfu, Bianyifang, etc.)',
+      ],
+      zh: [
+        '✈️ 08:45 抵达北京首都机场',
+        '🏨 入住王府井/东四十条附近酒店',
+        '🚶 下午：休息，短途散步（胡同/王府井，或故宫一角）',
+        '🍽️ 晚上：与朋友/家人社交晚宴（四季民福、便宜坊等）',
+      ],
+    },
+  },
+  {
+    day: 2,
+    date: { en: 'Apr 20 (Sun)', zh: '4月20日（周日）' },
+    title: { en: 'Forbidden City (Core Beijing Must-See)', zh: '故宫（北京必看核心）' },
+    region: 'beijing',
+    regionLabel: { en: 'Beijing, China', zh: '中国·北京' },
+    mapQuery: 'Forbidden City, Beijing, China',
+    accommodation: { en: 'Hotel near Wangfujing', zh: '王府井附近酒店' },
+    activities: {
+      en: [
+        '🏛️ All day: Forbidden City (slow, thorough visit)',
+        '🌅 Late afternoon: Jingshan Park hill for panorama over palace roofs',
+        '🍜 Evening: Free / light dinner near hotel',
+      ],
+      zh: [
+        '🏛️ 全天：故宫（缓慢、深入的参观）',
+        '🌅 傍晚：景山公园山顶俯瞰宫殿屋顶全景',
+        '🍜 晚上：自由/轻便晚餐，酒店附近',
+      ],
+    },
+  },
+  {
+    day: 3,
+    date: { en: 'Apr 21 (Mon)', zh: '4月21日（周一）' },
+    title: { en: 'Great Wall + Social Dinner #2', zh: '长城 + 社交晚宴 #2' },
+    region: 'beijing',
+    regionLabel: { en: 'Beijing, China', zh: '中国·北京' },
+    mapQuery: 'Mutianyu Great Wall, Beijing, China',
+    accommodation: { en: 'Hotel near Wangfujing', zh: '王府井附近酒店' },
+    activities: {
+      en: [
+        '🧗 Day trip: Mutianyu Great Wall with private car/driver (~1.5 hours each way)',
+        '🌄 Late afternoon: Return to Beijing',
+        '🍽️ Evening: Second social dinner with friends/family (goodbye Beijing gathering)',
+        '💻 WORK CALL 15:00-17:00 (China time) — Hotel WiFi or nearby café',
+      ],
+      zh: [
+        '🧗 一日游：慕田峪长城，包车/司机（单程约1.5小时）',
+        '🌄 傍晚：返回北京',
+        '🍽️ 晚上：第二次与朋友/家人社交晚宴（北京告别聚会）',
+        '💻 工作电话 15:00-17:00（中国时间）— 酒店WiFi或附近咖啡馆',
+      ],
+    },
+  },
+  {
+    day: 4,
+    date: { en: 'Apr 22 (Tue)', zh: '4月22日（周二）' },
+    title: { en: 'Beijing → Hohhot', zh: '北京 → 呼和浩特' },
+    region: 'hohhot',
+    regionLabel: { en: 'Hohhot, Inner Mongolia', zh: '内蒙古·呼和浩特' },
+    mapQuery: 'Hohhot, Inner Mongolia, China',
+    accommodation: { en: 'Hohhot Hotel', zh: '呼和浩特酒店' },
+    activities: {
+      en: [
+        '🚄 Late morning: High-speed train Beijing → Hohhot (~2–2.5 hours)',
+        '🏨 Afternoon: Check-in, stretch legs around Hohhot center',
+        '⛪ Optional: Da Zhao Temple if you feel like it',
+        '🍵 Evening: Easy local dinner (Gerel Amma Milk Tea House)',
+      ],
+      zh: [
+        '🚄 上午晚些：高铁北京 → 呼和浩特（约2–2.5小时）',
+        '🏨 下午：入住，在呼和浩特市中心散步',
+        '⛪ 可选：如有兴致，参观大召寺',
+        '🍵 晚上：轻松当地晚餐（格日勒阿妈奶茶馆）',
+      ],
+    },
+  },
+  {
+    day: 5,
+    date: { en: 'Apr 23 (Wed)', zh: '4月23日（周三）' },
+    title: { en: 'Hohhot Culture', zh: '呼和浩特文化' },
+    region: 'hohhot',
+    regionLabel: { en: 'Hohhot, Inner Mongolia', zh: '内蒙古·呼和浩特' },
+    mapQuery: 'Inner Mongolia Museum, Hohhot, China',
+    accommodation: { en: 'Hohhot Hotel', zh: '呼和浩特酒店' },
+    activities: {
+      en: [
+        '🏛️ Morning: Inner Mongolia Museum (dinosaurs + nomadic culture)',
+        '⛪ Afternoon: Da Zhao + Xilitu Temple, or slow wander in old streets',
+        '🍖 Evening: Mongolian food (Bayintao Gudede stew / Said Mongolian Restaurant)',
+        '💻 WORK CALL 14:00-16:00 (China time) — Hotel lobby or café',
+      ],
+      zh: [
+        '🏛️ 上午：内蒙古博物院（恐龙+游牧文化）',
+        '⛪ 下午：大召+席力图召，或在老街悠闲漫步',
+        '🍖 晚上：蒙古美食（巴音陶古德炖菜/赛德蒙古餐厅）',
+        '💻 工作电话 14:00-16:00（中国时间）— 酒店大堂或咖啡馆',
+      ],
+    },
+  },
+  {
+    day: 6,
+    date: { en: 'Apr 24 (Thu)', zh: '4月24日（周四）' },
+    title: { en: 'Hohhot → Ordos', zh: '呼和浩特 → 鄂尔多斯' },
+    region: 'ordos',
+    regionLabel: { en: 'Ordos, Inner Mongolia', zh: '内蒙古·鄂尔多斯' },
+    mapQuery: 'Ordos, Inner Mongolia, China',
+    accommodation: { en: 'Ordos City (Kangbashi) Hotel', zh: '鄂尔多斯市（康巴什）酒店' },
+    activities: {
+      en: [
+        '🏛️ Morning: General\'s Mansion (Qing military HQ)',
+        '🚄 Afternoon: Bullet train Hohhot → Ordos (~1.5–2 hours)',
+        '🌃 Evening: Stay in Ordos city (Kangbashi), quiet walk in planned city',
+      ],
+      zh: [
+        '🏛️ 上午：将军衙署（清代军事总部）',
+        '🚄 下午：高铁呼和浩特 → 鄂尔多斯（约1.5–2小时）',
+        '🌃 晚上：入住鄂尔多斯市（康巴什），在规划城市中安静散步',
+      ],
+    },
+  },
+  {
+    day: 7,
+    date: { en: 'Apr 25 (Fri)', zh: '4月25日（周五）' },
+    title: { en: 'Into the Desert', zh: '进入沙漠' },
+    region: 'ordos',
+    regionLabel: { en: 'Ordos Desert, Inner Mongolia', zh: '内蒙古·鄂尔多斯沙漠' },
+    mapQuery: 'Seven Star Lake Desert, Ordos, China',
+    accommodation: { en: 'Desert Hotel', zh: '沙漠酒店' },
+    activities: {
+      en: [
+        '🚗 Late morning: Transfer from Ordos city to Seven Star Lake Desert Hotel',
+        '🌅 Late afternoon / sunset: First walk on the dunes, sunset',
+        '🌌 Night: Desert hotel — wow moment with sky and silence',
+      ],
+      zh: [
+        '🚗 上午晚些：从鄂尔多斯市前往七星湖沙漠酒店',
+        '🌅 傍晚/日落：第一次沙丘漫步，看日落',
+        '🌌 夜晚：沙漠酒店——与星空和寂静的震撼时刻',
+      ],
+    },
+  },
+  {
+    day: 8,
+    date: { en: 'Apr 26 (Sat)', zh: '4月26日（周六）' },
+    title: { en: 'Full Desert Day', zh: '沙漠全天' },
+    region: 'ordos',
+    regionLabel: { en: 'Ordos Desert, Inner Mongolia', zh: '内蒙古·鄂尔多斯沙漠' },
+    mapQuery: 'Ordos Desert, Inner Mongolia, China',
+    accommodation: { en: 'Ordos City Hotel', zh: '鄂尔多斯市酒店' },
+    activities: {
+      en: [
+        '🐪 Morning: Dunes around hotel, optional camel ride or short buggy drive',
+        '📸 Afternoon: More exploration, photography, reading in the desert',
+        '🌅 Sunset: Second sunset in the desert',
+        '🚗 Return to Ordos city for the night',
+      ],
+      zh: [
+        '🐪 上午：酒店周围沙丘，可选骑骆驼或短途越野车',
+        '📸 下午：更多探索、摄影、在沙漠中阅读',
+        '🌅 日落：第二次沙漠日落',
+        '🚗 返回鄂尔多斯市过夜',
+      ],
+    },
+  },
+  {
+    day: 9,
+    date: { en: 'Apr 27 (Sun)', zh: '4月27日（周日）' },
+    title: { en: 'Ordos → Beijing (Buffer Day)', zh: '鄂尔多斯 → 北京（缓冲日）' },
+    region: 'beijing',
+    regionLabel: { en: 'Beijing, China', zh: '中国·北京' },
+    mapQuery: 'Beijing, China',
+    accommodation: { en: 'Hotel near Wangfujing', zh: '王府井附近酒店' },
+    activities: {
+      en: [
+        '🌅 Morning: Easy start in Ordos, last look at the landscape',
+        '🚄 Midday: Bullet train Ordos → Hohhot → Beijing',
+        '🏨 Evening: Back in Beijing, same hotel, light dinner near hotel',
+      ],
+      zh: [
+        '🌅 上午：鄂尔多斯轻松开始，最后看看风景',
+        '🚄 中午：高铁鄂尔多斯 → 呼和浩特 → 北京',
+        '🏨 晚上：回到北京，同一家酒店，酒店附近轻便晚餐',
+      ],
+    },
+  },
+  {
+    day: 10,
+    date: { en: 'Apr 28 (Mon)', zh: '4月28日（周一）' },
+    title: { en: 'Hidden Beijing or Pure Rest', zh: '隐秘北京或纯粹休息' },
+    region: 'beijing',
+    regionLabel: { en: 'Beijing, China', zh: '中国·北京' },
+    mapQuery: 'Tanzhe Temple, Beijing, China',
+    accommodation: { en: 'Hotel near Wangfujing', zh: '王府井附近酒店' },
+    activities: {
+      en: [
+        'Option 1: Private car to Tanzhe Temple + Jietai Temple (western hills, few tourists)',
+        'Option 2: Sleep in, coffee, light hutong walk, packing',
+        '💻 WORK CALL 15:00-17:00 (China time) — Hotel or café',
+      ],
+      zh: [
+        '选项1：包车前往潭柘寺+戒台寺（西山，游客稀少）',
+        '选项2：睡懒觉、喝咖啡、轻松胡同散步、整理行李',
+        '💻 工作电话 15:00-17:00（中国时间）— 酒店或咖啡馆',
+      ],
+    },
+  },
+  {
+    day: 11,
+    date: { en: 'Apr 29 (Tue)', zh: '4月29日（周二）' },
+    title: { en: 'Flight Day', zh: '航班日' },
+    region: 'beijing',
+    regionLabel: { en: 'Beijing, China', zh: '中国·北京' },
+    mapQuery: 'Beijing Capital Airport, China',
+    accommodation: null,
+    activities: {
+      en: [
+        '🌅 Morning: Slow, last walk or café, check-out',
+        '🚕 Leave for airport around 15:30–16:00',
+        '✈️ Flight departs 19:50',
+      ],
+      zh: [
+        '🌅 上午：悠闲、最后散步或咖啡馆、退房',
+        '🚕 15:30–16:00 左右前往机场',
+        '✈️ 航班 19:50 起飞',
+      ],
+    },
+  },
+];
+
+const chinaCategories: ActivityCategory[] = [
+  {
+    title: { en: '🏛️ Beijing Highlights', zh: '🏛️ 北京精华' },
+    icon: '🏛️',
+    items: [
+      { en: 'Forbidden City: Imperial palace, slow thorough visit', zh: '故宫：皇宫，缓慢深入参观' },
+      { en: 'Great Wall (Mutianyu): Less crowded than Badaling', zh: '长城（慕田峪）：比八达岭人少' },
+      { en: 'Jingshan Park: Panorama over palace roofs', zh: '景山公园：宫殿屋顶全景' },
+      { en: 'Hutongs: Traditional alleyways near Wangfujing', zh: '胡同：王府井附近传统小巷' },
+      { en: 'Tanzhe Temple: Ancient mountain temple, few tourists', zh: '潭柘寺：古老山寺，游客稀少' },
+    ],
+  },
+  {
+    title: { en: '🌾 Inner Mongolia Experience', zh: '🌾 内蒙古体验' },
+    icon: '🌾',
+    items: [
+      { en: 'Inner Mongolia Museum: Dinosaurs + nomadic culture', zh: '内蒙古博物院：恐龙+游牧文化' },
+      { en: 'Da Zhao Temple: Historic Buddhist temple', zh: '大召寺：历史悠久的佛教寺庙' },
+      { en: 'General\'s Mansion: Qing military HQ', zh: '将军衙署：清代军事总部' },
+      { en: 'Ordos Desert: Seven Star Lake dunes, camel rides', zh: '鄂尔多斯沙漠：七星湖沙丘、骑骆驼' },
+      { en: 'Mongolian cuisine: Milk tea, stew, roast lamb', zh: '蒙古美食：奶茶、炖菜、烤羊肉' },
+    ],
+  },
+];
+
+const chinaTips: TipSection[] = [
+  {
+    title: { en: '🎫 Booking Tips', zh: '🎫 预订提示' },
+    icon: '🎫',
+    items: [
+      { en: 'Forbidden City tickets: Book online 7 days in advance', zh: '故宫门票：提前7天网上预约' },
+      { en: 'Great Wall private car: Book through hotel or Didi', zh: '长城包车：通过酒店或滴滴预订' },
+      { en: 'High-speed trains: Book 30 days in advance on 12306.cn', zh: '高铁：提前30天在12306.cn预订' },
+      { en: 'Desert hotel: Book Seven Star Lake Desert Hotel early', zh: '沙漠酒店：提前预订七星湖沙漠酒店' },
+    ],
+  },
+  {
+    title: { en: '🌡️ Weather & Packing', zh: '🌡️ 天气与打包' },
+    icon: '🌡️',
+    items: [
+      { en: 'Beijing April: 10-20°C, mild, occasional dust storms', zh: '北京4月：10-20°C，温和，偶有沙尘暴' },
+      { en: 'Inner Mongolia April: 5-15°C, can be chilly', zh: '内蒙古4月：5-15°C，可能较冷' },
+      { en: 'Pack layers: Warm jacket for desert nights', zh: '打包层次：沙漠夜晚需保暖外套' },
+      { en: 'Comfortable walking shoes essential', zh: '舒适的步行鞋必不可少' },
+    ],
+  },
+];
+
+const chinaOverview: TripOverview = {
+  duration: { en: 'April 19 – 29, 2026', zh: '2026年4月19日 – 29日' },
+  stays: [
+    {
+      location: { en: 'Beijing, China', zh: '中国·北京' },
+      dates: { en: 'Apr 19–22, Apr 27–29', zh: '4月19–22日, 4月27–29日' },
+      hotel: { en: 'Hotel near Wangfujing', zh: '王府井附近酒店' },
+      region: 'beijing',
+    },
+    {
+      location: { en: 'Hohhot, Inner Mongolia', zh: '内蒙古·呼和浩特' },
+      dates: { en: 'Apr 22–24', zh: '4月22–24日' },
+      hotel: { en: 'Hohhot Hotel', zh: '呼和浩特酒店' },
+      region: 'hohhot',
+    },
+    {
+      location: { en: 'Ordos, Inner Mongolia', zh: '内蒙古·鄂尔多斯' },
+      dates: { en: 'Apr 24–27', zh: '4月24–27日' },
+      hotel: { en: 'Ordos City + Desert Hotel', zh: '鄂尔多斯市+沙漠酒店' },
+      region: 'ordos',
+    },
+  ],
+};

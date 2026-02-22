@@ -1585,7 +1585,7 @@ function PrintModal({
 
   const tripOptions: { id: TripId; name: string }[] = [
     { id: 'thailand', name: lang === 'en' ? 'Thailand & Malaysia' : '泰国和马来西亚' },
-    { id: 'china', name: lang === 'en' ? 'China: Shandong Cultural Journey' : '中国：山东文化之旅' },
+    { id: 'china', name: lang === 'en' ? 'China: Beijing & Shandong Journey' : '中国：北京与山东之旅' },
     { id: 'croatia', name: lang === 'en' ? 'Croatia & Italy' : '克罗地亚和意大利' },
   ];
 

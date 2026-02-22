@@ -1617,6 +1617,7 @@ const croatiaOverview: TripOverview = {
 };
 
 const chinaRegionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }> = {
+  beijing: { bg: 'bg-red-600', text: 'text-red-700', light: 'bg-red-50', border: 'border-red-400', dot: 'bg-red-500' },
   jinan: { bg: 'bg-blue-600', text: 'text-blue-700', light: 'bg-blue-50', border: 'border-blue-400', dot: 'bg-blue-500' },
   taian: { bg: 'bg-emerald-600', text: 'text-emerald-700', light: 'bg-emerald-50', border: 'border-emerald-400', dot: 'bg-emerald-500' },
   qufu: { bg: 'bg-amber-600', text: 'text-amber-700', light: 'bg-amber-50', border: 'border-amber-400', dot: 'bg-amber-500' },
@@ -1625,29 +1626,27 @@ const chinaRegionColors: Record<string, { bg: string; text: string; light: strin
 };
 
 const chinaDays: DayData[] = [
-  // ===== JINAN (Days 1-2) =====
+  // ===== BEIJING (Days 1-3) =====
   {
     day: 1,
     date: { en: 'Apr 19 (Sat)', zh: '4月19日（周六）' },
-    title: { en: 'Arrive Jinan | Baotu Spring & Daming Lake', zh: '抵达济南 | 趵突泉与大明湖' },
-    region: 'jinan',
-    regionLabel: { en: 'Jinan, Shandong', zh: '山东·济南' },
-    mapQuery: 'Baotu Spring, Jinan, Shandong, China',
-    accommodation: { en: 'Hotel near Daming Lake or Quancheng Square', zh: '大明湖或泉城广场附近酒店' },
+    title: { en: 'Arrive Beijing + Social Dinner #1', zh: '抵达北京 + 社交晚宴 #1' },
+    region: 'beijing',
+    regionLabel: { en: 'Beijing, China', zh: '中国·北京' },
+    mapQuery: 'Wangfujing, Beijing, China',
+    accommodation: { en: 'Hotel near Wangfujing / Dongsishitiao', zh: '王府井/东四十条附近酒店' },
     activities: {
       en: [
-        '✈️ Arrive in Jinan in the afternoon',
-        '🏨 Check-in to hotel near Daming Lake or Quancheng Square',
-        '💧 Visit Baotu Spring - experience the "Number One Spring Under Heaven"',
-        '🌅 Evening: Stroll by Daming Lake, see illuminated Chaoyan Pavilion',
-        '🍜 Dinner: Try Jinan\'s signature Braised Pork at Wuyue Temple',
+        '✈️ Land at Beijing Capital Airport at 08:45',
+        '🏨 Check-in to hotel near Wangfujing / Dongsishitiao',
+        '🚶 Afternoon: Rest, short walk (hutongs / Wangfujing, or corner of Forbidden City)',
+        '🍽️ Evening: Social dinner with friends/family (Siji Minfu, Bianyifang, etc.)',
       ],
       zh: [
-        '✈️ 下午抵达济南',
-        '🏨 入住大明湖或泉城广场附近酒店',
-        '💧 游览趵突泉 - 体验"天下第一泉"',
-        '🌅 傍晚：漫步大明湖，观赏亮灯的超然楼',
-        '🍜 晚餐：品尝济南招牌菜把子肉（推荐武岳庙把子肉）',
+        '✈️ 08:45 抵达北京首都机场',
+        '🏨 入住王府井/东四十条附近酒店',
+        '🚶 下午：休息，短途散步（胡同/王府井，或故宫一角）',
+        '🍽️ 晚上：与朋友/家人社交晚宴（四季民福、便宜坊等）',
       ],
     },
     image: '/MyTravelDiary/images/china/forbidden-city.jpg',
@@ -1655,6 +1654,78 @@ const chinaDays: DayData[] = [
   {
     day: 2,
     date: { en: 'Apr 20 (Sun)', zh: '4月20日（周日）' },
+    title: { en: 'Forbidden City (Core Beijing Must-See)', zh: '故宫（北京必看核心）' },
+    region: 'beijing',
+    regionLabel: { en: 'Beijing, China', zh: '中国·北京' },
+    mapQuery: 'Forbidden City, Beijing, China',
+    accommodation: { en: 'Hotel near Wangfujing', zh: '王府井附近酒店' },
+    activities: {
+      en: [
+        '🏛️ All day: Forbidden City (slow, thorough visit)',
+        '🌅 Late afternoon: Jingshan Park hill for panorama over palace roofs',
+        '🍜 Evening: Free / light dinner near hotel',
+      ],
+      zh: [
+        '🏛️ 全天：故宫（缓慢、深入的参观）',
+        '🌅 傍晚：景山公园山顶俯瞰宫殿屋顶全景',
+        '🍜 晚上：自由/轻便晚餐，酒店附近',
+      ],
+    },
+    image: '/MyTravelDiary/images/china/hall-of-supreme-harmony.jpg',
+  },
+  {
+    day: 3,
+    date: { en: 'Apr 21 (Mon)', zh: '4月21日（周一）' },
+    title: { en: 'Great Wall + Social Dinner #2', zh: '长城 + 社交晚宴 #2' },
+    region: 'beijing',
+    regionLabel: { en: 'Beijing, China', zh: '中国·北京' },
+    mapQuery: 'Mutianyu Great Wall, Beijing, China',
+    accommodation: { en: 'Hotel near Wangfujing', zh: '王府井附近酒店' },
+    activities: {
+      en: [
+        '🧗 Day trip: Mutianyu Great Wall with private car/driver (~1.5 hours each way)',
+        '🌄 Late afternoon: Return to Beijing',
+        '🍽️ Evening: Second social dinner with friends/family (goodbye Beijing gathering)',
+        '💻 WORK CALL 15:00-17:00 (China time) — Hotel WiFi or nearby café',
+      ],
+      zh: [
+        '🧗 一日游：慕田峪长城，包车/司机（单程约1.5小时）',
+        '🌄 傍晚：返回北京',
+        '🍽️ 晚上：第二次与朋友/家人社交晚宴（北京告别聚会）',
+        '💻 工作电话 15:00-17:00（中国时间）— 酒店WiFi或附近咖啡馆',
+      ],
+    },
+    image: '/MyTravelDiary/images/china/great-wall.jpg',
+  },
+  // ===== TRAVEL TO SHANDONG =====
+  {
+    day: 4,
+    date: { en: 'Apr 22 (Tue)', zh: '4月22日（周二）' },
+    title: { en: 'Beijing → Jinan', zh: '北京 → 济南' },
+    region: 'travel',
+    regionLabel: { en: 'Travel Day', zh: '旅行日' },
+    mapQuery: 'Beijing South Railway Station, China',
+    accommodation: { en: 'Hotel near Daming Lake or Quancheng Square', zh: '大明湖或泉城广场附近酒店' },
+    activities: {
+      en: [
+        '🚄 Morning: High-speed rail Beijing → Jinan (~1.5-2 hours)',
+        '🏨 Afternoon: Check-in to hotel in Jinan',
+        '💧 Evening: Visit Baotu Spring - experience the "Number One Spring Under Heaven"',
+        '🌅 Stroll by Daming Lake, see illuminated Chaoyan Pavilion',
+      ],
+      zh: [
+        '🚄 上午：高铁北京 → 济南（约1.5-2小时）',
+        '🏨 下午：入住济南酒店',
+        '💧 傍晚：游览趵突泉 - 体验"天下第一泉"',
+        '🌅 漫步大明湖，观赏亮灯的超然楼',
+      ],
+    },
+    image: '/MyTravelDiary/images/china/forbidden-city.jpg',
+  },
+  // ===== JINAN (Days 5) =====
+  {
+    day: 5,
+    date: { en: 'Apr 23 (Wed)', zh: '4月23日（周三）' },
     title: { en: 'Jinan Old Town | Kuanghouli Food Street', zh: '济南老城 | 宽厚里美食街' },
     region: 'jinan',
     regionLabel: { en: 'Jinan, Shandong', zh: '山东·济南' },
@@ -1666,24 +1737,22 @@ const chinaDays: DayData[] = [
         '🔥 Try Fire God\'s Command spicy crayfish cold noodles',
         '🥟 Sample Grandma\'s Delicacies',
         '🚶 Afternoon: Wander through old city district',
-        '☕ Experience the leisurely pace of the Spring City',
-        '🌃 Evening: Free exploration or rest',
+        '💻 WORK CALL 15:00-17:00 (China time) — Hotel or café',
       ],
       zh: [
         '🍜 上午：逛宽厚里美食街',
         '🔥 品尝火神令小龙虾凉面',
         '🥟 尝试奶奶的美食',
         '🚶 下午：漫步老城区',
-        '☕ 体验泉城的悠闲节奏',
-        '🌃 晚上：自由探索或休息',
+        '💻 工作电话 15:00-17:00（中国时间）— 酒店或咖啡馆',
       ],
     },
     image: '/MyTravelDiary/images/china/temple-of-heaven.jpg',
   },
-  // ===== TAI'AN (Days 3-4) =====
+  // ===== TAI'AN (Days 6-7) =====
   {
-    day: 3,
-    date: { en: 'Apr 21 (Mon)', zh: '4月21日（周一）' },
+    day: 6,
+    date: { en: 'Apr 24 (Thu)', zh: '4月24日（周四）' },
     title: { en: 'Travel to Tai\'an | Dai Temple', zh: '前往泰安 | 岱庙' },
     region: 'travel',
     regionLabel: { en: 'Travel Day', zh: '旅行日' },
@@ -1708,8 +1777,8 @@ const chinaDays: DayData[] = [
     image: '/MyTravelDiary/images/china/generals-mansion.jpg',
   },
   {
-    day: 4,
-    date: { en: 'Apr 22 (Tue)', zh: '4月22日（周二）' },
+    day: 7,
+    date: { en: 'Apr 25 (Fri)', zh: '4月25日（周五）' },
     title: { en: 'Night Hike Mount Tai | Sunrise Over Sea of Clouds', zh: '夜爬泰山 | 云海日出' },
     region: 'taian',
     regionLabel: { en: 'Tai\'an, Shandong', zh: '山东·泰安' },
@@ -1733,10 +1802,10 @@ const chinaDays: DayData[] = [
     },
     image: '/MyTravelDiary/images/china/great-wall.jpg',
   },
-  // ===== QUFU (Days 5-6) =====
+  // ===== QUFU (Days 8-9) =====
   {
-    day: 5,
-    date: { en: 'Apr 23 (Wed)', zh: '4月23日（周三）' },
+    day: 8,
+    date: { en: 'Apr 26 (Sat)', zh: '4月26日（周六）' },
     title: { en: 'Travel to Qufu | Temple & Mansion of Confucius', zh: '前往曲阜 | 孔庙孔府' },
     region: 'travel',
     regionLabel: { en: 'Travel Day', zh: '旅行日' },
@@ -1761,8 +1830,8 @@ const chinaDays: DayData[] = [
     image: '/MyTravelDiary/images/china/generals-mansion.jpg',
   },
   {
-    day: 6,
-    date: { en: 'Apr 24 (Thu)', zh: '4月24日（周四）' },
+    day: 9,
+    date: { en: 'Apr 27 (Sun)', zh: '4月27日（周日）' },
     title: { en: 'Qufu | Konglin Cemetery & Confucius Museum', zh: '曲阜 | 孔林与孔子博物馆' },
     region: 'qufu',
     regionLabel: { en: 'Qufu, Shandong', zh: '山东·曲阜' },
@@ -1774,22 +1843,22 @@ const chinaDays: DayData[] = [
         '🏛️ Afternoon: Visit Confucius Museum',
         '📚 Deep insights into Confucius\' life',
         '🍢 Try Jining Fried Skewers with Pancake',
-        '🍖 Dinner: More braised pork with rice',
+        '💻 WORK CALL 15:00-17:00 (China time) — Hotel or café',
       ],
       zh: [
         '🌳 上午：游览孔林 - 孔子及其家族的墓地',
         '🏛️ 下午：参观孔子博物馆',
         '📚 深入了解孔子生平',
         '🍢 品尝济宁夹饼',
-        '🍖 晚餐：继续享用甏肉干饭',
+        '💻 工作电话 15:00-17:00（中国时间）— 酒店或咖啡馆',
       ],
     },
     image: '/MyTravelDiary/images/china/temple-of-heaven.jpg',
   },
-  // ===== QINGDAO (Days 7-8) =====
+  // ===== QINGDAO (Days 10-11) =====
   {
-    day: 7,
-    date: { en: 'Apr 25 (Fri)', zh: '4月25日（周五）' },
+    day: 10,
+    date: { en: 'Apr 28 (Mon)', zh: '4月28日（周一）' },
     title: { en: 'Travel to Qingdao | Seaside Strolls', zh: '前往青岛 | 海滨漫步' },
     region: 'travel',
     regionLabel: { en: 'Travel Day', zh: '旅行日' },
@@ -1802,7 +1871,6 @@ const chinaDays: DayData[] = [
         '🌊 Afternoon: Start at Zhanqiao Pier to watch seagulls',
         '⛪ Visit St. Michael\'s Cathedral - Gothic architecture',
         '🍺 Evening: Experience seafood beer house culture',
-        '🦐 Try Haijia Beer House - fresh seafood at fair prices',
       ],
       zh: [
         '🚄 上午：高铁曲阜 → 青岛（约2小时）',
@@ -1810,15 +1878,14 @@ const chinaDays: DayData[] = [
         '🌊 下午：从栈桥开始看海鸥',
         '⛪ 参观圣弥厄尔大教堂 - 哥特式建筑',
         '🍺 晚上：体验海鲜啤酒屋文化',
-        '🦐 尝试海嘉啤酒屋 - 新鲜海鲜价格公道',
       ],
     },
     image: '/MyTravelDiary/images/china/xiangshawan-desert.jpg',
   },
   {
-    day: 8,
-    date: { en: 'Apr 26 (Sat)', zh: '4月26日（周六）' },
-    title: { en: 'Qingdao | Badaguan & Farewell', zh: '青岛 | 八大关与告别' },
+    day: 11,
+    date: { en: 'Apr 29 (Tue)', zh: '4月29日（周二）' },
+    title: { en: 'Qingdao | Badaguan & Flight Home', zh: '青岛 | 八大关与返程' },
     region: 'qingdao',
     regionLabel: { en: 'Qingdao, Shandong', zh: '山东·青岛' },
     mapQuery: 'Badaguan, Qingdao, Shandong, China',
@@ -1829,14 +1896,14 @@ const chinaDays: DayData[] = [
         '🌊 Walk among red tiles, green trees, and azure seas',
         '🌅 Afternoon: May Fourth Square & Olympic Sailing Center',
         '🎆 Watch city light show',
-        '✈️ Evening: Departure or extend stay',
+        '✈️ Evening: Flight departs (or extend stay)',
       ],
       zh: [
         '🏛️ 上午：游览八大关 - 万国建筑博览区',
         '🌊 漫步红瓦绿树碧海之间',
         '🌅 下午：五四广场与奥帆中心',
         '🎆 观看城市灯光秀',
-        '✈️ 晚上：返程或延长停留',
+        '✈️ 晚上：航班起飞（或延长停留）',
       ],
     },
     image: '/MyTravelDiary/images/china/forbidden-city.jpg',
@@ -1845,24 +1912,33 @@ const chinaDays: DayData[] = [
 
 const chinaCategories: ActivityCategory[] = [
   {
-    title: { en: '🏛️ Shandong Highlights', zh: '🏛️ 山东精华' },
+    title: { en: '🏛️ Beijing Highlights', zh: '🏛️ 北京精华' },
     icon: '🏛️',
     items: [
+      { en: 'Forbidden City: Imperial palace, UNESCO World Heritage', zh: '故宫：皇宫，世界文化遗产' },
+      { en: 'Great Wall (Mutianyu): Less crowded section', zh: '长城（慕田峪）：人少景美' },
+      { en: 'Jingshan Park: Panorama over palace roofs', zh: '景山公园：俯瞰故宫全景' },
+      { en: 'Hutongs: Traditional alleyways', zh: '胡同：传统小巷' },
+    ],
+  },
+  {
+    title: { en: '🏔️ Shandong Highlights', zh: '🏔️ 山东精华' },
+    icon: '🏔️',
+    items: [
       { en: 'Baotu Spring: Number One Spring Under Heaven', zh: '趵突泉：天下第一泉' },
-      { en: 'Daming Lake: Evening stroll by the illuminated lake', zh: '大明湖：湖畔夜景漫步' },
       { en: 'Mount Tai: Night hike for sunrise over sea of clouds', zh: '泰山：夜爬观云海日出' },
-      { en: 'Three Confucian Sites: Temple, Mansion, and Cemetery', zh: '三孔：孔庙孔府孔林' },
+      { en: 'Three Confucian Sites: Temple, Mansion, Cemetery', zh: '三孔：孔庙孔府孔林' },
       { en: 'Qingdao: Red tiles, green trees, azure seas', zh: '青岛：红瓦绿树碧海蓝天' },
     ],
   },
   {
-    title: { en: '🍜 Shandong Cuisine', zh: '🍜 山东美食' },
+    title: { en: '🍜 Cuisine', zh: '🍜 美食' },
     icon: '🍜',
     items: [
-      { en: 'Jinan Braised Pork: Tender meat with rich sauce', zh: '济南把子肉：肉质软烂酱香浓郁' },
-      { en: 'Mount Tai Stir-Fried Chicken: Local specialty', zh: '泰山炒鸡：当地特色' },
-      { en: 'Qufu Braised Pork with Rice: Simple yet satisfying', zh: '曲阜甏肉干饭：简单却满足' },
-      { en: 'Qingdao Seafood Beer House: Fresh seafood culture', zh: '青岛海鲜啤酒屋：新鲜海鲜文化' },
+      { en: 'Beijing: Peking Duck, Zhajiangmian', zh: '北京：北京烤鸭、炸酱面' },
+      { en: 'Jinan: Braised Pork with rich sauce', zh: '济南：把子肉酱香浓郁' },
+      { en: 'Qufu: Braised Pork with Rice', zh: '曲阜：甏肉干饭' },
+      { en: 'Qingdao: Seafood Beer House culture', zh: '青岛：海鲜啤酒屋文化' },
     ],
   },
 ];
@@ -1872,7 +1948,8 @@ const chinaTips: TipSection[] = [
     title: { en: '🎒 Packing Tips', zh: '🎒 打包建议' },
     icon: '🎒',
     items: [
-      { en: 'April weather is pleasant but coastal winds can be strong - bring a light jacket', zh: '四月天气宜人但海边风大，带件轻便外套' },
+      { en: 'Beijing April: 10-20°C, mild weather', zh: '北京4月：10-20°C，天气温和' },
+      { en: 'Shandong coastal winds can be strong - bring a light jacket', zh: '山东海边风大，带件轻便外套' },
       { en: 'For Mount Tai night hike: pack windbreaker and fleece', zh: '夜爬泰山：带防风外套和抓绒衣' },
       { en: 'Comfortable walking shoes essential', zh: '舒适的步行鞋必不可少' },
     ],
@@ -1881,7 +1958,7 @@ const chinaTips: TipSection[] = [
     title: { en: '🚄 Transportation', zh: '🚄 交通' },
     icon: '🚄',
     items: [
-      { en: 'High-speed rail connects all destinations seamlessly', zh: '高铁无缝连接所有目的地' },
+      { en: 'Beijing → Jinan: High-speed rail ~1.5-2 hours', zh: '北京 → 济南：高铁约1.5-2小时' },
       { en: 'Jinan → Tai\'an: ~20 minutes', zh: '济南 → 泰安：约20分钟' },
       { en: 'Tai\'an → Qufu: ~20 minutes', zh: '泰安 → 曲阜：约20分钟' },
       { en: 'Qufu → Qingdao: ~2 hours', zh: '曲阜 → 青岛：约2小时' },
@@ -1891,38 +1968,45 @@ const chinaTips: TipSection[] = [
     title: { en: '🏨 Accommodation Tips', zh: '🏨 住宿建议' },
     icon: '🏨',
     items: [
-      { en: 'Jinan: Stay near Daming Lake or Quancheng Square', zh: '济南：住大明湖或泉城广场附近' },
-      { en: 'Tai\'an: Stay near Mount Tai Railway Station for rest before/after hike', zh: '泰安：住泰山火车站附近，便于登山前后休息' },
-      { en: 'Qufu: Stay near Three Confucian Sites for walking access', zh: '曲阜：住三孔景区附近，步行可达' },
-      { en: 'Qingdao: Atour Hotel (Wusi Square) or Orange Crystal Hotel (Badaguan)', zh: '青岛：亚朵酒店（五四广场）或桔子水晶酒店（八大关）' },
+      { en: 'Beijing: Stay near Wangfujing/Dongsishitiao', zh: '北京：住王府井/东四十条附近' },
+      { en: 'Jinan: Stay near Daming Lake', zh: '济南：住大明湖附近' },
+      { en: 'Tai\'an: Stay near Mount Tai Railway Station', zh: '泰安：住泰山火车站附近' },
+      { en: 'Qufu: Stay near Three Confucian Sites', zh: '曲阜：住三孔景区附近' },
+      { en: 'Qingdao: Stay near Wusi Square or Badaguan', zh: '青岛：住五四广场或八大关附近' },
     ],
   },
 ];
 
 const chinaOverview: TripOverview = {
-  duration: { en: 'April 19 – 26, 2026', zh: '2026年4月19日 – 26日' },
+  duration: { en: 'April 19 – 29, 2026', zh: '2026年4月19日 – 29日' },
   stays: [
     {
+      location: { en: 'Beijing, China', zh: '中国·北京' },
+      dates: { en: 'Apr 19–21', zh: '4月19–21日' },
+      hotel: { en: 'Hotel near Wangfujing', zh: '王府井附近酒店' },
+      region: 'beijing',
+    },
+    {
       location: { en: 'Jinan, Shandong', zh: '山东·济南' },
-      dates: { en: 'Apr 19–20', zh: '4月19–20日' },
+      dates: { en: 'Apr 22–23', zh: '4月22–23日' },
       hotel: { en: 'Hotel near Daming Lake', zh: '大明湖附近酒店' },
       region: 'jinan',
     },
     {
       location: { en: 'Tai\'an, Shandong', zh: '山东·泰安' },
-      dates: { en: 'Apr 21–22', zh: '4月21–22日' },
+      dates: { en: 'Apr 24–25', zh: '4月24–25日' },
       hotel: { en: 'Hotel near Mount Tai Railway Station', zh: '泰山火车站附近酒店' },
       region: 'taian',
     },
     {
       location: { en: 'Qufu, Shandong', zh: '山东·曲阜' },
-      dates: { en: 'Apr 23–24', zh: '4月23–24日' },
+      dates: { en: 'Apr 26–27', zh: '4月26–27日' },
       hotel: { en: 'Hotel near Three Confucian Sites', zh: '三孔景区附近酒店' },
       region: 'qufu',
     },
     {
       location: { en: 'Qingdao, Shandong', zh: '山东·青岛' },
-      dates: { en: 'Apr 25–26', zh: '4月25–26日' },
+      dates: { en: 'Apr 28–29', zh: '4月28–29日' },
       hotel: { en: 'Hotel near Wusi Square or Badaguan', zh: '五四广场或八大关附近酒店' },
       region: 'qingdao',
     },
@@ -1942,8 +2026,8 @@ export const trips: Record<'thailand' | 'china' | 'croatia', TripData> = {
   },
   china: {
     id: 'china',
-    name: { en: 'China: Shandong Cultural Journey', zh: '中国：山东文化之旅' },
-    footer: { en: '🇨🇳 Shandong 2026 · Have a wonderful trip!', zh: '🇨🇳 山东 2026 · 祝旅途愉快！' },
+    name: { en: 'China: Beijing & Shandong Journey', zh: '中国：北京与山东之旅' },
+    footer: { en: '🇨🇳 China 2026 · Have a wonderful trip!', zh: '🇨🇳 中国 2026 · 祝旅途愉快！' },
     regionColors: chinaRegionColors,
     days: chinaDays,
     categories: chinaCategories,
@@ -1975,13 +2059,14 @@ export const tripRoutes: Record<TripId, TripRoute> = {
     ],
   },
   china: {
-    origin: { lat: 36.6, lng: 117.0, name: { en: 'Jinan, Shandong', zh: '山东·济南' } },
+    origin: { lat: 39.9, lng: 116.4, name: { en: 'Beijing, China', zh: '中国·北京' } },
     destination: { lat: 36.1, lng: 120.4, name: { en: 'Qingdao, Shandong', zh: '山东·青岛' } },
     waypoints: [
-      { lat: 36.6, lng: 117.0, name: { en: 'Jinan', zh: '济南' }, day: 1 },
-      { lat: 36.2, lng: 117.1, name: { en: "Tai'an", zh: '泰安' }, day: 3 },
-      { lat: 35.6, lng: 117.0, name: { en: 'Qufu', zh: '曲阜' }, day: 5 },
-      { lat: 36.1, lng: 120.4, name: { en: 'Qingdao', zh: '青岛' }, day: 7 },
+      { lat: 39.9, lng: 116.4, name: { en: 'Beijing', zh: '北京' }, day: 1 },
+      { lat: 36.6, lng: 117.0, name: { en: 'Jinan', zh: '济南' }, day: 4 },
+      { lat: 36.2, lng: 117.1, name: { en: "Tai'an", zh: '泰安' }, day: 6 },
+      { lat: 35.6, lng: 117.0, name: { en: 'Qufu', zh: '曲阜' }, day: 8 },
+      { lat: 36.1, lng: 120.4, name: { en: 'Qingdao', zh: '青岛' }, day: 10 },
     ],
   },
   croatia: {

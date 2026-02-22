@@ -2070,13 +2070,14 @@ export const tripRoutes: Record<TripId, TripRoute> = {
   },
   china: {
     origin: { lat: 39.9, lng: 116.4, name: { en: 'Beijing, China', zh: '中国·北京' } },
-    destination: { lat: 36.1, lng: 120.4, name: { en: 'Qingdao, Shandong', zh: '山东·青岛' } },
+    destination: { lat: 39.9, lng: 116.4, name: { en: 'Beijing, China', zh: '中国·北京' } },
     waypoints: [
       { lat: 39.9, lng: 116.4, name: { en: 'Beijing', zh: '北京' }, day: 1 },
       { lat: 36.6, lng: 117.0, name: { en: 'Jinan', zh: '济南' }, day: 4 },
       { lat: 36.2, lng: 117.1, name: { en: "Tai'an", zh: '泰安' }, day: 6 },
       { lat: 35.6, lng: 117.0, name: { en: 'Qufu', zh: '曲阜' }, day: 8 },
       { lat: 36.1, lng: 120.4, name: { en: 'Qingdao', zh: '青岛' }, day: 10 },
+      { lat: 39.9, lng: 116.4, name: { en: 'Beijing (Return)', zh: '北京（返程）' }, day: 11 },
     ],
   },
   croatia: {

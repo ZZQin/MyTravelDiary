@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { trips, TripData } from '../data/itinerary';
 import { Language, TripId } from '../data/types';
 
@@ -82,7 +82,7 @@ export function CalendarView({ lang }: { lang: Language }) {
   }, [lang]);
 
   // Get all months that have trips
-  const months = useMemo(() => {
+  const _months = useMemo(() => {
     const monthSet = new Set<string>();
     tripPeriods.forEach((period) => {
       const startMonth = period.startDate.toLocaleString('en-US', { month: 'long' });

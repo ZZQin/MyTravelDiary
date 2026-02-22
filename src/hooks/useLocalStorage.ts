@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { AppUserData, UserTripData, TripId } from '../data/types';
+import type { AppUserData, UserTripData, TripId, ExpenseCategory, PackingCategory } from '../data/types';
 
 const STORAGE_KEY = 'travel-itinerary-data-v1';
 
@@ -53,7 +53,7 @@ export function useLocalStorage(tripId: TripId) {
   }, [tripId, getTripData]);
 
   // Expense helpers
-  const addExpense = useCallback((day: number, expense: { amount: number; currency: string; category: string; description: string }) => {
+  const addExpense = useCallback((day: number, expense: { amount: number; currency: string; category: ExpenseCategory; description: string }) => {
     updateTripData(prev => {
       const dayExpenses = prev.expenses[day] || { expenses: [] };
       return {
@@ -181,7 +181,7 @@ export function useLocalStorage(tripId: TripId) {
   }, [updateTripData]);
 
   // Packing list helpers
-  const initPackingList = useCallback((items: { id: string; name: { en: string; zh: string }; category: string; checked: boolean }[]) => {
+  const initPackingList = useCallback((items: { id: string; name: { en: string; zh: string }; category: PackingCategory; checked: boolean }[]) => {
     updateTripData(prev => ({
       ...prev,
       packingList: {
@@ -204,7 +204,7 @@ export function useLocalStorage(tripId: TripId) {
     }));
   }, [updateTripData]);
 
-  const addPackingItem = useCallback((name: { en: string; zh: string }, category: string) => {
+  const addPackingItem = useCallback((name: { en: string; zh: string }, category: PackingCategory) => {
     updateTripData(prev => ({
       ...prev,
       packingList: {

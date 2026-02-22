@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import {
   trips,
-  type Language,
   type TripId,
   type DayData,
   type Bilingual,
 } from './data/itinerary';
 import {
+  type Language,
   type ExpenseCategory,
   expenseCategoryLabels,
   currencySymbols,
@@ -17,31 +17,30 @@ import {
   weatherIconMap,
 } from './data/types';
 import { useLocalStorage, calculateTotalExpenses } from './hooks/useLocalStorage';
-import { RouteMap } from './components/RouteMap';
 
 /* ─── Utility: Date parsing for countdown ─── */
 function parseTripDates(tripId: TripId): { start: Date; end: Date } | null {
   const trip = trips[tripId];
   const firstDay = trip.days[0];
   const lastDay = trip.days[trip.days.length - 1];
-  
+
   // Try to parse dates from the date strings
   // Format examples: "May 8 (Fri)" or "Feb 27 (Thu)" or "5月8日（周五）"
   const enDate = firstDay.date.en;
   const year = tripId === 'thailand' ? 2026 : 2026;
-  
+
   const monthMap: Record<string, number> = {
     Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
     Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
   };
-  
+
   // Parse "May 8 (Fri)" format
   const match = enDate.match(/([A-Za-z]+)\s+(\d+)/);
   if (match) {
     const month = monthMap[match[1]];
     const day = parseInt(match[2], 10);
     const startDate = new Date(year, month, day);
-    
+
     // Parse end date
     const enEndDate = lastDay.date.en;
     const endMatch = enEndDate.match(/([A-Za-z]+)\s+(\d+)/);
@@ -52,32 +51,32 @@ function parseTripDates(tripId: TripId): { start: Date; end: Date } | null {
       return { start: startDate, end: endDate };
     }
   }
-  
+
   return null;
 }
 
 function getDaysUntilTrip(tripId: TripId): number | null {
   const dates = parseTripDates(tripId);
   if (!dates) return null;
-  
+
   const now = new Date();
   const diffTime = dates.start.getTime() - now.getTime();
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  
+
   return diffDays;
 }
 
 function getDaysLeftInTrip(tripId: TripId): number | null {
   const dates = parseTripDates(tripId);
   if (!dates) return null;
-  
+
   const now = new Date();
   if (now < dates.start) return null;
   if (now > dates.end) return null;
-  
+
   const diffTime = dates.end.getTime() - now.getTime();
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  
+
   return diffDays;
 }
 
@@ -117,14 +116,14 @@ function OpenInMaps({ query, lang }: { query: string; lang: Language }) {
 function CountdownWidget({ tripId, lang, compact = false }: { tripId: TripId; lang: Language; compact?: boolean }) {
   const daysUntil = getDaysUntilTrip(tripId);
   const daysLeft = getDaysLeftInTrip(tripId);
-  
+
   if (daysUntil === null && daysLeft === null) return null;
-  
+
   let message = '';
   let isActive = false;
-  
+
   if (daysUntil !== null && daysUntil > 0) {
-    message = lang === 'en' 
+    message = lang === 'en'
       ? `${daysUntil}d until`
       : `还有 ${daysUntil} 天`;
   } else if (daysLeft !== null && daysLeft >= 0) {
@@ -135,7 +134,7 @@ function CountdownWidget({ tripId, lang, compact = false }: { tripId: TripId; la
   } else if (daysUntil !== null && daysUntil <= 0) {
     message = lang === 'en' ? 'Ended' : '已结束';
   }
-  
+
   if (compact) {
     return (
       <span className={`text-sm font-medium ${isActive ? 'text-emerald-300' : 'text-amber-300'}`}>
@@ -143,11 +142,11 @@ function CountdownWidget({ tripId, lang, compact = false }: { tripId: TripId; la
       </span>
     );
   }
-  
+
   return (
     <div className={`text-center py-2 px-4 rounded-full text-sm font-semibold ${
-      isActive 
-        ? 'bg-emerald-100 text-emerald-700 border border-emerald-300' 
+      isActive
+        ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
         : 'bg-amber-100 text-amber-700 border border-amber-300'
     }`}>
       ⏰ {message}
@@ -156,16 +155,15 @@ function CountdownWidget({ tripId, lang, compact = false }: { tripId: TripId; la
 }
 
 /* ─── Weather Widget (Simulated) ─── */
-function WeatherWidget({ day, lang, onRefresh }: { 
-  day: DayData; 
+function WeatherWidget({ day, lang }: {
+  day: DayData;
   lang: Language;
-  onRefresh?: () => void;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   // Parse location from mapQuery for display
   const location = day.mapQuery.split(',')[0];
-  
+
   // Simulated weather data - memoized to prevent regeneration on scroll/re-render
   const mockWeather = useMemo(() => ({
     tempHigh: 28 + Math.floor(Math.random() * 5),
@@ -173,9 +171,9 @@ function WeatherWidget({ day, lang, onRefresh }: {
     condition: ['Sunny', 'Partly Cloudy', 'Cloudy'][Math.floor(Math.random() * 3)] as 'Sunny' | 'Partly Cloudy' | 'Cloudy',
     humidity: 60 + Math.floor(Math.random() * 20),
   }), [day.day]); // Only regenerate when day changes
-  
+
   const icon = weatherIconMap[mockWeather.condition] || '☀️';
-  
+
   return (
     <div className="bg-gradient-to-r from-sky-400 to-blue-500 rounded-xl p-4 text-white shadow-lg">
       <div className="flex items-center justify-between">
@@ -186,7 +184,7 @@ function WeatherWidget({ day, lang, onRefresh }: {
               {mockWeather.tempHigh}° / {mockWeather.tempLow}°
             </div>
             <div className="text-sm text-white/90">
-              {lang === 'en' ? mockWeather.condition : 
+              {lang === 'en' ? mockWeather.condition :
                 mockWeather.condition === 'Sunny' ? '晴天' :
                 mockWeather.condition === 'Partly Cloudy' ? '多云' : '阴天'}
             </div>
@@ -206,8 +204,8 @@ function WeatherWidget({ day, lang, onRefresh }: {
             <span>{location}</span>
           </div>
           <div className="mt-2 text-xs text-white/70">
-            {lang === 'en' 
-              ? 'Weather data is simulated for demo purposes' 
+            {lang === 'en'
+              ? 'Weather data is simulated for demo purposes'
               : '天气数据为演示用途'}
           </div>
         </div>
@@ -217,14 +215,14 @@ function WeatherWidget({ day, lang, onRefresh }: {
 }
 
 /* ─── Header ─── */
-const Header = React.memo(function Header({ 
-  lang, 
-  setLang, 
-  currentTrip, 
+const Header = React.memo(function Header({
+  lang,
+  setLang,
+  currentTrip,
   setCurrentTrip,
   onOpenPacking,
-}: { 
-  lang: Language; 
+}: {
+  lang: Language;
   setLang: (l: Language) => void;
   currentTrip: TripId;
   setCurrentTrip: (t: TripId) => void;
@@ -239,7 +237,7 @@ const Header = React.memo(function Header({
             <span className="text-xl">🌏</span>
             <CountdownWidget tripId={currentTrip} lang={lang} compact />
           </div>
-          
+
           {/* Center: Trip Selector (compact) */}
           <div className="flex bg-white/10 rounded-lg p-0.5 gap-0.5 flex-1 max-w-[200px]">
             {(Object.keys(trips) as TripId[]).map((tripId) => (
@@ -252,8 +250,8 @@ const Header = React.memo(function Header({
                     : 'text-white/80 hover:bg-white/10'
                 }`}
               >
-                {tripId === 'thailand' 
-                  ? (lang === 'en' ? 'Thailand' : '泰国') 
+                {tripId === 'thailand'
+                  ? (lang === 'en' ? 'Thailand' : '泰国')
                   : tripId === 'croatia'
                   ? (lang === 'en' ? 'Europe' : '欧洲')
                   : (lang === 'en' ? 'China' : '中国')
@@ -261,7 +259,7 @@ const Header = React.memo(function Header({
               </button>
             ))}
           </div>
-          
+
           {/* Right: Packing + Language */}
           <div className="flex items-center gap-1.5">
             <button
@@ -352,10 +350,6 @@ function parseDateForCalendar(dateStr: string, lang: Language): { dayOfWeek: str
 }
 
 /* ─── Region color helper ─── */
-function useRegionColors(tripId: TripId) {
-  return trips[tripId].regionColors;
-}
-
 function rc(regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>, region: string) {
   return regionColors[region] || regionColors[Object.keys(regionColors)[0]];
 }
@@ -395,7 +389,7 @@ function DayPicker({
           const colors = rc(regionColors, day.region);
           const isActive = idx === currentDay;
           const calendar = parseDateForCalendar(day.date[lang], lang);
-          
+
           return (
             <button
               key={day.day}
@@ -423,14 +417,14 @@ function DayPicker({
 }
 
 /* ─── Journal Section ─── */
-function JournalSection({ 
-  day, 
-  lang, 
+function JournalSection({
+  day: _day,
+  lang,
   journalData,
   onAddEntry,
   onDeleteEntry,
-}: { 
-  day: number; 
+}: {
+  day: number;
   lang: Language;
   journalData: { entries: { id: string; content: string; type: string; timestamp: number }[] } | undefined;
   onAddEntry: (entry: { content: string; type: 'general' | 'restaurant' | 'warning' | 'gem' }) => void;
@@ -439,29 +433,29 @@ function JournalSection({
   const [isOpen, setIsOpen] = useState(false);
   const [newEntry, setNewEntry] = useState('');
   const [entryType, setEntryType] = useState<'general' | 'restaurant' | 'warning' | 'gem'>('general');
-  
+
   const entries = journalData?.entries || [];
-  
+
   const typeIcons: Record<string, string> = {
     general: '📝',
     restaurant: '🍜',
     warning: '⚠️',
     gem: '💎',
   };
-  
+
   const typeLabels: Record<string, Bilingual> = {
     general: { en: 'General', zh: '一般' },
     restaurant: { en: 'Restaurant', zh: '餐厅' },
     warning: { en: 'Warning', zh: '注意' },
     gem: { en: 'Hidden Gem', zh: '隐藏宝藏' },
   };
-  
+
   const handleSubmit = () => {
     if (!newEntry.trim()) return;
     onAddEntry({ content: newEntry, type: entryType });
     setNewEntry('');
   };
-  
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
       <button
@@ -478,7 +472,7 @@ function JournalSection({
         </span>
         <span className="text-gray-400">{isOpen ? '▲' : '▼'}</span>
       </button>
-      
+
       {isOpen && (
         <div className="p-4 space-y-3">
           {/* Add new entry */}
@@ -501,8 +495,8 @@ function JournalSection({
             <textarea
               value={newEntry}
               onChange={(e) => setNewEntry(e.target.value)}
-              placeholder={lang === 'en' 
-                ? entryType === 'restaurant' ? 'What did you eat? How was it?' 
+              placeholder={lang === 'en'
+                ? entryType === 'restaurant' ? 'What did you eat? How was it?'
                   : entryType === 'warning' ? 'What should others watch out for?'
                   : entryType === 'gem' ? 'What hidden gem did you discover?'
                   : 'Write about your day...'
@@ -521,7 +515,7 @@ function JournalSection({
               {lang === 'en' ? 'Add Entry' : '添加记录'}
             </button>
           </div>
-          
+
           {/* Existing entries */}
           {entries.length > 0 && (
             <div className="space-y-2 max-h-60 overflow-y-auto">
@@ -553,15 +547,15 @@ function JournalSection({
 }
 
 /* ─── Expense Section ─── */
-function ExpenseSection({ 
-  day, 
-  lang, 
+function ExpenseSection({
+  day: _day,
+  lang,
   expenseData,
   onAddExpense,
   onDeleteExpense,
   tripCurrency,
-}: { 
-  day: number; 
+}: {
+  day: number;
   lang: Language;
   expenseData: { expenses: { id: string; amount: number; currency: string; category: string; description: string; timestamp: number }[] } | undefined;
   onAddExpense: (expense: { amount: number; currency: string; category: ExpenseCategory; description: string }) => void;
@@ -573,10 +567,10 @@ function ExpenseSection({
   const [currency, setCurrency] = useState(tripCurrency);
   const [category, setCategory] = useState<ExpenseCategory>('food');
   const [description, setDescription] = useState('');
-  
+
   const expenses = expenseData?.expenses || [];
   const total = calculateTotalExpenses(expenseData, tripCurrency);
-  
+
   const handleSubmit = () => {
     const numAmount = parseFloat(amount);
     if (isNaN(numAmount) || numAmount <= 0) return;
@@ -584,7 +578,7 @@ function ExpenseSection({
     setAmount('');
     setDescription('');
   };
-  
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
       <button
@@ -601,7 +595,7 @@ function ExpenseSection({
         </span>
         <span className="text-gray-400">{isOpen ? '▲' : '▼'}</span>
       </button>
-      
+
       {isOpen && (
         <div className="p-4 space-y-3">
           {/* Add new expense */}
@@ -650,7 +644,7 @@ function ExpenseSection({
               {lang === 'en' ? 'Add Expense' : '添加费用'}
             </button>
           </div>
-          
+
           {/* Existing expenses */}
           {expenses.length > 0 && (
             <div className="space-y-2 max-h-60 overflow-y-auto">
@@ -683,14 +677,14 @@ function ExpenseSection({
 }
 
 /* ─── Photo Memories Section ─── */
-function PhotoSection({ 
-  day, 
-  lang, 
+function PhotoSection({
+  day: _day,
+  lang,
   photoData,
   onAddPhoto,
   onDeletePhoto,
-}: { 
-  day: number; 
+}: {
+  day: number;
   lang: Language;
   photoData: { photos: { id: string; dataUrl: string; caption: string; timestamp: number }[] } | undefined;
   onAddPhoto: (photo: { dataUrl: string; caption: string }) => void;
@@ -699,13 +693,13 @@ function PhotoSection({
   const [isOpen, setIsOpen] = useState(false);
   const [caption, setCaption] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
+
   const photos = photoData?.photos || [];
-  
+
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     const reader = new FileReader();
     reader.onload = (event) => {
       const dataUrl = event.target?.result as string;
@@ -717,7 +711,7 @@ function PhotoSection({
     };
     reader.readAsDataURL(file);
   };
-  
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
       <button
@@ -734,7 +728,7 @@ function PhotoSection({
         </span>
         <span className="text-gray-400">{isOpen ? '▲' : '▼'}</span>
       </button>
-      
+
       {isOpen && (
         <div className="p-4 space-y-3">
           {/* Add photo */}
@@ -760,7 +754,7 @@ function PhotoSection({
               📷 {lang === 'en' ? 'Add Photo' : '添加照片'}
             </button>
           </div>
-          
+
           {/* Photo gallery */}
           {photos.length > 0 && (
             <div className="grid grid-cols-2 gap-2 max-h-80 overflow-y-auto">
@@ -793,10 +787,10 @@ function PhotoSection({
 }
 
 /* ─── Day Detail View ─── */
-function DayDetail({ 
-  day, 
+function DayDetail({
+  day,
   lang,
-  tripId,
+  tripId: _tripId,
   regionColors,
   userData,
   onAddJournal,
@@ -806,8 +800,8 @@ function DayDetail({
   onAddPhoto,
   onDeletePhoto,
   onToggleVisited,
-}: { 
-  day: DayData; 
+}: {
+  day: DayData;
   lang: Language;
   tripId: TripId;
   regionColors: Record<string, { bg: string; text: string; light: string; border: string; dot: string }>;
@@ -827,7 +821,7 @@ function DayDetail({
 }) {
   const colors = rc(regionColors, day.region);
   const visitedActivities = userData.visited[day.day]?.activities || {};
-  
+
   // Determine trip currency based on region
   const tripCurrency = day.region === 'penang' || day.region === 'thailand' ? 'THB' : day.region === 'beijing' || day.region === 'hohhot' || day.region === 'ordos' ? 'CNY' : 'EUR';
 
@@ -879,7 +873,7 @@ function DayDetail({
           {day.activities[lang].map((activity, idx) => {
             const isVisited = visitedActivities[idx] || false;
             const isWorkCall = activity.includes('WORK CALL') || activity.includes('工作电话');
-            
+
             if (isWorkCall) {
               return (
                 <div
@@ -897,21 +891,21 @@ function DayDetail({
                 </div>
               );
             }
-            
+
             return (
               <div
                 key={idx}
                 onClick={() => onToggleVisited(day.day, idx)}
                 className={`bg-white rounded-xl p-4 shadow-sm border-2 cursor-pointer transition-all ${
-                  isVisited 
-                    ? 'border-emerald-400 bg-emerald-50/50' 
+                  isVisited
+                    ? 'border-emerald-400 bg-emerald-50/50'
                     : 'border-gray-100 hover:border-gray-200'
                 }`}
               >
                 <div className="flex items-start gap-3">
                   <div className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                    isVisited 
-                      ? 'bg-emerald-500 border-emerald-500' 
+                    isVisited
+                      ? 'bg-emerald-500 border-emerald-500'
                       : 'border-gray-300 hover:border-gray-400'
                   }`}>
                     {isVisited && <span className="text-white text-sm">✓</span>}
@@ -1062,18 +1056,18 @@ function ItineraryView({
   const tripData = trips[tripId];
   const day = tripData.days[currentDay];
   const regionColors = tripData.regionColors;
-  
+
   return (
     <div className="bg-gray-50 min-h-[60vh] pb-20">
-      <DayPicker 
-        currentDay={currentDay} 
-        setCurrentDay={setCurrentDay} 
-        lang={lang} 
+      <DayPicker
+        currentDay={currentDay}
+        setCurrentDay={setCurrentDay}
+        lang={lang}
         days={tripData.days}
         regionColors={regionColors}
       />
-      <DayDetail 
-        day={day} 
+      <DayDetail
+        day={day}
         lang={lang}
         tripId={tripId}
         regionColors={regionColors}
@@ -1086,10 +1080,10 @@ function ItineraryView({
         onDeletePhoto={onDeletePhoto}
         onToggleVisited={onToggleVisited}
       />
-      <DayNav 
-        currentDay={currentDay} 
-        setCurrentDay={setCurrentDay} 
-        lang={lang} 
+      <DayNav
+        currentDay={currentDay}
+        setCurrentDay={setCurrentDay}
+        lang={lang}
         totalDays={tripData.days.length}
       />
     </div>
@@ -1104,9 +1098,6 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-5 space-y-6 bg-gray-50 min-h-[60vh] pb-20">
-      {/* Route Map */}
-      <RouteMap tripId={tripId} lang={lang} />
-
       {/* Trip overview */}
       <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
         <h2 className="text-xl font-bold text-gray-900 mb-1">
@@ -1140,7 +1131,7 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
         </h2>
         <div className="w-full rounded-2xl overflow-hidden shadow-md bg-gray-200 relative" style={{ height: 300 }}>
           <iframe
-            src={tripId === 'thailand' 
+            src={tripId === 'thailand'
               ? 'https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1593176.4563202735!2d97.85793832931348!3d6.633667676264003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x3051d0f951cca225%3A0x404d7e0b5c25f2c2!2sKrabi%2C%20Thailand!3m2!1d8.0862997!2d98.9062835!4m5!1s0x304ac1d005d1f5b7%3A0x4293f22d09a54d4e!2sGeorge%20Town%2C%20Penang%2C%20Malaysia!3m2!1d5.414130699999999!2d100.3287506!5e0!3m2!1sen!2sus!4v1708620000000!5m2!1sen!2sus'
               : tripId === 'croatia'
               ? 'https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d15041235.852829233!2d10.76135099216184!3d43.25667820166821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x134b05ee66c14f5f%3A0x71ff3f8f7e1e56b7!2sDubrovnik%2C%20Croatia!3m2!1d42.650660599999995!2d18.0944238!4m5!1s0x132f6196f9928ebb%3A0xb90f770693656e38!2sRome%2C%20Italy!3m2!1d41.9027835!2d12.4963655!5e0!3m2!1sen!2sus!4v1708620000000!5m2!1sen!2sus'
@@ -1169,7 +1160,7 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
       {/* Activities Guide */}
       <div>
         <h2 className="text-xl font-bold text-gray-900 mb-3">
-          {tripId === 'thailand' 
+          {tripId === 'thailand'
             ? (lang === 'en' ? '🏝️ Penang Activities Guide' : '🏝️ 槟城活动指南')
             : (lang === 'en' ? '🏛️ Highlights & Activities' : '🏛️ 精华活动指南')
           }
@@ -1177,8 +1168,8 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
         <p className="text-base text-gray-600 mb-4">
           {tripId === 'thailand'
             ? (lang === 'en'
-              ? 'A flexible menu of things to do during your 1 week stay in Penang (Mar 11–17).'
-              : '在槟城停留1周期间（3月11–17日）可以自由组合的活动清单。')
+              ? 'A flexible menu of things to do during your 1 week stay in Penang (Mar 11-17).'
+              : '在槟城停留1周期间（3月11-17日）可以自由组合的活动清单。')
             : (lang === 'en'
               ? 'Key highlights and activities for your Croatia & Italy adventure.'
               : '克罗地亚和意大利之旅的精彩亮点和活动。')
@@ -1187,10 +1178,10 @@ function OverviewView({ lang, tripId }: { lang: Language; tripId: TripId }) {
 
         <div className="space-y-2">
           {tripData.categories.map((cat, idx) => {
-            const categoryColors = tripId === 'thailand' 
+            const categoryColors = tripId === 'thailand'
               ? 'bg-rose-50 border-rose-100'
               : 'bg-emerald-50 border-emerald-100';
-            
+
             return (
               <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                 <button
@@ -1268,18 +1259,18 @@ function TipsView({ lang, tripId }: { lang: Language; tripId: TripId }) {
 }
 
 /* ─── Expenses Summary View ─── */
-function ExpensesView({ lang, tripId, userData }: { 
-  lang: Language; 
+function ExpensesView({ lang, tripId, userData }: {
+  lang: Language;
   tripId: TripId;
   userData: { expenses: Record<number, { expenses: { amount: number; currency: string; category: string; description: string; timestamp: number }[] }> };
 }) {
   const tripData = trips[tripId];
   const tripCurrency = tripId === 'thailand' ? 'THB' : 'EUR';
-  
+
   // Aggregate all expenses
   const allExpenses: { day: number; date: string; expenses: { amount: number; currency: string; category: string; description: string }[] }[] = [];
   let grandTotal = 0;
-  
+
   Object.entries(userData.expenses).forEach(([dayNum, dayData]) => {
     if (dayData.expenses.length > 0) {
       const day = parseInt(dayNum, 10);
@@ -1292,10 +1283,10 @@ function ExpensesView({ lang, tripId, userData }: {
       grandTotal += calculateTotalExpenses(dayData, tripCurrency);
     }
   });
-  
+
   // Sort by day
   allExpenses.sort((a, b) => a.day - b.day);
-  
+
   // Category totals
   const categoryTotals: Record<string, number> = {};
   Object.values(userData.expenses).forEach(dayData => {
@@ -1313,14 +1304,14 @@ function ExpensesView({ lang, tripId, userData }: {
       <h2 className="text-xl font-bold text-gray-900 mb-4">
         💰 {lang === 'en' ? 'Trip Expenses' : '行程费用'}
       </h2>
-      
+
       {/* Grand Total */}
       <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-5 text-white mb-6">
         <div className="text-sm opacity-90">{lang === 'en' ? 'Total Spent' : '总花费'}</div>
         <div className="text-3xl font-bold">{currencySymbols[tripCurrency]}{grandTotal.toFixed(2)}</div>
         <div className="text-sm opacity-75 mt-1">{tripCurrency}</div>
       </div>
-      
+
       {/* Category Breakdown */}
       {Object.keys(categoryTotals).length > 0 && (
         <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 mb-6">
@@ -1343,7 +1334,7 @@ function ExpensesView({ lang, tripId, userData }: {
           </div>
         </div>
       )}
-      
+
       {/* Daily Breakdown */}
       {allExpenses.length > 0 ? (
         <div className="space-y-4">
@@ -1375,7 +1366,7 @@ function ExpensesView({ lang, tripId, userData }: {
         </div>
       ) : (
         <div className="text-center py-10 text-gray-500">
-          {lang === 'en' 
+          {lang === 'en'
             ? 'No expenses recorded yet. Go to a day and add expenses!'
             : '还没有记录费用。去某一天添加费用吧！'}
         </div>
@@ -1385,31 +1376,31 @@ function ExpensesView({ lang, tripId, userData }: {
 }
 
 /* ─── Packing Checklist Modal ─── */
-function PackingModal({ 
-  isOpen, 
-  onClose, 
-  lang, 
-  tripId,
+function PackingModal({
+  isOpen,
+  onClose,
+  lang,
+  tripId: _tripId,
   packingData,
   onInitPacking,
   onToggleItem,
   onAddItem,
   onDeleteItem,
-}: { 
+}: {
   isOpen: boolean;
   onClose: () => void;
   lang: Language;
   tripId: TripId;
-  packingData: { items: { id: string; name: { en: string; zh: string }; category: string; checked: boolean }[]; lastModified: number } | undefined;
-  onInitPacking: (items: { id: string; name: { en: string; zh: string }; category: string; checked: boolean }[]) => void;
+  packingData: { items: { id: string; name: { en: string; zh: string }; category: PackingCategory; checked: boolean }[]; lastModified: number } | undefined;
+  onInitPacking: (items: { id: string; name: { en: string; zh: string }; category: PackingCategory; checked: boolean }[]) => void;
   onToggleItem: (itemId: string) => void;
-  onAddItem: (name: { en: string; zh: string }, category: string) => void;
+  onAddItem: (name: { en: string; zh: string }, category: PackingCategory) => void;
   onDeleteItem: (itemId: string) => void;
 }) {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newItemName, setNewItemName] = useState('');
   const [newItemCategory, setNewItemCategory] = useState<PackingCategory>('clothing');
-  
+
   // Initialize default packing list if empty
   useEffect(() => {
     if (isOpen && (!packingData || packingData.items.length === 0)) {
@@ -1421,20 +1412,20 @@ function PackingModal({
       onInitPacking(items);
     }
   }, [isOpen, packingData, onInitPacking]);
-  
+
   if (!isOpen) return null;
-  
+
   const items = packingData?.items || [];
   const checkedCount = items.filter(i => i.checked).length;
   const progress = items.length > 0 ? (checkedCount / items.length) * 100 : 0;
-  
+
   // Group by category
   const groupedItems = items.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
     acc[item.category].push(item);
     return acc;
   }, {} as Record<string, typeof items>);
-  
+
   const handleAddItem = () => {
     if (!newItemName.trim()) return;
     onAddItem({ en: newItemName, zh: newItemName }, newItemCategory);
@@ -1462,15 +1453,15 @@ function PackingModal({
             ×
           </button>
         </div>
-        
+
         {/* Progress bar */}
         <div className="h-1 bg-gray-200">
-          <div 
+          <div
             className="h-full bg-emerald-500 transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
-        
+
         {/* Add item form */}
         {showAddForm && (
           <div className="p-4 bg-gray-50 border-b border-gray-200 space-y-2">
@@ -1506,15 +1497,15 @@ function PackingModal({
             </div>
           </div>
         )}
-        
+
         {/* Items list */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {(Object.keys(packingCategoryLabels) as PackingCategory[]).map((category) => {
             const categoryItems = groupedItems[category];
             if (!categoryItems || categoryItems.length === 0) return null;
-            
+
             const categoryChecked = categoryItems.filter(i => i.checked).length;
-            
+
             return (
               <div key={category}>
                 <h3 className="font-semibold text-gray-700 mb-2 flex items-center justify-between">
@@ -1555,7 +1546,7 @@ function PackingModal({
             );
           })}
         </div>
-        
+
         {/* Footer */}
         <div className="p-4 border-t border-gray-200">
           <button
@@ -1572,8 +1563,8 @@ function PackingModal({
 
 /* ─── Main App ─── */
 export function App() {
-  const [lang, setLang] = useState<Language>('zh');
-  const [currentTrip, setCurrentTrip] = useState<TripId>('croatia');
+  const [lang, setLang] = useState<Language>('en');
+  const [currentTrip, setCurrentTrip] = useState<TripId>('thailand');
   const [currentDay, setCurrentDay] = useState(0);
   const [activeTab, setActiveTab] = useState<TabId>('itinerary');
   const [isPackingOpen, setIsPackingOpen] = useState(false);
@@ -1621,9 +1612,9 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-8">
-      <Header 
-        lang={lang} 
-        setLang={setLang} 
+      <Header
+        lang={lang}
+        setLang={setLang}
         currentTrip={currentTrip}
         setCurrentTrip={handleSetTrip}
         onOpenPacking={() => setIsPackingOpen(true)}
@@ -1631,19 +1622,19 @@ export function App() {
 
       {/* Sticky TabBar */}
       <div className="sticky top-[48px] z-40">
-        <TabBar 
-          activeTab={activeTab} 
+        <TabBar
+          activeTab={activeTab}
           setActiveTab={setActiveTab}
-          lang={lang} 
+          lang={lang}
         />
       </div>
 
       {/* Content views - properly in document flow */}
       <div className="relative">
         {activeTab === 'itinerary' && (
-          <ItineraryView 
-            lang={lang} 
-            currentDay={currentDay} 
+          <ItineraryView
+            lang={lang}
+            currentDay={currentDay}
             setCurrentDay={handleSetDay}
             tripId={currentTrip}
             userData={userData}

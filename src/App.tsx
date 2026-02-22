@@ -221,12 +221,14 @@ const Header = React.memo(function Header({
   currentTrip,
   setCurrentTrip,
   onOpenPacking,
+  onOpenPrint,
 }: {
   lang: Language;
   setLang: (l: Language) => void;
   currentTrip: TripId;
   setCurrentTrip: (t: TripId) => void;
   onOpenPacking: () => void;
+  onOpenPrint: () => void;
 }) {
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-r from-sky-700 to-blue-800 text-white shadow-lg">
@@ -260,8 +262,15 @@ const Header = React.memo(function Header({
             ))}
           </div>
 
-          {/* Right: Packing + Language */}
+          {/* Right: Print + Packing + Language */}
           <div className="flex items-center gap-1.5">
+            <button
+              onClick={onOpenPrint}
+              className="bg-white/20 hover:bg-white/30 text-white w-8 h-8 rounded-lg text-sm font-medium transition-all flex items-center justify-center"
+              title={lang === 'en' ? 'Print Itinerary' : '打印行程'}
+            >
+              🖨️
+            </button>
             <button
               onClick={onOpenPacking}
               className="bg-white/20 hover:bg-white/30 text-white w-8 h-8 rounded-lg text-sm font-medium transition-all flex items-center justify-center"
@@ -1561,6 +1570,204 @@ function PackingModal({
   );
 }
 
+/* ─── Print Itinerary Modal ─── */
+function PrintModal({
+  isOpen,
+  onClose,
+  lang,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  lang: Language;
+}) {
+  const [selectedTrips, setSelectedTrips] = useState<TripId[]>([]);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const printRef = useRef<HTMLDivElement>(null);
+
+  const tripOptions: { id: TripId; name: string }[] = [
+    { id: 'thailand', name: lang === 'en' ? 'Thailand & Malaysia' : '泰国和马来西亚' },
+    { id: 'china', name: lang === 'en' ? 'China: Beijing & Inner Mongolia' : '中国：北京与内蒙古' },
+    { id: 'croatia', name: lang === 'en' ? 'Croatia & Italy' : '克罗地亚和意大利' },
+  ];
+
+  const toggleTrip = (tripId: TripId) => {
+    setSelectedTrips(prev =>
+      prev.includes(tripId)
+        ? prev.filter(id => id !== tripId)
+        : [...prev, tripId]
+    );
+  };
+
+  const handlePrint = () => {
+    setIsGenerating(true);
+    setTimeout(() => {
+      if (printRef.current) {
+        const printWindow = window.open('', '_blank');
+        if (printWindow) {
+          printWindow.document.write(`
+            <html>
+              <head>
+                <title>Travel Itinerary</title>
+                <style>
+                  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+                  h1 { color: #1a1a1a; border-bottom: 2px solid #333; padding-bottom: 10px; }
+                  h2 { color: #333; margin-top: 30px; border-left: 4px solid #0066cc; padding-left: 10px; }
+                  h3 { color: #555; margin-top: 20px; }
+                  .day { background: #f5f5f5; padding: 15px; margin: 15px 0; border-radius: 8px; }
+                  .day-header { font-weight: bold; color: #0066cc; margin-bottom: 10px; }
+                  .activity { margin: 8px 0; padding-left: 20px; }
+                  .date { color: #666; font-size: 0.9em; }
+                  .region { display: inline-block; background: #0066cc; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px; }
+                  .trip-section { margin-bottom: 40px; page-break-before: always; }
+                  .trip-section:first-child { page-break-before: auto; }
+                  @media print { .no-print { display: none; } }
+                </style>
+              </head>
+              <body>
+                ${printRef.current.innerHTML}
+              </body>
+            </html>
+          `);
+          printWindow.document.close();
+          printWindow.print();
+        }
+      }
+      setIsGenerating(false);
+    }, 500);
+  };
+
+  const generateItineraryHTML = () => {
+    return selectedTrips.map(tripId => {
+      const trip = trips[tripId];
+      return `
+        <div class="trip-section">
+          <h1>${trip.name[lang]}</h1>
+          <p class="date">${trip.overview.duration[lang]}</p>
+          
+          ${trip.days.map(day => `
+            <div class="day">
+              <div class="day-header">
+                ${lang === 'en' ? `Day ${day.day}` : `第${day.day}天`} 
+                <span class="date">${day.date[lang]}</span>
+                <span class="region">${day.regionLabel[lang]}</span>
+              </div>
+              <h3>${day.title[lang]}</h3>
+              ${day.accommodation ? `
+                <p><strong>${lang === 'en' ? 'Accommodation' : '住宿'}:</strong> ${day.accommodation[lang]}</p>
+              ` : ''}
+              <div>
+                ${day.activities[lang].map(activity => `
+                  <div class="activity">${activity}</div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }).join('');
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col">
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900">
+            {lang === 'en' ? '📄 Print Itinerary' : '📄 打印行程'}
+          </h2>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-500"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-4">
+          <p className="text-gray-600 mb-4">
+            {lang === 'en' 
+              ? 'Select one or more countries to generate a printable itinerary:' 
+              : '选择一个或多个国家生成可打印的行程：'}
+          </p>
+
+          {/* Country Selection */}
+          <div className="space-y-2 mb-6">
+            {tripOptions.map(option => (
+              <label
+                key={option.id}
+                className={`flex items-center p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                  selectedTrips.includes(option.id)
+                    ? 'border-sky-500 bg-sky-50'
+                    : 'border-gray-200 hover:border-gray-300'
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  checked={selectedTrips.includes(option.id)}
+                  onChange={() => toggleTrip(option.id)}
+                  className="w-5 h-5 mr-3 accent-sky-500"
+                />
+                <span className="flex-1 font-medium text-gray-900">{option.name}</span>
+                <span className="text-sm text-gray-500">
+                  {trips[option.id].days.length} {lang === 'en' ? 'days' : '天'}
+                </span>
+              </label>
+            ))}
+          </div>
+
+          {/* Hidden print content */}
+          <div ref={printRef} style={{ display: 'none' }} dangerouslySetInnerHTML={{ __html: generateItineraryHTML() }} />
+
+          {/* Preview summary */}
+          {selectedTrips.length > 0 && (
+            <div className="bg-gray-50 rounded-xl p-4 mb-4">
+              <h3 className="font-semibold text-gray-900 mb-2">
+                {lang === 'en' ? 'Selected:' : '已选择：'}
+              </h3>
+              <ul className="text-sm text-gray-600 space-y-1">
+                {selectedTrips.map(tripId => (
+                  <li key={tripId}>• {trips[tripId].name[lang]} ({trips[tripId].days.length} {lang === 'en' ? 'days' : '天'})</li>
+                ))}
+              </ul>
+              <p className="text-sm text-gray-500 mt-2 pt-2 border-t border-gray-200">
+                {lang === 'en' ? 'Total: ' : '总计：'}
+                {selectedTrips.reduce((sum, id) => sum + trips[id].days.length, 0)} {lang === 'en' ? 'days' : '天'}
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="p-4 border-t border-gray-200 flex gap-3">
+          <button
+            onClick={onClose}
+            className="flex-1 py-3 bg-gray-100 text-gray-700 rounded-xl font-medium hover:bg-gray-200 transition-all"
+          >
+            {lang === 'en' ? 'Cancel' : '取消'}
+          </button>
+          <button
+            onClick={handlePrint}
+            disabled={selectedTrips.length === 0 || isGenerating}
+            className={`flex-1 py-3 rounded-xl font-medium transition-all ${
+              selectedTrips.length === 0 || isGenerating
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                : 'bg-sky-500 text-white hover:bg-sky-600'
+            }`}
+          >
+            {isGenerating 
+              ? (lang === 'en' ? 'Generating...' : '生成中...')
+              : (lang === 'en' ? 'Print / Save PDF' : '打印 / 保存PDF')
+            }
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Main App ─── */
 export function App() {
   const [lang, setLang] = useState<Language>('en');
@@ -1568,6 +1775,7 @@ export function App() {
   const [currentDay, setCurrentDay] = useState(0);
   const [activeTab, setActiveTab] = useState<TabId>('itinerary');
   const [isPackingOpen, setIsPackingOpen] = useState(false);
+  const [isPrintOpen, setIsPrintOpen] = useState(false);
 
   const {
     isLoaded,
@@ -1618,6 +1826,7 @@ export function App() {
         currentTrip={currentTrip}
         setCurrentTrip={handleSetTrip}
         onOpenPacking={() => setIsPackingOpen(true)}
+        onOpenPrint={() => setIsPrintOpen(true)}
       />
 
       {/* Sticky TabBar */}
@@ -1668,6 +1877,13 @@ export function App() {
         onToggleItem={togglePackingItem}
         onAddItem={addPackingItem}
         onDeleteItem={deletePackingItem}
+      />
+
+      {/* Print Modal */}
+      <PrintModal
+        isOpen={isPrintOpen}
+        onClose={() => setIsPrintOpen(false)}
+        lang={lang}
       />
     </div>
   );

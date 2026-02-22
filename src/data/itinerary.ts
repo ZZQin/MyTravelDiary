@@ -1646,7 +1646,7 @@ const chinaDays: DayData[] = [
         '🍽️ 晚上：与朋友/家人社交晚宴（四季民福、便宜坊等）',
       ],
     },
-    image: '/images/china/forbidden-city.jpg',
+    image: '/MyTravelDiary/images/china/forbidden-city.jpg',
   },
   {
     day: 2,
@@ -1668,7 +1668,7 @@ const chinaDays: DayData[] = [
         '🍜 晚上：自由/轻便晚餐，酒店附近',
       ],
     },
-    image: '/images/china/hall-of-supreme-harmony.jpg',
+    image: '/MyTravelDiary/images/china/hall-of-supreme-harmony.jpg',
   },
   {
     day: 3,
@@ -1692,7 +1692,7 @@ const chinaDays: DayData[] = [
         '💻 工作电话 15:00-17:00（中国时间）— 酒店WiFi或附近咖啡馆',
       ],
     },
-    image: '/images/china/great-wall.jpg',
+    image: '/MyTravelDiary/images/china/great-wall.jpg',
   },
   {
     day: 4,
@@ -1716,7 +1716,7 @@ const chinaDays: DayData[] = [
         '🍵 晚上：轻松当地晚餐（格日勒阿妈奶茶馆）',
       ],
     },
-    image: '/images/china/generals-mansion.jpg',
+    image: '/MyTravelDiary/images/china/generals-mansion.jpg',
   },
   {
     day: 5,
@@ -1740,7 +1740,7 @@ const chinaDays: DayData[] = [
         '💻 工作电话 14:00-16:00（中国时间）— 酒店大堂或咖啡馆',
       ],
     },
-    image: '/images/china/generals-mansion.jpg',
+    image: '/MyTravelDiary/images/china/generals-mansion.jpg',
   },
   {
     day: 6,
@@ -1762,7 +1762,7 @@ const chinaDays: DayData[] = [
         '🌃 晚上：入住鄂尔多斯市（康巴什），在规划城市中安静散步',
       ],
     },
-    image: '/images/china/generals-mansion.jpg',
+    image: '/MyTravelDiary/images/china/generals-mansion.jpg',
   },
   {
     day: 7,
@@ -1784,7 +1784,7 @@ const chinaDays: DayData[] = [
         '🌌 夜晚：沙漠酒店——与星空和寂静的震撼时刻',
       ],
     },
-    image: '/images/china/xiangshawan-desert.jpg',
+    image: '/MyTravelDiary/images/china/xiangshawan-desert.jpg',
   },
   {
     day: 8,
@@ -1808,7 +1808,7 @@ const chinaDays: DayData[] = [
         '🚗 返回鄂尔多斯市过夜',
       ],
     },
-    image: '/images/china/xiangshawan-desert.jpg',
+    image: '/MyTravelDiary/images/china/xiangshawan-desert.jpg',
   },
   {
     day: 9,
@@ -1830,7 +1830,7 @@ const chinaDays: DayData[] = [
         '🏨 晚上：回到北京，同一家酒店，酒店附近轻便晚餐',
       ],
     },
-    image: '/images/china/forbidden-city.jpg',
+    image: '/MyTravelDiary/images/china/forbidden-city.jpg',
   },
   {
     day: 10,
@@ -1852,7 +1852,7 @@ const chinaDays: DayData[] = [
         '💻 工作电话 15:00-17:00（中国时间）— 酒店或咖啡馆',
       ],
     },
-    image: '/images/china/temple-of-heaven.jpg',
+    image: '/MyTravelDiary/images/china/temple-of-heaven.jpg',
   },
   {
     day: 11,
@@ -1874,7 +1874,7 @@ const chinaDays: DayData[] = [
         '✈️ 航班 19:50 起飞',
       ],
     },
-    image: '/images/china/forbidden-city.jpg',
+    image: '/MyTravelDiary/images/china/forbidden-city.jpg',
   },
 ];
 

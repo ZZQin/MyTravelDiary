@@ -1649,7 +1649,7 @@ const chinaDays: DayData[] = [
         '🍽️ 晚上：与朋友/家人社交晚宴（四季民福、便宜坊等）',
       ],
     },
-    image: '/MyTravelDiary/images/china/forbidden-city.jpg',
+    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800',
   },
   {
     day: 2,
@@ -1671,7 +1671,7 @@ const chinaDays: DayData[] = [
         '🍜 晚上：自由/轻便晚餐，酒店附近',
       ],
     },
-    image: '/MyTravelDiary/images/china/hall-of-supreme-harmony.jpg',
+    image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800',
   },
   {
     day: 3,
@@ -1695,7 +1695,7 @@ const chinaDays: DayData[] = [
         '💻 工作电话 15:00-17:00（中国时间）— 酒店WiFi或附近咖啡馆',
       ],
     },
-    image: '/MyTravelDiary/images/china/great-wall.jpg',
+    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800',
   },
   // ===== TRAVEL TO SHANDONG =====
   {
@@ -1720,7 +1720,7 @@ const chinaDays: DayData[] = [
         '🌅 漫步大明湖，观赏亮灯的超然楼',
       ],
     },
-    image: '/MyTravelDiary/images/china/forbidden-city.jpg',
+    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800',
   },
   // ===== JINAN (Days 5) =====
   {
@@ -1747,7 +1747,7 @@ const chinaDays: DayData[] = [
         '💻 工作电话 15:00-17:00（中国时间）— 酒店或咖啡馆',
       ],
     },
-    image: '/MyTravelDiary/images/china/temple-of-heaven.jpg',
+    image: 'https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=800',
   },
   // ===== TAI'AN (Days 6-7) =====
   {
@@ -1774,7 +1774,7 @@ const chinaDays: DayData[] = [
         '😴 早点休息，为明天夜爬泰山做准备',
       ],
     },
-    image: '/MyTravelDiary/images/china/generals-mansion.jpg',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
   },
   {
     day: 7,
@@ -1800,7 +1800,7 @@ const chinaDays: DayData[] = [
         '💤 登山后全天休息',
       ],
     },
-    image: '/MyTravelDiary/images/china/great-wall.jpg',
+    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800',
   },
   // ===== QUFU (Days 8-9) =====
   {
@@ -1827,7 +1827,7 @@ const chinaDays: DayData[] = [
         '🍜 晚餐：品尝甏肉干饭',
       ],
     },
-    image: '/MyTravelDiary/images/china/generals-mansion.jpg',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
   },
   {
     day: 9,
@@ -1853,7 +1853,7 @@ const chinaDays: DayData[] = [
         '💻 工作电话 15:00-17:00（中国时间）— 酒店或咖啡馆',
       ],
     },
-    image: '/MyTravelDiary/images/china/temple-of-heaven.jpg',
+    image: 'https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=800',
   },
   // ===== QINGDAO (Day 10) =====
   {
@@ -1888,7 +1888,7 @@ const chinaDays: DayData[] = [
         '🍺 晚餐：海鲜啤酒屋体验',
       ],
     },
-    image: '/MyTravelDiary/images/china/xiangshawan-desert.jpg',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800',
   },
   {
     day: 11,
@@ -1916,7 +1916,7 @@ const chinaDays: DayData[] = [
         '✈️ 19:50：航班起飞',
       ],
     },
-    image: '/MyTravelDiary/images/china/forbidden-city.jpg',
+    image: 'https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800',
   },
 ];
 

@@ -1582,7 +1582,6 @@ function PrintModal({
 }) {
   const [selectedTrips, setSelectedTrips] = useState<TripId[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
-  const printRef = useRef<HTMLDivElement>(null);
 
   const tripOptions: { id: TripId; name: string }[] = [
     { id: 'thailand', name: lang === 'en' ? 'Thailand & Malaysia' : '泰国和马来西亚' },
@@ -1599,41 +1598,79 @@ function PrintModal({
   };
 
   const handlePrint = () => {
+    if (selectedTrips.length === 0) return;
+    
     setIsGenerating(true);
+    
+    // Small delay to show loading state
     setTimeout(() => {
-      if (printRef.current) {
-        const printWindow = window.open('', '_blank');
-        if (printWindow) {
-          printWindow.document.write(`
-            <html>
-              <head>
-                <title>Travel Itinerary</title>
-                <style>
-                  body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
-                  h1 { color: #1a1a1a; border-bottom: 2px solid #333; padding-bottom: 10px; }
-                  h2 { color: #333; margin-top: 30px; border-left: 4px solid #0066cc; padding-left: 10px; }
-                  h3 { color: #555; margin-top: 20px; }
-                  .day { background: #f5f5f5; padding: 15px; margin: 15px 0; border-radius: 8px; }
-                  .day-header { font-weight: bold; color: #0066cc; margin-bottom: 10px; }
-                  .activity { margin: 8px 0; padding-left: 20px; }
-                  .date { color: #666; font-size: 0.9em; }
-                  .region { display: inline-block; background: #0066cc; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px; }
-                  .trip-section { margin-bottom: 40px; page-break-before: always; }
-                  .trip-section:first-child { page-break-before: auto; }
-                  @media print { .no-print { display: none; } }
-                </style>
-              </head>
-              <body>
-                ${printRef.current.innerHTML}
-              </body>
-            </html>
-          `);
-          printWindow.document.close();
-          printWindow.print();
-        }
+      const htmlContent = generateItineraryHTML();
+      
+      const printWindow = window.open('', '_blank');
+      if (!printWindow) {
+        alert(lang === 'en' 
+          ? 'Please allow popups to print the itinerary' 
+          : '请允许弹出窗口以打印行程');
+        setIsGenerating(false);
+        return;
       }
+      
+      const styles = `
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #1a1a1a; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; border-left: 4px solid #0066cc; padding-left: 10px; }
+        h3 { color: #555; margin-top: 20px; }
+        .day { background: #f5f5f5; padding: 15px; margin: 15px 0; border-radius: 8px; break-inside: avoid; }
+        .day-header { font-weight: bold; color: #0066cc; margin-bottom: 10px; }
+        .activity { margin: 8px 0; padding-left: 20px; }
+        .date { color: #666; font-size: 0.9em; }
+        .region { display: inline-block; background: #0066cc; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 10px; }
+        .trip-section { margin-bottom: 40px; }
+        .trip-section:not(:first-child) { page-break-before: always; }
+        @media print { 
+          .no-print { display: none; }
+          .day { break-inside: avoid; }
+        }
+      `;
+      
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="UTF-8">
+            <title>Travel Itinerary</title>
+            <style>${styles}</style>
+          </head>
+          <body>
+            ${htmlContent}
+          </body>
+        </html>
+      `);
+      
+      printWindow.document.close();
+      
+      // Wait for content to load before printing
+      printWindow.onload = () => {
+        printWindow.print();
+      };
+      
+      // Fallback if onload doesn't fire
+      setTimeout(() => {
+        printWindow.print();
+      }, 100);
+      
       setIsGenerating(false);
-    }, 500);
+    }, 300);
+  };
+
+  // Escape HTML to prevent XSS
+  const escapeHtml = (unsafe: string): string => {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   };
 
   const generateItineraryHTML = () => {
@@ -1641,23 +1678,23 @@ function PrintModal({
       const trip = trips[tripId];
       return `
         <div class="trip-section">
-          <h1>${trip.name[lang]}</h1>
-          <p class="date">${trip.overview.duration[lang]}</p>
+          <h1>${escapeHtml(trip.name[lang])}</h1>
+          <p class="date">${escapeHtml(trip.overview.duration[lang])}</p>
           
           ${trip.days.map(day => `
             <div class="day">
               <div class="day-header">
                 ${lang === 'en' ? `Day ${day.day}` : `第${day.day}天`} 
-                <span class="date">${day.date[lang]}</span>
-                <span class="region">${day.regionLabel[lang]}</span>
+                <span class="date">${escapeHtml(day.date[lang])}</span>
+                <span class="region">${escapeHtml(day.regionLabel[lang])}</span>
               </div>
-              <h3>${day.title[lang]}</h3>
+              <h3>${escapeHtml(day.title[lang])}</h3>
               ${day.accommodation ? `
-                <p><strong>${lang === 'en' ? 'Accommodation' : '住宿'}:</strong> ${day.accommodation[lang]}</p>
+                <p><strong>${lang === 'en' ? 'Accommodation' : '住宿'}:</strong> ${escapeHtml(day.accommodation[lang])}</p>
               ` : ''}
               <div>
                 ${day.activities[lang].map(activity => `
-                  <div class="activity">${activity}</div>
+                  <div class="activity">${escapeHtml(activity)}</div>
                 `).join('')}
               </div>
             </div>
@@ -1717,9 +1754,6 @@ function PrintModal({
               </label>
             ))}
           </div>
-
-          {/* Hidden print content */}
-          <div ref={printRef} style={{ display: 'none' }} dangerouslySetInnerHTML={{ __html: generateItineraryHTML() }} />
 
           {/* Preview summary */}
           {selectedTrips.length > 0 && (

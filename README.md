@@ -10,7 +10,7 @@
 | Senj, Croatia | TBD | May 19, 2026 | May 21, 2026 |
 | Venice, Italy | TBD | May 22, 2026 | May 23, 2026 |
 | Verona, Italy | TBD | May 24, 2026 | May 25, 2026 |
-| Tuscany (Castelnuovo Berardenga) | Agriturismo | May 25, 2026 | May 30, 2026 |
+| Tuscany (Castelnuovo Berardenga) | Casale Le Querce | May 25, 2026 | May 31, 2026 |
 | Rome, Italy | TBD | May 31, 2026 | June 5, 2026 |
 
 ## Confirmed Bookings
@@ -18,6 +18,6 @@
 | Location | Type | File |
 | --- | --- | --- |
 | Dubrovnik, Croatia | Airbnb | [View PDF](bookings/Airbnb_Itinerary_Dubrovnik.pdf) |
-| TBD | Booking Confirmation | [View PDF](bookings/Booking_Confirmation_5087531880.pdf) |
+| Tuscany (Casale Le Querce) | Agriturismo | [View PDF](bookings/Booking_Confirmation_5087531880.pdf) |
 
 Note: The day-by-day plan mentions a Makarska Coast overnight on May 12, but this stop is not present in the main stays block. Confirm whether a separate one-night booking is needed.

@@ -6,9 +6,8 @@
 | --- | --- | --- | --- |
 | Dubrovnik, Croatia | TBD | May 8, 2026 | May 12, 2026 |
 | Makarska Coast (overnight) | TBD | May 12, 2026 | May 13, 2026 |
-| Split, Croatia | TBD | May 13, 2026 | May 16, 2026 |
-| Zadar, Croatia | TBD | May 16, 2026 | May 18, 2026 |
-| Senj, Croatia | TBD | May 18, 2026 | May 21, 2026 |
+| Split, Croatia | TBD | May 13, 2026 | May 17, 2026 |
+| Zadar, Croatia | TBD | May 17, 2026 | May 21, 2026 |
 | Venice, Italy | TBD | May 21, 2026 | May 23, 2026 |
 | Verona, Italy | TBD | May 23, 2026 | May 25, 2026 |
 | Tuscany (Castelnuovo Berardenga) | Casale Le Querce | May 25, 2026 | May 31, 2026 |

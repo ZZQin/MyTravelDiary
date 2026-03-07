@@ -18,5 +18,6 @@
 | Location | Type | File |
 | --- | --- | --- |
 | Dubrovnik, Croatia | Airbnb | [View PDF](bookings/Airbnb_Itinerary_Dubrovnik.pdf) |
+| TBD | Booking Confirmation | [View PDF](bookings/Booking_Confirmation_5087531880.pdf) |
 
 Note: The day-by-day plan mentions a Makarska Coast overnight on May 12, but this stop is not present in the main stays block. Confirm whether a separate one-night booking is needed.

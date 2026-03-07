@@ -13,4 +13,10 @@
 | Tuscany (Castelnuovo Berardenga) | Agriturismo | May 25, 2026 | May 30, 2026 |
 | Rome, Italy | TBD | May 31, 2026 | June 5, 2026 |
 
+## Confirmed Bookings
+
+| Location | Type | File |
+| --- | --- | --- |
+| Dubrovnik, Croatia | Airbnb | [View PDF](bookings/Airbnb_Itinerary_Dubrovnik.pdf) |
+
 Note: The day-by-day plan mentions a Makarska Coast overnight on May 12, but this stop is not present in the main stays block. Confirm whether a separate one-night booking is needed.

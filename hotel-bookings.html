@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Sheet | Croatia & Italy 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .status-selected { background-color: #d1fae5; color: #065f46; }
+        .status-shortlist { background-color: #fef3c7; color: #92400e; }
+        .status-alternate { background-color: #e0f2fe; color: #075985; }
+        @media print {
+            .no-print { display: none; }
+            body { font-size: 12px; }
+            table { page-break-inside: auto; }
+            tr { page-break-inside: avoid; page-break-after: auto; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">🏨 Croatia & Italy 2026 — Hotel Booking Sheet</h1>
+                    <p class="text-gray-600 mt-1">Confirmed bookings and shortlisted options for the May-June trip</p>
+                </div>
+                <div class="flex gap-2 no-print">
+                    <a href="index.html" class="px-4 py-2 bg-sky-600 text-white rounded-lg font-medium hover:bg-sky-700 transition-colors">
+                        ← Back to Itinerary
+                    </a>
+                    <button onclick="window.print()" class="px-4 py-2 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                        🖨️ Print
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Legend -->
+            <div class="flex flex-wrap gap-4 mt-4 pt-4 border-t border-gray-200 text-sm">
+                <span class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                    ✅ Selected (Confirmed)
+                </span>
+                <span class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                    📋 Shortlist
+                </span>
+                <span class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-sky-500"></span>
+                    🔵 Alternate
+                </span>
+            </div>
+        </div>
+
+        <!-- Booking Table -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Stop</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Status</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Property</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Check-in</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Check-out</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Price</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Layout</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Parking</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Cancellation</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <!-- Dubrovnik -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-gray-900">Dubrovnik, Croatia</td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                                    ✅ Selected
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700">Taira Apartment</td>
+                            <td class="px-4 py-3 text-gray-600">May 8, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">May 12, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">~USD 144/night<br/><span class="text-xs text-gray-500">Total: USD 575.07</span></td>
+                            <td class="px-4 py-3 text-gray-600">2BR, 2 king + sofa<br/>2 baths, 91m²</td>
+                            <td class="px-4 py-3 text-gray-600">Free private on-site</td>
+                            <td class="px-4 py-3 text-gray-600">See Airbnb</td>
+                            <td class="px-4 py-3 text-gray-600 text-xs">Airbnb booking</td>
+                        </tr>
+
+                        <!-- Makarska -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-gray-900">Makarska Coast</td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                    📋 Shortlist
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700">Apartment Luka</td>
+                            <td class="px-4 py-3 text-gray-600">May 12, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">May 13, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">HUF 106,080/night<br/><span class="text-xs text-gray-500">Recheck May rate</span></td>
+                            <td class="px-4 py-3 text-gray-600">2BR, living sofa<br/>2 baths, 75m²</td>
+                            <td class="px-4 py-3 text-gray-600">Free private on-site</td>
+                            <td class="px-4 py-3 text-gray-600">Partially refundable</td>
+                            <td class="px-4 py-3 text-gray-600 text-xs">Confirm bed split before booking</td>
+                        </tr>
+
+                        <!-- Split -->
+                        <tr class="hover:bg-gray-50 bg-emerald-50/30">
+                            <td class="px-4 py-3 font-medium text-gray-900">Split, Croatia</td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                                    ✅ Selected
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700 font-medium">Apartment Doverska Split</td>
+                            <td class="px-4 py-3 text-gray-600">May 13, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">May 17, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">EUR 880 total<br/><span class="text-xs text-gray-500">Pay at property</span></td>
+                            <td class="px-4 py-3 text-gray-600">Sea view apt<br/>3BR, 105m², 6 guests</td>
+                            <td class="px-4 py-3 text-gray-600">Free parking</td>
+                            <td class="px-4 py-3 text-gray-600">Free until Apr 13</td>
+                            <td class="px-4 py-3 text-gray-600 text-xs font-medium">Booking ID: 1989429530<br/>Ref: 6393760874 | Agoda</td>
+                        </tr>
+
+                        <!-- Zadar -->
+                        <tr class="hover:bg-gray-50 bg-emerald-50/30">
+                            <td class="px-4 py-3 font-medium text-gray-900">Zadar, Croatia</td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                                    ✅ Selected
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700 font-medium">Oliva Vallis Apartments</td>
+                            <td class="px-4 py-3 text-gray-600">May 17, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">May 19, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">Booked via Agoda</td>
+                            <td class="px-4 py-3 text-gray-600">2BR, 72m²<br/>Double + 2 twin + sofa</td>
+                            <td class="px-4 py-3 text-gray-600">Free car park</td>
+                            <td class="px-4 py-3 text-gray-600">Free until Apr 17</td>
+                            <td class="px-4 py-3 text-gray-600 text-xs font-medium">Booking ID: 1989429107<br/>Ref: 5022147299 | Coffee/tea incl.</td>
+                        </tr>
+
+                        <!-- Zadar Alternate -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-gray-900">Zadar area</td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-100 text-sky-800">
+                                    🔵 Alternate
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700">Apartmani Carmen<br/><span class="text-xs text-gray-500">(Bibinje/Sukosan)</span></td>
+                            <td class="px-4 py-3 text-gray-600">May 17, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">May 21, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">—</td>
+                            <td class="px-4 py-3 text-gray-600">2BR terrace or 3BR<br/>Varies by unit</td>
+                            <td class="px-4 py-3 text-gray-600">Free car park</td>
+                            <td class="px-4 py-3 text-gray-600">Recheck listing</td>
+                            <td class="px-4 py-3 text-gray-600 text-xs">Doesn't match Makarska stop</td>
+                        </tr>
+
+                        <!-- Rovinj -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-gray-900">Rovinj, Croatia</td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                    📋 Shortlist
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700">Casa Sul Mar</td>
+                            <td class="px-4 py-3 text-gray-600">May 19, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">May 22, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">~USD 113-144/night</td>
+                            <td class="px-4 py-3 text-gray-600">2BR + living sofa<br/>100m², fits 5</td>
+                            <td class="px-4 py-3 text-gray-600">Free private parking</td>
+                            <td class="px-4 py-3 text-gray-600">Flexible/free</td>
+                            <td class="px-4 py-3 text-gray-600 text-xs">Good Rovinj fit for Istria stretch</td>
+                        </tr>
+
+                        <!-- Venice -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-gray-900">Venice, Italy</td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                    📋 Shortlist
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700">2Venezia Apartment<br/><span class="text-xs text-gray-500">(Mestre base)</span></td>
+                            <td class="px-4 py-3 text-gray-600">May 22, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">May 24, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">CNY 820/night<br/><span class="text-xs text-gray-500">Recheck May rate</span></td>
+                            <td class="px-4 py-3 text-gray-600">2BR, ~80m²<br/>Full + queen + sofa</td>
+                            <td class="px-4 py-3 text-gray-600">Paid public nearby</td>
+                            <td class="px-4 py-3 text-gray-600">Free until Jun 5</td>
+                            <td class="px-4 py-3 text-gray-600 text-xs">Mestre = easier with car, lower cost</td>
+                        </tr>
+
+                        <!-- Verona -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-gray-900">Verona, Italy</td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                    📋 Shortlist
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700">Casa vacanza Elena 2</td>
+                            <td class="px-4 py-3 text-gray-600">May 24, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">May 25, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">~EUR 176/night</td>
+                            <td class="px-4 py-3 text-gray-600">2BR, ~90m²<br/>Queen + 2 single + sofa</td>
+                            <td class="px-4 py-3 text-gray-600">Free private on-site</td>
+                            <td class="px-4 py-3 text-gray-600">Free until May 23</td>
+                            <td class="px-4 py-3 text-gray-600 text-xs">Strong one-night option with kitchen</td>
+                        </tr>
+
+                        <!-- Tuscany -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-gray-900">Tuscany<br/><span class="text-xs text-gray-500">(Castelnuovo Berardenga)</span></td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                                    ✅ Selected
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700">Casale Le Querce</td>
+                            <td class="px-4 py-3 text-gray-600">May 25, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">May 31, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">~EUR 103/night<br/><span class="text-xs text-gray-500">Total: EUR 620</span></td>
+                            <td class="px-4 py-3 text-gray-600">2BR, ~969ft²<br/>Queen + 2 twin + 2 sofas</td>
+                            <td class="px-4 py-3 text-gray-600">Free private on-site</td>
+                            <td class="px-4 py-3 text-gray-600">Free until May 10<br/><span class="text-xs text-red-600">⚠️ Charged after</span></td>
+                            <td class="px-4 py-3 text-gray-600 text-xs">EUR 400 damage deposit</td>
+                        </tr>
+
+                        <!-- Rome -->
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-medium text-gray-900">Rome, Italy</td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                    📋 Shortlist
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-700">Corso Francia Suite</td>
+                            <td class="px-4 py-3 text-gray-600">May 31, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">Jun 5, 2026</td>
+                            <td class="px-4 py-3 text-gray-600">CNY 1,489/night</td>
+                            <td class="px-4 py-3 text-gray-600">2BR, ~70m²<br/>2 queen + 1 twin</td>
+                            <td class="px-4 py-3 text-gray-600">Free private parking</td>
+                            <td class="px-4 py-3 text-gray-600">Fully refundable</td>
+                            <td class="px-4 py-3 text-gray-600 text-xs">More practical than central Rome</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-emerald-600">4</div>
+                <div class="text-sm text-gray-600">Confirmed Bookings</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-amber-600">5</div>
+                <div class="text-sm text-gray-600">Shortlist Options</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-gray-900">29</div>
+                <div class="text-sm text-gray-600">Total Nights</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-gray-900">May 8 → Jun 5</div>
+                <div class="text-sm text-gray-600">Trip Duration</div>
+            </div>
+        </div>
+
+        <!-- Important Notes -->
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-6">
+            <h3 class="font-semibold text-amber-900 mb-2">⚠️ Important Notes</h3>
+            <ul class="text-sm text-amber-800 space-y-1 list-disc list-inside">
+                <li>All dates are contiguous with no gaps</li>
+                <li>Same-day check-outs/check-ins: May 12, 13, 17, 19, 22, 24, 25, 31</li>
+                <li>Tuscany booking: Free cancellation until May 10, 2026 — full stay charged after</li>
+                <li>Split booking: Pay EUR 880 at property (not prepaid via Agoda)</li>
+                <li>Zadar booking: Includes coffee/tea, parking</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-gray-500 text-sm mt-8 pb-8">
+            <p>Last updated: March 8, 2026</p>
+            <p class="mt-1">Croatia & Italy Trip • May 8 – June 5, 2026</p>
+        </div>
+    </div>
+</body>
+</html>

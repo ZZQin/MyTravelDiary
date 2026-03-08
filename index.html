@@ -107,5 +107,22 @@ Error generating stack: `+n.message+`
   </head>
   <body>
     <div id="root"></div>
+    <!-- Quick access to hotel booking sheet -->
+    <script>
+      (function() {
+        // Add hotel booking link to header after app loads
+        setTimeout(function() {
+          const header = document.querySelector('header');
+          if (header) {
+            const link = document.createElement('a');
+            link.href = 'hotel-bookings.html';
+            link.textContent = '🏨 Bookings';
+            link.className = 'fixed top-2 right-20 z-50 bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-lg text-sm font-medium transition-all no-print';
+            link.style.textDecoration = 'none';
+            document.body.appendChild(link);
+          }
+        }, 2000);
+      })();
+    </script>
   </body>
 </html>

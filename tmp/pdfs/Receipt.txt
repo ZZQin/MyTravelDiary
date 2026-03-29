@@ -1,0 +1,44 @@
+Address:
+Agoda Company Pte, Ltd.
+36 Robinson Road
+City House #20-01
+Singapore 068877
+
+Booking No. 1987528048
+Payment Date March 2, 2026
+
+                                                         Receipt
+                                                  Customer Name & Address
+    Name                          Zhi Zhen Qin
+
+    Email Address                 zhengzhou.hospital.volunteers@gmail.com
+
+
+                                           Description                                          Amount
+    Hotel Name                   Phi Phi Hotel
+
+    Period                       March 3, 2026 - March 4, 2026 (1
+                                 night(s))
+
+    Room Type                    Partial Sea View Twin Room
+
+    # of Rms.                    1
+
+    # of Extra                   0
+    Beds
+
+    Total Room Charges                                                                                USD 78.89
+
+    Total Extra Bed Charges                                                                              USD 0.00
+
+    Discount                                                                                          USD -7.84
+
+                                                                      GRAND TOTAL                     USD 71.05
+
+                                                                            Total Charge   EUR 60.15 (USD 71.05)
+
+
+
+
+This receipt is automatically generated.
+

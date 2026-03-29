@@ -47,18 +47,26 @@ Roamio is a static bilingual travel itinerary app for planning trips and keeping
 - Update itinerary content by editing the static files in this repo and pushing changes.
 - The published version is the GitHub Pages site at `https://zzqin.github.io/MyTravelDiary/`.
 
+## Croatia And Italy 2026 Confirmed Bookings
+
+| Stop | Property | Dates | Details | Proof |
+| --- | --- | --- | --- | --- |
+| Dubrovnik, Croatia | Home in Dubrovnik (Taira Apt) | May 8-12, 2026 (check-in 15:00, check-out 10:00) | Airbnb stay hosted by Mary · 5 guests · total cost USD 575.07 · Ulica od Nuncijate 29, Dubrovnik | [Airbnb screenshot](booked/Screenshot_20260320-164842.png) |
+| Makarska, Croatia | Apartment Luka | May 12-13, 2026 | Apartment with Sea View · 5 adults · EUR 90.00 charged by the property · Ulica Slikara Gojaka 37, Makarska | [Booking confirmation](booked/makarska-2026-05-12-to-2026-05-13-636167551.pdf) |
+| Zadar, Croatia | Oliva Vallis Apartments | May 17-19, 2026 | Two-Bedroom Apartment · 5 adults · USD 271.86 total charge · Ploce, Zadar | [Booking confirmation](booked/zadar-2026-05-17-to-2026-05-19.pdf) |
+| Rovinj, Croatia | Apartments Sunrise & Sunset by Irundo | May 19-22, 2026 | Apartment with Terrace · 5 adults · EUR 479.00 charged in CHF on May 12, 2026 · 26 Zagrebacka ulica, Rovinj Old Town | [Booking confirmation](booked/rovinj-2026-05-19-to-2026-05-22-639955551.pdf) |
+| Venice, Italy | Venice Lido Apartment Near Beach and Vaporetto | May 22-24, 2026 | Two-Bedroom Apartment · 5 adults · EUR 549.27 charged in CHF on May 19, 2026, plus CHF 91.3 taxes and fees at the property · Via Marcantonio Bragadin 16, Lido | [Booking confirmation](booked/venice-2026-05-22-to-2026-05-24.pdf) |
+| Rome, Italy | San Lorenzo Home | May 31-June 2, 2026 | Two-Bedroom Apartment · 5 adults · EUR 358.78 charged by the property, plus CHF 54.8 taxes and fees at the property · Via dei Lucani 24, Rome | [Booking confirmation](booked/rome-2026-05-31-to-2026-06-02.pdf) |
+
 ## Croatia And Italy 2026 Open Stays
 
-This public README now shows only the stays that still need booking. The Agoda property pages below were refreshed on March 9, 2026 for 5 adults and the listed dates. Agoda loads the detailed room grid client-side, so do one final click-through before paying to confirm the current room fit, price, and cancellation terms.
+The hotel plan now reflects the confirmed bookings above and the shortened Europe leg with the Rome return flight on June 2, 2026.
 
-| Stop | Stay | Agoda option 1 | Agoda option 2 | Notes | Booking |
-| --- | --- | --- | --- | --- | --- |
-| Makarska Coast (overnight) | May 12-13, 2026 | Apartment Star; 5-star apartment; 9.8/10 from 41 Agoda reviews; Makarska City Center | Apartments Jagoda; 4-star apartment; 9.4/10 from 65 Agoda reviews; Makarska City Center | Replaces Apartment Luka, which showed zero rooms on March 8, 2026. | [Apartment Star](https://www.agoda.com/apartment-star/hotel/makarska-hr.html) · [Apartments Jagoda](https://www.agoda.com/apartments-jagoda/hotel/makarska-hr.html) |
-| Rovinj, Croatia | May 19-22, 2026 | Apartment Vedrana; 3.5-star apartment; 9.4/10 from 14 Agoda reviews; Rovinj Old Town | Luxury Residence Levante; 4-star guesthouse/apartment-style stay; 9.1/10 from 99 Agoda reviews; Spanidiga | Refreshed as Agoda-only options instead of the older mixed-source shortlist. | [Apartment Vedrana](https://www.agoda.com/en-in/apartment-vedrana/hotel/rovinj-hr.html) · [Luxury Residence Levante](https://www.agoda.com/en-in/luxury-residence-levante/hotel/rovinj-hr.html) |
-| Venice / Mestre, Italy | May 22-24, 2026 | Leonardo Royal Hotel Venice Mestre; 4-star hotel; 9.0/10 from 7,263 Agoda reviews; Mestre | Venice Mestre, Apartments Da Roberta; 4-star apartment; 8.6/10 from 79 Agoda reviews; Mestre | Keeps one hotel-style Mestre base and one apartment-style Mestre base. | [Leonardo Royal Hotel Venice Mestre](https://www.agoda.com/leonardo-royal-hotel-venice-mestre/hotel/venice-it.html) · [Apartments Da Roberta](https://www.agoda.com/venice-mestre-apartaments/hotel/venice-it.html) |
-| Verona, Italy | May 24-25, 2026 | Casa vacanza Elena 2; 4-star apartment; 8.7/10 from 65 Agoda reviews; Fiera | Italianflat - Arena di Verona Apartments; 3-star apartment; 8.8/10 from 183 Agoda reviews; Citta Antica | Keeps one edge-of-center option and one old-town option. | [Casa vacanza Elena 2](https://www.agoda.com/casa-vacanza-elena-2/hotel/verona-it.html) · [Arena di Verona Apartments](https://www.agoda.com/arena-di-verona-apartments/hotel/verona-it.html) |
-| Rome, Italy | May 31-June 2, 2026 | Corso Francia Suite; 4-star apartment; 8.1/10 from 46 Agoda reviews; Flaminio and Parioli | Rome Plaza Suites, Luxury Collection; 4-star guesthouse; 9.3/10 from 500 Agoda reviews; Piazzale Flaminio | Keeps the outer-city practical base plus one stronger central alternative. | [Corso Francia Suite](https://www.agoda.com/corso-francia-suite/hotel/rome-it.html) · [Rome Plaza Suites](https://www.agoda.com/rome-plaza-suites-luxury-collection/hotel/rome-it.html) |
+| Gap | Dates | Nights | Notes |
+| --- | --- | --- | --- |
+| Between Makarska and Zadar | May 13-17, 2026 | 4 nights | No hotel booked yet. |
+| Between Venice and Rome | May 24-31, 2026 | 7 nights | No hotel booked yet. |
 
-Open-stay count: 5 stops, 9 nights, all planned for 5 adults.
+Open-stay count: 2 gaps, 11 nights, all planned for 5 adults.
 
-Apartment Luka and the Zadar-area alternate have been removed from this shortlist so this section stays focused on what still needs to be booked.
+Apartments Milena is no longer the Rovinj stay in the final plan, and the app now keeps only Apartments Sunrise & Sunset by Irundo for May 19-22, 2026.

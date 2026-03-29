@@ -51,12 +51,14 @@ Roamio is a static bilingual travel itinerary app for planning trips and keeping
 
 | Stop | Property | Dates | Details | Proof |
 | --- | --- | --- | --- | --- |
-| Dubrovnik, Croatia | Home in Dubrovnik (Taira Apt) | May 8-12, 2026 (check-in 15:00, check-out 10:00) | Airbnb stay hosted by Mary · 5 guests · total cost USD 575.07 · Ulica od Nuncijate 29, Dubrovnik | [Airbnb screenshot](booked/Screenshot_20260320-164842.png) |
-| Makarska, Croatia | Apartment Luka | May 12-13, 2026 | Apartment with Sea View · 5 adults · EUR 90.00 charged by the property · Ulica Slikara Gojaka 37, Makarska | [Booking confirmation](booked/makarska-2026-05-12-to-2026-05-13-636167551.pdf) |
-| Zadar, Croatia | Oliva Vallis Apartments | May 17-19, 2026 | Two-Bedroom Apartment · 5 adults · USD 271.86 total charge · Ploce, Zadar | [Booking confirmation](booked/zadar-2026-05-17-to-2026-05-19.pdf) |
-| Rovinj, Croatia | Apartments Sunrise & Sunset by Irundo | May 19-22, 2026 | Apartment with Terrace · 5 adults · EUR 479.00 charged in CHF on May 12, 2026 · 26 Zagrebacka ulica, Rovinj Old Town | [Booking confirmation](booked/rovinj-2026-05-19-to-2026-05-22-639955551.pdf) |
-| Venice, Italy | Venice Lido Apartment Near Beach and Vaporetto | May 22-24, 2026 | Two-Bedroom Apartment · 5 adults · EUR 549.27 charged in CHF on May 19, 2026, plus CHF 91.3 taxes and fees at the property · Via Marcantonio Bragadin 16, Lido | [Booking confirmation](booked/venice-2026-05-22-to-2026-05-24.pdf) |
-| Rome, Italy | San Lorenzo Home | May 31-June 2, 2026 | Two-Bedroom Apartment · 5 adults · EUR 358.78 charged by the property, plus CHF 54.8 taxes and fees at the property · Via dei Lucani 24, Rome | [Booking confirmation](booked/rome-2026-05-31-to-2026-06-02.pdf) |
+| Dubrovnik, Croatia | Home in Dubrovnik (Taira Apt) | May 8-12, 2026 (check-in 15:00, check-out 10:00) | Airbnb stay hosted by Mary · 5 guests · total cost USD 575.07 · Ulica od Nuncijate 29, Dubrovnik | [Airbnb screenshot](booked/dubrovnik-home-in-dubrovnik-2026-05-08-to-2026-05-12.png) |
+| Makarska, Croatia | Apartment Luka | May 12-13, 2026 | Apartment with Sea View · 5 adults · EUR 90.00 charged by the property · Ulica Slikara Gojaka 37, Makarska | [Booking confirmation](booked/makarska-apartment-luka-2026-05-12-to-2026-05-13.pdf) |
+| Split, Croatia | Apartment Dalmaticus | May 13-17, 2026 | 4 nights · EUR 484.00 total charged in USD on May 4, 2026 · Odakova 20 3 kat, Split | [Booking confirmation](booked/split-apartment-dalmaticus-2026-05-13-to-2026-05-17.pdf) |
+| Zadar, Croatia | Oliva Vallis Apartments | May 17-19, 2026 | Two-Bedroom Apartment · 5 adults · USD 271.86 total charge · Ploce, Zadar | [Booking confirmation](booked/zadar-oliva-vallis-apartments-2026-05-17-to-2026-05-19.pdf) |
+| Rovinj, Croatia | Apartments Sunrise & Sunset by Irundo | May 19-22, 2026 | Apartment with Terrace · 5 adults · EUR 479.00 charged in CHF on May 12, 2026 · 26 Zagrebacka ulica, Rovinj Old Town | [Booking confirmation](booked/rovinj-apartments-sunrise-and-sunset-by-irundo-2026-05-19-to-2026-05-22.pdf) |
+| Venice, Italy | Venice Lido Apartment Near Beach and Vaporetto | May 22-24, 2026 | Two-Bedroom Apartment · 5 adults · EUR 549.27 charged in CHF on May 19, 2026, plus CHF 91.3 taxes and fees at the property · Via Marcantonio Bragadin 16, Lido | [Booking confirmation](booked/venice-lido-apartment-near-beach-and-vaporetto-2026-05-22-to-2026-05-24.pdf) |
+| Tuscany, Italy | Casale Le Querce | May 25-31, 2026 | Superior Apartment · 5 adults · approx. CNY 5,189.07 total / EUR 620 base price · Strada Comunale del Chiantino 5, Castelnuovo Berardenga | [Booking confirmation](booked/tuscany-casale-le-querce-2026-05-25-to-2026-05-31.pdf) |
+| Rome, Italy | San Lorenzo Home | May 31-June 2, 2026 | Two-Bedroom Apartment · 5 adults · EUR 358.78 charged by the property, plus CHF 54.8 taxes and fees at the property · Via dei Lucani 24, Rome | [Booking confirmation](booked/rome-san-lorenzo-home-2026-05-31-to-2026-06-02.pdf) |
 
 ## Croatia And Italy 2026 Open Stays
 
@@ -64,9 +66,8 @@ The hotel plan now reflects the confirmed bookings above and the shortened Europ
 
 | Gap | Dates | Nights | Notes |
 | --- | --- | --- | --- |
-| Between Makarska and Zadar | May 13-17, 2026 | 4 nights | No hotel booked yet. |
-| Between Venice and Rome | May 24-31, 2026 | 7 nights | No hotel booked yet. |
+| Tuscany area transit night | May 24-25, 2026 | 1 night | No hotel booked yet before the Tuscany stay begins on May 25. |
 
-Open-stay count: 2 gaps, 11 nights, all planned for 5 adults.
+Open-stay count: 1 gap, 1 night, all planned for 5 adults.
 
 Apartments Milena is no longer the Rovinj stay in the final plan, and the app now keeps only Apartments Sunrise & Sunset by Irundo for May 19-22, 2026.

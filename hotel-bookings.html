@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Booking Tracker | Croatia & Italy 2026</title>
+    <title>酒店预订清单 | 克罗地亚和意大利 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @media print {
@@ -19,119 +19,119 @@
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-900">Croatia & Italy 2026 - Hotel Booking Tracker</h1>
-                    <p class="text-gray-600 mt-1">See every booked stay and the remaining city/date gaps that still need booking before the June 2, 2026 return flight</p>
+                    <h1 class="text-2xl font-bold text-gray-900">克罗地亚和意大利 2026 · 酒店预订清单</h1>
+                    <p class="text-gray-600 mt-1">查看全部已预订住宿，以及在 2026 年 6 月 2 日返程前仍需补订的城市和日期空档</p>
                 </div>
                 <div class="flex gap-2 no-print">
                     <a href="index.html" class="px-4 py-2 bg-sky-600 text-white rounded-lg font-medium hover:bg-sky-700 transition-colors">
-                        Back to itinerary
+                        返回行程页
                     </a>
                     <button onclick="window.print()" class="px-4 py-2 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-900 transition-colors">
-                        Print
+                        打印
                     </button>
                 </div>
             </div>
         </div>
 
         <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
-            <p class="text-sm font-semibold uppercase tracking-wide text-amber-800">What Changed</p>
-            <h2 class="text-lg font-semibold text-amber-950 mt-1">The full booked + unbooked stay list is now shown here</h2>
+            <p class="text-sm font-semibold uppercase tracking-wide text-amber-800">更新说明</p>
+            <h2 class="text-lg font-semibold text-amber-950 mt-1">本页现在显示完整的已订和未订住宿清单</h2>
             <p class="text-sm text-amber-900 mt-3">
-                The booking page now includes all confirmed stays from the <code>booked/</code> folder, including the newly added Tuscany booking at Casale Le Querce.
+                预订页现在包含 <code>booked/</code> 文件夹里的全部已确认住宿，包括新加入的斯普利特和托斯卡纳预订。
             </p>
             <p class="text-sm text-amber-900 mt-2">
-                The remaining unbooked windows are now the Croatia transit gap from May 13-17, 2026 and the one-night Italy gap from May 24-25, 2026.
+                目前唯一剩下未预订的住宿空档，是 2026 年 5 月 24 日到 5 月 25 日之间托斯卡纳区域的 1 晚。
             </p>
         </div>
 
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
-                <h2 class="text-lg font-semibold text-gray-900">Booked and Unbooked Stay Windows</h2>
+                <h2 class="text-lg font-semibold text-gray-900">已预订与未预订住宿时间段</h2>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-sm">
                     <thead class="bg-gray-50 border-b border-gray-200">
                         <tr>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">City</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Stay</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Dates</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Nights</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Status</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Notes</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">城市</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">住宿</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">日期</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">晚数</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">状态</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">备注</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                         <tr class="hover:bg-emerald-50">
-                            <td class="px-4 py-4 font-medium text-gray-900">Dubrovnik</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">杜布罗夫尼克</td>
                             <td class="px-4 py-4 text-gray-700">Home in Dubrovnik / Taira Apt</td>
-                            <td class="px-4 py-4 text-gray-600">May 8-12, 2026</td>
-                            <td class="px-4 py-4 text-gray-700">4 nights</td>
-                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">Booked</span></td>
-                            <td class="px-4 py-4 text-gray-600 text-xs">Confirmation is in the booked folder as a screenshot.</td>
+                            <td class="px-4 py-4 text-gray-600">2026年5月8日-5月12日</td>
+                            <td class="px-4 py-4 text-gray-700">4晚</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已预订</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">Ulica od Nuncijate 29, Dubrovnik · 总价 USD 575.07</td>
                         </tr>
                         <tr class="hover:bg-emerald-50">
-                            <td class="px-4 py-4 font-medium text-gray-900">Makarska</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">马卡尔斯卡</td>
                             <td class="px-4 py-4 text-gray-700">Apartment Luka</td>
-                            <td class="px-4 py-4 text-gray-600">May 12-13, 2026</td>
-                            <td class="px-4 py-4 text-gray-700">1 night</td>
-                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">Booked</span></td>
-                            <td class="px-4 py-4 text-gray-600 text-xs">EUR 90.00 payable at the property.</td>
-                        </tr>
-                        <tr class="hover:bg-amber-50">
-                            <td class="px-4 py-4 font-medium text-gray-900">Croatia transit city TBD</td>
-                            <td class="px-4 py-4 text-gray-700">No hotel booked yet</td>
-                            <td class="px-4 py-4 text-gray-600">May 13-17, 2026</td>
-                            <td class="px-4 py-4 text-gray-700">4 nights</td>
-                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-800">Need booking</span></td>
-                            <td class="px-4 py-4 text-gray-600 text-xs">After Makarska checkout on May 13 and before Zadar check-in on May 17.</td>
+                            <td class="px-4 py-4 text-gray-600">2026年5月12日-5月13日</td>
+                            <td class="px-4 py-4 text-gray-700">1晚</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已预订</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">Ulica Slikara Gojaka 37, Makarska · 总价 EUR 90.00</td>
                         </tr>
                         <tr class="hover:bg-emerald-50">
-                            <td class="px-4 py-4 font-medium text-gray-900">Zadar</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">斯普利特</td>
+                            <td class="px-4 py-4 text-gray-700">Apartment Dalmaticus</td>
+                            <td class="px-4 py-4 text-gray-600">2026年5月13日-5月17日</td>
+                            <td class="px-4 py-4 text-gray-700">4晚</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已预订</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">Odakova 20 3 kat, Split · 总价 EUR 484.00</td>
+                        </tr>
+                        <tr class="hover:bg-emerald-50">
+                            <td class="px-4 py-4 font-medium text-gray-900">扎达尔</td>
                             <td class="px-4 py-4 text-gray-700">Oliva Vallis Apartments</td>
-                            <td class="px-4 py-4 text-gray-600">May 17-19, 2026</td>
-                            <td class="px-4 py-4 text-gray-700">2 nights</td>
-                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">Booked</span></td>
-                            <td class="px-4 py-4 text-gray-600 text-xs">Agoda confirmation saved in the booked folder.</td>
+                            <td class="px-4 py-4 text-gray-600">2026年5月17日-5月19日</td>
+                            <td class="px-4 py-4 text-gray-700">2晚</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已预订</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">Ploce, Zadar · 总价 USD 271.86</td>
                         </tr>
                         <tr class="hover:bg-emerald-50">
-                            <td class="px-4 py-4 font-medium text-gray-900">Rovinj</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">罗维尼</td>
                             <td class="px-4 py-4 text-gray-700">Apartments Sunrise &amp; Sunset by Irundo</td>
-                            <td class="px-4 py-4 text-gray-600">May 19-22, 2026</td>
-                            <td class="px-4 py-4 text-gray-700">3 nights</td>
-                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">Booked</span></td>
-                            <td class="px-4 py-4 text-gray-600 text-xs">Current final Rovinj booking is the Irundo apartment.</td>
+                            <td class="px-4 py-4 text-gray-600">2026年5月19日-5月22日</td>
+                            <td class="px-4 py-4 text-gray-700">3晚</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已预订</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">26 Zagrebacka ulica, Rovinj · 总价 EUR 479.00</td>
                         </tr>
                         <tr class="hover:bg-emerald-50">
-                            <td class="px-4 py-4 font-medium text-gray-900">Venice</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">威尼斯</td>
                             <td class="px-4 py-4 text-gray-700">Venice Lido Apartment Near Beach and Vaporetto</td>
-                            <td class="px-4 py-4 text-gray-600">May 22-24, 2026</td>
-                            <td class="px-4 py-4 text-gray-700">2 nights</td>
-                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">Booked</span></td>
-                            <td class="px-4 py-4 text-gray-600 text-xs">EUR 549.27 plus CHF 91.3 in taxes and fees payable at the property.</td>
+                            <td class="px-4 py-4 text-gray-600">2026年5月22日-5月24日</td>
+                            <td class="px-4 py-4 text-gray-700">2晚</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已预订</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">Via Marcantonio Bragadin 16, Lido · EUR 549.27 + CHF 91.3 费用</td>
                         </tr>
                         <tr class="hover:bg-amber-50">
-                            <td class="px-4 py-4 font-medium text-gray-900">Italy transit city TBD</td>
-                            <td class="px-4 py-4 text-gray-700">No hotel booked yet</td>
-                            <td class="px-4 py-4 text-gray-600">May 24-25, 2026</td>
-                            <td class="px-4 py-4 text-gray-700">1 night</td>
-                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-800">Need booking</span></td>
-                            <td class="px-4 py-4 text-gray-600 text-xs">After Venice checkout on May 24 and before Tuscany check-in on May 25.</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">托斯卡纳区域</td>
+                            <td class="px-4 py-4 text-gray-700">尚未预订酒店</td>
+                            <td class="px-4 py-4 text-gray-600">2026年5月24日-5月25日</td>
+                            <td class="px-4 py-4 text-gray-700">1晚</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-800">待预订</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">请在 5 月 25 日入住托斯卡纳前补订 1 晚。</td>
                         </tr>
                         <tr class="hover:bg-emerald-50">
-                            <td class="px-4 py-4 font-medium text-gray-900">Tuscany</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">托斯卡纳</td>
                             <td class="px-4 py-4 text-gray-700">Casale Le Querce</td>
-                            <td class="px-4 py-4 text-gray-600">May 25-31, 2026</td>
-                            <td class="px-4 py-4 text-gray-700">6 nights</td>
-                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">Booked</span></td>
-                            <td class="px-4 py-4 text-gray-600 text-xs">Newly added from <code>booked/Tuscany onfirmation.pdf</code>; property is in Castelnuovo Berardenga.</td>
+                            <td class="px-4 py-4 text-gray-600">2026年5月25日-5月31日</td>
+                            <td class="px-4 py-4 text-gray-700">6晚</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已预订</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">Strada Comunale del Chiantino 5, Castelnuovo Berardenga · 约 CNY 5,189.07</td>
                         </tr>
                         <tr class="hover:bg-emerald-50">
-                            <td class="px-4 py-4 font-medium text-gray-900">Rome</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">罗马</td>
                             <td class="px-4 py-4 text-gray-700">San Lorenzo Home</td>
-                            <td class="px-4 py-4 text-gray-600">May 31-June 2, 2026</td>
-                            <td class="px-4 py-4 text-gray-700">2 nights</td>
-                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">Booked</span></td>
-                            <td class="px-4 py-4 text-gray-600 text-xs">EUR 358.78 plus CHF 54.8 in taxes and fees payable at the property.</td>
+                            <td class="px-4 py-4 text-gray-600">2026年5月31日-6月2日</td>
+                            <td class="px-4 py-4 text-gray-700">2晚</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已预订</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">Via dei Lucani 24, Rome · EUR 358.78 + CHF 54.8 费用</td>
                         </tr>
                     </tbody>
                 </table>
@@ -140,33 +140,33 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <div class="text-2xl font-bold text-emerald-600">7</div>
-                <div class="text-sm text-gray-600">Booked Stays</div>
+                <div class="text-2xl font-bold text-emerald-600">8</div>
+                <div class="text-sm text-gray-600">已预订住宿</div>
             </div>
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <div class="text-2xl font-bold text-amber-600">2</div>
-                <div class="text-sm text-gray-600">Open Gaps</div>
+                <div class="text-2xl font-bold text-amber-600">1</div>
+                <div class="text-sm text-gray-600">待补空档</div>
             </div>
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-                <div class="text-2xl font-bold text-gray-900">5</div>
-                <div class="text-sm text-gray-600">Open Nights</div>
+                <div class="text-2xl font-bold text-gray-900">1</div>
+                <div class="text-sm text-gray-600">待补晚数</div>
             </div>
         </div>
 
         <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-6">
-            <h3 class="font-semibold text-amber-900 mb-2">Notes</h3>
+            <h3 class="font-semibold text-amber-900 mb-2">说明</h3>
             <ul class="text-sm text-amber-800 space-y-1 list-disc list-inside">
-                <li>This page now shows every current stay window in chronological order, not only the unbooked gaps.</li>
-                <li>The extra Tuscany booking fills May 25-31, 2026, so the remaining Italy gap is only May 24-25, 2026.</li>
-                <li>The exact transit city is still open for the May 13-17 Croatia gap and the May 24-25 Italy gap.</li>
-                <li>Rovinj keeps only Apartments Sunrise &amp; Sunset by Irundo in the final confirmed plan.</li>
-                <li>The Europe leg ends in Rome because the return flight is booked for June 2, 2026.</li>
+                <li>本页按时间顺序显示当前全部住宿，不再只显示未订空档。</li>
+                <li>斯普利特现已预订，托斯卡纳的新增预订覆盖了 2026 年 5 月 25 日到 5 月 31 日。</li>
+                <li>目前唯一还需补订的是 2026 年 5 月 24 日到 5 月 25 日这一晚的托斯卡纳过渡住宿。</li>
+                <li>罗维尼最终保留的确认住宿为 Apartments Sunrise &amp; Sunset by Irundo。</li>
+                <li>欧洲行最后在罗马结束，因为返程航班已定在 2026 年 6 月 2 日。</li>
             </ul>
         </div>
 
         <div class="text-center text-gray-500 text-sm mt-8 pb-8">
-            <p>Last updated: March 29, 2026</p>
-            <p class="mt-1">Croatia &amp; Italy Trip - May 8 to June 2, 2026</p>
+            <p>最后更新：2026年3月29日</p>
+            <p class="mt-1">克罗地亚和意大利行程 · 2026年5月8日到6月2日</p>
         </div>
     </div>
 </body>

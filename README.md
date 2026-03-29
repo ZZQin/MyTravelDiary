@@ -57,6 +57,7 @@ Roamio is a static bilingual travel itinerary app for planning trips and keeping
 | Zadar, Croatia | Oliva Vallis Apartments | May 17-19, 2026 | Two-Bedroom Apartment · 5 adults · USD 271.86 total charge · Ploce, Zadar | [Booking confirmation](booked/zadar-oliva-vallis-apartments-2026-05-17-to-2026-05-19.pdf) |
 | Rovinj, Croatia | Apartments Sunrise & Sunset by Irundo | May 19-22, 2026 | Apartment with Terrace · 5 adults · EUR 479.00 charged in CHF on May 12, 2026 · 26 Zagrebacka ulica, Rovinj Old Town | [Booking confirmation](booked/rovinj-apartments-sunrise-and-sunset-by-irundo-2026-05-19-to-2026-05-22.pdf) |
 | Venice, Italy | Venice Lido Apartment Near Beach and Vaporetto | May 22-24, 2026 | Two-Bedroom Apartment · 5 adults · EUR 549.27 charged in CHF on May 19, 2026, plus CHF 91.3 taxes and fees at the property · Via Marcantonio Bragadin 16, Lido | [Booking confirmation](booked/venice-lido-apartment-near-beach-and-vaporetto-2026-05-22-to-2026-05-24.pdf) |
+| Verona, Italy | Giode X Stadio Apartment/Flat | May 24-25, 2026 | Two-Bedroom Apartment with Balcony · 1 night · USD 207.16 total · €17.50 city tax payable at the property · Borgo Milano - Stadio, Verona | [Booking confirmation](booked/verona-giode-x-stadio-2026-05-24-to-2026-05-25.pdf) |
 | Tuscany, Italy | Casale Le Querce | May 25-31, 2026 | Superior Apartment · 5 adults · approx. CNY 5,189.07 total / EUR 620 base price · Strada Comunale del Chiantino 5, Castelnuovo Berardenga | [Booking confirmation](booked/tuscany-casale-le-querce-2026-05-25-to-2026-05-31.pdf) |
 | Rome, Italy | San Lorenzo Home | May 31-June 2, 2026 | Two-Bedroom Apartment · 5 adults · EUR 358.78 charged by the property, plus CHF 54.8 taxes and fees at the property · Via dei Lucani 24, Rome | [Booking confirmation](booked/rome-san-lorenzo-home-2026-05-31-to-2026-06-02.pdf) |
 
@@ -66,8 +67,8 @@ The hotel plan now reflects the confirmed bookings above and the shortened Europ
 
 | Gap | Dates | Nights | Notes |
 | --- | --- | --- | --- |
-| Tuscany area transit night | May 24-25, 2026 | 1 night | No hotel booked yet before the Tuscany stay begins on May 25. |
+| None | — | 0 nights | All Europe stays are now booked. |
 
-Open-stay count: 1 gap, 1 night, all planned for 5 adults.
+Open-stay count: 0 gaps, 0 nights, all planned for 5 adults.
 
 Apartments Milena is no longer the Rovinj stay in the final plan, and the app now keeps only Apartments Sunrise & Sunset by Irundo for May 19-22, 2026.

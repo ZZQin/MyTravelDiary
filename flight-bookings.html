@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seb 航班清单 | 克罗地亚和意大利 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { font-size: 12px; }
+            table { page-break-inside: auto; }
+            tr { page-break-inside: avoid; page-break-after: auto; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">克罗地亚和意大利 2026 · Seb 航班清单</h1>
+                    <p class="text-gray-600 mt-1">根据截图整理的往返日内瓦与斯普利特航班信息</p>
+                </div>
+                <div class="flex gap-2 no-print flex-wrap">
+                    <a href="index.html" class="px-4 py-2 bg-sky-600 text-white rounded-lg font-medium hover:bg-sky-700 transition-colors">
+                        返回行程页
+                    </a>
+                    <a href="hotel-bookings.html" class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors">
+                        查看酒店清单
+                    </a>
+                    <a href="car-rentals.html" class="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors">
+                        查看租车清单
+                    </a>
+                    <button onclick="window.print()" class="px-4 py-2 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                        打印
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
+            <p class="text-sm font-semibold uppercase tracking-wide text-amber-800">来源说明</p>
+            <h2 class="text-lg font-semibold text-amber-950 mt-1">航班信息来自你提供的截图</h2>
+            <p class="text-sm text-amber-900 mt-3">
+                已录入 2 段 easyJet 航班（EZS1503 / EZS1504），含起降时间、机场代码、航站楼、值机开放时间和托运行李窗口。
+            </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                <h2 class="text-lg font-semibold text-gray-900">Seb 航班总表</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">日期</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">航班号</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">出发</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">到达</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">值机开放</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">托运行李</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">状态</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-emerald-50">
+                            <td class="px-4 py-4 text-gray-700">2026-05-14（周四）</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">EZS1503</td>
+                            <td class="px-4 py-4 text-gray-700">
+                                Geneva (GVA)<br>
+                                <span class="text-xs text-gray-500">06:20 · T1</span>
+                            </td>
+                            <td class="px-4 py-4 text-gray-700">
+                                Split (SPU)<br>
+                                <span class="text-xs text-gray-500">08:00</span>
+                            </td>
+                            <td class="px-4 py-4 text-gray-700">2026-04-14（周二）06:20</td>
+                            <td class="px-4 py-4 text-gray-700">04:20 开放 · 05:30 关闭</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已录入</span></td>
+                        </tr>
+                        <tr class="hover:bg-emerald-50">
+                            <td class="px-4 py-4 text-gray-700">2026-05-19（周二）</td>
+                            <td class="px-4 py-4 font-medium text-gray-900">EZS1504</td>
+                            <td class="px-4 py-4 text-gray-700">
+                                Split (SPU)<br>
+                                <span class="text-xs text-gray-500">12:05</span>
+                            </td>
+                            <td class="px-4 py-4 text-gray-700">
+                                Geneva (GVA)<br>
+                                <span class="text-xs text-gray-500">13:45 · T1</span>
+                            </td>
+                            <td class="px-4 py-4 text-gray-700">2026-04-14（周二）06:20</td>
+                            <td class="px-4 py-4 text-gray-700">10:05 开放 · 11:25 关闭</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已录入</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-emerald-600">2</div>
+                <div class="text-sm text-gray-600">已录入航段</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-sky-600">1</div>
+                <div class="text-sm text-gray-600">去程（GVA → SPU）</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-indigo-600">1</div>
+                <div class="text-sm text-gray-600">返程（SPU → GVA）</div>
+            </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-6">
+            <h3 class="font-semibold text-amber-900 mb-2">提醒</h3>
+            <ul class="text-sm text-amber-800 space-y-1 list-disc list-inside">
+                <li>两段航班的值机开放时间均显示为 2026-04-14 06:20。</li>
+                <li>EZS1503：GVA 06:20 起飞，行李托运最晚 05:30。</li>
+                <li>EZS1504：SPU 12:05 起飞，行李托运最晚 11:25。</li>
+            </ul>
+        </div>
+
+        <div class="text-center text-gray-500 text-sm mt-8 pb-8">
+            <p>最后更新：2026年4月14日</p>
+            <p class="mt-1">Seb 航班信息 · 来源：用户提供截图</p>
+        </div>
+    </div>
+</body>
+</html>

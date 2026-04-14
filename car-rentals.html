@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>租车预订清单 | 克罗地亚和意大利 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { font-size: 12px; }
+            table { page-break-inside: auto; }
+            tr { page-break-inside: avoid; page-break-after: auto; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-900">克罗地亚和意大利 2026 · 租车预订清单</h1>
+                    <p class="text-gray-600 mt-1">统一查看欧洲段所有租车安排（跨城与市区取还车）</p>
+                </div>
+                <div class="flex gap-2 no-print flex-wrap">
+                    <a href="index.html" class="px-4 py-2 bg-sky-600 text-white rounded-lg font-medium hover:bg-sky-700 transition-colors">
+                        返回行程页
+                    </a>
+                    <a href="hotel-bookings.html" class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors">
+                        查看酒店清单
+                    </a>
+                    <button onclick="window.print()" class="px-4 py-2 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-900 transition-colors">
+                        打印
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
+            <p class="text-sm font-semibold uppercase tracking-wide text-amber-800">更新说明</p>
+            <h2 class="text-lg font-semibold text-amber-950 mt-1">已加入全部已知租车预订信息</h2>
+            <p class="text-sm text-amber-900 mt-3">
+                当前共记录 2 段租车：
+                <strong>Dubrovnik (Rixos) → Rovinj</strong> 和 <strong>Siena Downtown 往返</strong>。
+            </p>
+            <p class="text-sm text-amber-900 mt-2">
+                所有条目按取车时间排序；未提供字段以“未提供”标记，便于后续补充。
+            </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                <h2 class="text-lg font-semibold text-gray-900">租车预订总表</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">行程段</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">取车</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">还车</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">车型/档位</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">预订号</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">费用/时长</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">状态</th>
+                            <th class="px-4 py-3 text-left font-semibold text-gray-700">备注</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-emerald-50">
+                            <td class="px-4 py-4 font-medium text-gray-900">克罗地亚海岸跨城段</td>
+                            <td class="px-4 py-4 text-gray-700">
+                                Dubrovnik / Hotel Rixos<br>
+                                <span class="text-xs text-gray-500">2026-05-12（周二）10:00</span>
+                            </td>
+                            <td class="px-4 py-4 text-gray-700">
+                                Rovinj<br>
+                                <span class="text-xs text-gray-500">2026-05-21（周四）17:00</span>
+                            </td>
+                            <td class="px-4 py-4 text-gray-700">Ford Focus SW 或同级 · 手动挡</td>
+                            <td class="px-4 py-4 text-gray-700">9732871480</td>
+                            <td class="px-4 py-4 text-gray-700">€290.49 预付</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已确认</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">含第三方保险、无限里程；取车将冻结押金，还车后数日内退回</td>
+                        </tr>
+                        <tr class="hover:bg-emerald-50">
+                            <td class="px-4 py-4 font-medium text-gray-900">托斯卡纳市区段（Siena 往返）</td>
+                            <td class="px-4 py-4 text-gray-700">
+                                Siena Downtown<br>
+                                <span class="text-xs text-gray-500">2026-05-25（周一）11:30</span>
+                            </td>
+                            <td class="px-4 py-4 text-gray-700">
+                                Siena Downtown<br>
+                                <span class="text-xs text-gray-500">2026-05-30（周六）11:30</span>
+                            </td>
+                            <td class="px-4 py-4 text-gray-700">未提供</td>
+                            <td class="px-4 py-4 text-gray-700">未提供</td>
+                            <td class="px-4 py-4 text-gray-700">5 天</td>
+                            <td class="px-4 py-4"><span class="inline-flex rounded-full bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-800">已确认</span></td>
+                            <td class="px-4 py-4 text-gray-600 text-xs">取还车地址相同：36, Via Simone Martini, Siena（电话 +39 0577 270305）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-emerald-600">2</div>
+                <div class="text-sm text-gray-600">已确认租车段</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-sky-600">1</div>
+                <div class="text-sm text-gray-600">跨城单程租车</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+                <div class="text-2xl font-bold text-indigo-600">1</div>
+                <div class="text-sm text-gray-600">市区往返租车</div>
+            </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-6">
+            <h3 class="font-semibold text-amber-900 mb-2">关键信息备忘</h3>
+            <ul class="text-sm text-amber-800 space-y-1 list-disc list-inside">
+                <li>跨城段预订号：9732871480（Dubrovnik Rixos 取车，Rovinj 还车）。</li>
+                <li>跨城段已预付 €290.49；按欧元结算，汇率可能导致入账金额有差异。</li>
+                <li>跨城段包含第三方保险和无限里程，取车时会冻结额外押金。</li>
+                <li>Siena 段取还车地址和联系电话一致：36, Via Simone Martini, +39 0577 270305。</li>
+                <li>第二段车型、预订号和费用尚未提供，后续可在本页补齐。</li>
+            </ul>
+        </div>
+
+        <div class="text-center text-gray-500 text-sm mt-8 pb-8">
+            <p>最后更新：2026年4月14日</p>
+            <p class="mt-1">克罗地亚和意大利行程 · 租车安排总览</p>
+        </div>
+    </div>
+</body>
+</html>
